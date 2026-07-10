@@ -4,6 +4,7 @@ import MODEL.personagens.Item;
 import MODEL.personagens.NPC;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Sala {
     //1 sala qual quer. tem ligação com outras, inimigos, itens ou npcs.
@@ -21,6 +22,45 @@ public class Sala {
     Sala salaBaixo;
     private String estadoSala; //se é possível chegar na sala ou se precisa de uma chave antes
     //dá pra tirar se quiserem
+
+    public Object[] listarObjetos(){
+
+        ArrayList<Inimigo> arrayInimigo = getInimigoNaSala();
+        Iterator<Inimigo> inimigoIterator = arrayInimigo.iterator();
+
+        ArrayList<Item> arrayItem = getItemNaSala();
+        Iterator<Item> itemIterator = arrayItem.iterator();
+
+        ArrayList<NPC> arrayNPC = getNpcNaSala();
+        Iterator<NPC> NPCIterator = arrayNPC.iterator();
+
+        Object[] nome = new Object[arrayInimigo.size() + arrayItem.size() + arrayNPC.size()];
+
+        int i = 0;
+        if(arrayInimigo.isEmpty() == false) {
+            while (inimigoIterator.hasNext()) {
+                nome[i] = inimigoIterator.next().getNome();
+                i++;
+            }
+        }
+
+        if(arrayItem.isEmpty() == false) {
+            while (itemIterator.hasNext()) {
+                nome[i] = inimigoIterator.next().getNome();
+                i++;
+            }
+        }
+
+        if(arrayNPC.isEmpty() == false) {
+            while (NPCIterator.hasNext()) {
+                nome[i] = NPCIterator.next().getNome();
+                i++;
+            }
+        }
+
+        return nome;
+
+    }
 
     public ArrayList<Inimigo> getInimigoNaSala(){//retorna todos os inimigos para poder atacar um deles
         return inimigoNaSala;
