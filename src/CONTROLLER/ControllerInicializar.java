@@ -1,28 +1,26 @@
 package CONTROLLER;
 
-import MODEL.personagens.Inimigo;
-import MODEL.personagens.Item;
-import MODEL.personagens.NPC;
+import MODEL.mapa.SalaNode;
+import MODEL.personagens.InicializarPersonagens;
 
 public class ControllerInicializar {
-//    public static void ControllerInicializar() {
-//        criarInimigo(10);
-//        criarNPC(10);
-//        criarItem(10);
-//    }
-//
-//    public static Inimigo[] criarInimigo(int numInimigos)
-//    {
-//
-//    }
-//
-//    public static NPC[] criarNPC(int numNPC)
-//    {
-//
-//    }
-//
-//    public static Item[] criarItem(int numItem)
-//    {
-//
-//    }
+
+    private static int NUM_INIMIGOSINICIAL = 10;
+    private static int NUM_NPCINICIAL = 10;
+    private static int NUM_ITEMINICIAL = 10;
+    private static int NUM_MAGIAINICIAL = 10;
+
+    public static void ControllerInicializar() {
+        InicializarPersonagens.criarInimigo(NUM_INIMIGOSINICIAL);
+        InicializarPersonagens.criarNPC(NUM_NPCINICIAL);
+        InicializarPersonagens.criarItem(NUM_ITEMINICIAL);
+        InicializarPersonagens.criarMagia(NUM_MAGIAINICIAL);
+
+        InicializarPersonagens.criarPlayer();
+
+        SalaNode.criarSala();
+    }
+
+
+
 }
