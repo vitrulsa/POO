@@ -1,9 +1,11 @@
 package MODEL.personagens;
 import CONTROLLER.ControllerAção;
 
-public class Inimigo extends Personagem {
+import java.io.Serializable;
 
-    protected Inimigo(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
+public class Inimigo extends Personagem implements Serializable {
+
+    public Inimigo(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
     }
 
