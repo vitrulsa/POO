@@ -14,7 +14,7 @@ public class Inimigo extends Personagem {
 
     @Override
     public void atacar() {
-        ControllerAção.atacar();
+        //
     }
 
     @Override

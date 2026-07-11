@@ -15,7 +15,8 @@ public class Arma extends Item {
 
     @Override
     public void usar(Personagem alvo) {
-        System.out.println(alvo.getNome() + " equipou a arma " + getNome() + " com " + dano + " de dano.");
+        alvo.setArmaEquipada(this); // Equipa a arma no personagem
+        System.out.println(alvo.getNome() + " equipou a arma " + getNome() + " com " + getDano() + " de dano.");
     }
 
     @Override

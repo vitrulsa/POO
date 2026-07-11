@@ -12,6 +12,7 @@ public abstract class Personagem implements iInfoBasica {
     protected int dest; // numero que soma na tentativa do player dar dano no inimigo e no dano dado que nem no d&d
     protected int manaAtual; // numero de magias que ainda pode usar
     protected int manaMax; // numero de magias que pode usar no total
+    protected Arma armaEquipada;
     protected ArrayList<Magia> magias;
 
     public abstract void atacar();
@@ -29,6 +30,7 @@ public abstract class Personagem implements iInfoBasica {
         this.manaAtual = manaMax;
         this.magias = new ArrayList<Magia>(Arrays.asList(magias));
     }
+
 
     public String getNome() {
         return nome;
@@ -101,6 +103,10 @@ public abstract class Personagem implements iInfoBasica {
     public void setManaMax(int manaMax) {
         this.manaMax = manaMax;
     }
+
+    public Arma getArmaEquipada() { return armaEquipada; }
+
+    public void setArmaEquipada(Arma armaEquipada) { this.armaEquipada = armaEquipada; }
 
     public Magia getMagia(String nome) {
         for (Magia magia : magias) {
