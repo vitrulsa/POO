@@ -11,9 +11,10 @@ void main() {
     BancoMagia bancoMagia = new BancoMagia();
     BancoInimigo bancoInimigo = new BancoInimigo();
 
-    View iniciar = new View();
-
-    iniciar.mostrarMenuInicial();
+//    Magia[] magias = new Magia[1];
+//    magias[0] = bancoMagia.getMagia("Bola de fogo");
+//    bancoInimigo.adicionarInimigo("Goblin", "Goblin", 5, 12, 10, 12, 1, magias);
+//    bancoInimigo.criarBanco();
 }
 
 
