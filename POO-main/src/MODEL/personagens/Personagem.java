@@ -2,7 +2,7 @@ package MODEL.personagens;
 
 import java.util.*;
 
-public abstract class Personagem {
+public abstract class Personagem implements iInfoBasica {
     protected String nome;
     protected String raca;
     protected int hp;
@@ -101,8 +101,8 @@ public abstract class Personagem {
 
         return null;
     }
-
     public void setMagia(Magia magia) {
         this.magias.add(magia);
     }
+
 }

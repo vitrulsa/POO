@@ -1,10 +1,11 @@
 package MODEL.mapa;
+
 import MODEL.personagens.Inimigo;
 import MODEL.personagens.Item;
 import MODEL.personagens.NPC;
+import MODEL.personagens.iInfoBasica;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Sala {
     //1 sala qual quer. tem ligação com outras, inimigos, itens ou npcs.
@@ -13,7 +14,7 @@ public class Sala {
     private int MAX_ITEM = 3;
 
     private ArrayList<Inimigo> inimigoNaSala = new ArrayList<>(MAX_INIMIGO);
-    private ArrayList<NPC> npcNaSala = new ArrayList<>(MAX_INIMIGO);
+    private ArrayList<NPC> npcNaSala = new ArrayList<>(MAX_NPC);
     private ArrayList<Item> itemNaSala = new ArrayList<>(MAX_ITEM);
 
     Sala salaDireita;
@@ -23,42 +24,22 @@ public class Sala {
     private String estadoSala; //se é possível chegar na sala ou se precisa de uma chave antes
     //dá pra tirar se quiserem
 
-    public Object[] listarObjetos(){
+    public ArrayList<iInfoBasica> listarObjetos(){
 
         ArrayList<Inimigo> arrayInimigo = getInimigoNaSala();
-        Iterator<Inimigo> inimigoIterator = arrayInimigo.iterator();
 
         ArrayList<Item> arrayItem = getItemNaSala();
-        Iterator<Item> itemIterator = arrayItem.iterator();
 
         ArrayList<NPC> arrayNPC = getNpcNaSala();
-        Iterator<NPC> NPCIterator = arrayNPC.iterator();
 
-        Object[] nome = new Object[arrayInimigo.size() + arrayItem.size() + arrayNPC.size()];
+        //interface pois talvez possamos usar p mais coisas almém de nomes!!!!
 
-        int i = 0;
-        if(arrayInimigo.isEmpty() == false) {
-            while (inimigoIterator.hasNext()) {
-                nome[i] = inimigoIterator.next().getNome();
-                i++;
-            }
-        }
+        ArrayList<iInfoBasica> ObjetosSala = new ArrayList<>();
+        ObjetosSala.addAll(arrayInimigo);
+        ObjetosSala.addAll(arrayItem);
+        ObjetosSala.addAll(arrayNPC);
 
-        if(arrayItem.isEmpty() == false) {
-            while (itemIterator.hasNext()) {
-                nome[i] = inimigoIterator.next().getNome();
-                i++;
-            }
-        }
-
-        if(arrayNPC.isEmpty() == false) {
-            while (NPCIterator.hasNext()) {
-                nome[i] = NPCIterator.next().getNome();
-                i++;
-            }
-        }
-
-        return nome;
+        return ObjetosSala;
 
     }
 

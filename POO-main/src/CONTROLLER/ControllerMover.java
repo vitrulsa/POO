@@ -2,9 +2,6 @@ package CONTROLLER;
 
 import MODEL.mapa.Sala;
 import MODEL.mapa.SalaNode;
-import VIEW.ViewCenario;
-
-import java.util.Iterator;
 
 public class ControllerMover {
 

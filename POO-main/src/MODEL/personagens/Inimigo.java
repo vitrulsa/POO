@@ -1,11 +1,9 @@
 package MODEL.personagens;
 import CONTROLLER.ControllerAção;
 
-import  java.util.ArrayList;
+public class Inimigo extends Personagem {
 
-public class Inimigo extends Personagem{
-
-    protected Inimigo(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
+    public Inimigo(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
     }
 
@@ -22,5 +20,10 @@ public class Inimigo extends Personagem{
     @Override
     public void usarMagia() {
 
+    }
+
+    @Override
+    public String getClasseString() {
+        return Inimigo.class.toString();
     }
 }
