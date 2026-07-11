@@ -6,7 +6,7 @@ public class Player extends Personagem{
 
     private ArrayList<Item> inventario = new ArrayList<Item>();
 
-    public Player(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
+    protected Player(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
     }
 
