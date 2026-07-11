@@ -1,6 +1,8 @@
 package MODEL.personagens;
 
-public abstract class Item implements iInfoBasica {
+import java.io.Serializable;
+
+public abstract class Item implements iInfoBasica, Serializable {
     private String nome;
     private int peso;
     private int valor;
