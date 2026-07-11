@@ -27,7 +27,7 @@ public class ControllerJogo {
         //magias é a mesma coisa
     }
 
-    public static void Salvar(Player jogador, ) {
+    public static void Salvar() {
 
     }
 
