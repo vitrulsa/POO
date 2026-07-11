@@ -1,12 +1,14 @@
 package MODEL.personagens;
 
-public class Magia {
+import java.io.Serializable;
+
+public class Magia implements Serializable {
     private String nome;
     private int dano;
     private String tipo; // fogo, gelo, veneno, cura, etc. determina o que a magia faz
     private String descricao;
 
-    protected Magia(String nome, int dano, String tipo, String descricao){
+    public Magia(String nome, int dano, String tipo, String descricao){
         this.nome = nome;
         this.tipo = tipo;
         this.dano = dano;
