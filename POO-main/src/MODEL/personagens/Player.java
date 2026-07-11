@@ -1,10 +1,30 @@
 package MODEL.personagens;
 
+import MODEL.mapa.Sala;
+
 import java.util.ArrayList;
 
 public class Player extends Personagem{
 
     private ArrayList<Item> inventario = new ArrayList<Item>();
+
+    public ArrayList<Item> getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(ArrayList<Item> inventario) {
+        this.inventario = inventario;
+    }
+
+    private Sala salaAtual;
+
+    public Sala getSalaAtual() {
+        return salaAtual;
+    }
+
+    public void setSalaAtual(Sala salaAtual) {
+        this.salaAtual = salaAtual;
+    }
 
     public Player(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
