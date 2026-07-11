@@ -15,9 +15,10 @@ public abstract class Personagem implements iInfoBasica {
     protected ArrayList<Magia> magias;
 
     public abstract void atacar();
+
     public abstract void usarMagia();
 
-    protected Personagem(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias){
+    protected Personagem(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         this.nome = nome;
         this.raca = raca;
         this.hp = hp;
@@ -32,6 +33,7 @@ public abstract class Personagem implements iInfoBasica {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -39,6 +41,7 @@ public abstract class Personagem implements iInfoBasica {
     public String getRaca() {
         return raca;
     }
+
     public void setRaca(String raca) {
         this.raca = raca;
     }
@@ -46,6 +49,7 @@ public abstract class Personagem implements iInfoBasica {
     public int getHp() {
         return hp;
     }
+
     public void setHp(int hp) {
         this.hp = hp;
     }
@@ -53,6 +57,7 @@ public abstract class Personagem implements iInfoBasica {
     public String getEstado() {
         return estado;
     }
+
     public void setEstado(String estado) {
         this.estado = estado;
     }
@@ -60,6 +65,7 @@ public abstract class Personagem implements iInfoBasica {
     public int getDefesa() {
         return defesa;
     }
+
     public void setDefesa(int defesa) {
         this.defesa = defesa;
     }
@@ -67,6 +73,7 @@ public abstract class Personagem implements iInfoBasica {
     public int getForca() {
         return forca;
     }
+
     public void setForca(int forca) {
         this.forca = forca;
     }
@@ -74,6 +81,7 @@ public abstract class Personagem implements iInfoBasica {
     public int getDest() {
         return dest;
     }
+
     public void setDest(int dest) {
         this.dest = dest;
     }
@@ -81,6 +89,7 @@ public abstract class Personagem implements iInfoBasica {
     public int getManaAtual() {
         return manaAtual;
     }
+
     public void setManaAtual(int manaAtual) {
         this.manaAtual = manaAtual;
     }
@@ -88,19 +97,21 @@ public abstract class Personagem implements iInfoBasica {
     public int getManaMax() {
         return manaMax;
     }
+
     public void setManaMax(int manaMax) {
         this.manaMax = manaMax;
     }
 
-    public Magia getMagia(String nome){
-        for (Magia magia : magias){
-            if (magia.getNome().equals(nome)){
+    public Magia getMagia(String nome) {
+        for (Magia magia : magias) {
+            if (magia.getNome().equals(nome)) {
                 return magia;
             }
         }
 
         return null;
     }
+
     public void setMagia(Magia magia) {
         this.magias.add(magia);
     }
