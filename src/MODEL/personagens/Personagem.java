@@ -1,8 +1,9 @@
 package MODEL.personagens;
 
+import java.io.Serializable;
 import java.util.*;
 
-public abstract class Personagem implements iInfoBasica {
+public abstract class Personagem implements iInfoBasica, Serializable {
     protected String nome;
     protected String raca;
     protected int hp;

@@ -25,11 +25,11 @@ public  class Item implements iInfoBasica {
 
         switch (this.tipo) {
             case POCAO_VIDA:
-                System.out.println("Usou " + nome + ". Recuperou " + valorEfeito + " de Vida (HP).");
+                //System.out.println("Usou " + nome + ". Recuperou " + valorEfeito + " de Vida (HP).");
                 gastar();
                 break;
             case POCAO_MANA:
-                System.out.println("Usou " + nome + ". Restaurou " + valorEfeito + " de Mana (MP).");
+                //System.out.println("Usou " + nome + ". Restaurou " + valorEfeito + " de Mana (MP).");
                 gastar();
                 break;
             case MUNICAO:
