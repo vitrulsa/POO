@@ -1,5 +1,6 @@
 package CONTROLLER;
 
+import MODEL.mapa.SalaNode;
 import MODEL.personagens.InicializarPersonagens;
 
 public class ControllerInicializar {
@@ -15,7 +16,9 @@ public class ControllerInicializar {
         InicializarPersonagens.criarItem(NUM_ITEMINICIAL);
         InicializarPersonagens.criarMagia(NUM_MAGIAINICIAL);
 
-        InicializarMapa
+        InicializarPersonagens.criarPlayer();
+        
+        SalaNode.criarSala();
     }
 
 
