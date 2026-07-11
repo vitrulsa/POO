@@ -24,6 +24,8 @@ public class BancoMagia{
         }
     }
 
+    // use adicionarMagia() para adicionar uma magia ao banco e depois use criarBanco()
+    // para salvar o arquivo
     public void criarBanco(){
         try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
             saida.writeObject(magias);

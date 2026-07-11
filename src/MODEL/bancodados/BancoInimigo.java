@@ -34,6 +34,8 @@ public class BancoInimigo {
         }
     }
 
+    // use adicionarInimigo() para adicionar um inimigo ao banco e depois use criarBanco()
+    // para salvar o arquivo
     public void adicionarInimigo(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias){
         Inimigo inimigo = new Inimigo(nome, raca, hp, defesa, forca, dest, manaMax, magias);
 
