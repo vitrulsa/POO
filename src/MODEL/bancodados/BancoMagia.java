@@ -6,13 +6,14 @@ import MODEL.personagens.Magia;
 
 public class BancoMagia{
     private HashSet<Magia> magias;
-    private final String file = "magias.txt";
+    private final String file = "magias.dat";
 
     public BancoMagia(){
         magias = new HashSet<>();
         try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))){
             magias = (HashSet<Magia>) entrada.readObject();
 
+            System.out.println("Magias carregadas:");
             for (Magia magia : magias){
                 System.out.println(magia.getNome());
             }
