@@ -20,7 +20,7 @@ public abstract class Personagem implements iInfoBasica, Serializable {
 
     public abstract void usarMagia();
 
-    public Personagem(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
+    protected Personagem(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         this.nome = nome;
         this.raca = raca;
         this.hp = hp;
