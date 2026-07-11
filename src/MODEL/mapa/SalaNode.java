@@ -2,11 +2,6 @@ package MODEL.mapa;
 
 public class SalaNode { //responsabilidade: sabe qual sala se liga c qual + liga elas
 
-    public static Sala criarSala(){
-        Sala s = new Sala();
-        return s;
-    }
-
     public static Sala ligarSalasEsq(Sala sala, Sala esq){
         sala.salaEsquerda = esq;
         return sala.salaEsquerda;
