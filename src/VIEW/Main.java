@@ -1,9 +1,9 @@
+import MODEL.bancodados.BancoMagia;
 import VIEW.View;
 
 void main() {
-    View iniciar = new View();
 
-    iniciar.mostrarMenuInicial();
+    BancoMagia bancoMagia = new BancoMagia();
 }
 
 
