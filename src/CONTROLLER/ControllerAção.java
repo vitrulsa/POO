@@ -52,7 +52,7 @@ public class ControllerAção {
         //  Verificar se o atacante tem Mana suficiente
         if (atacante.getManaAtual() <= 0) {
             System.out.println(atacante.getNome() + " está sem Mana! A magia falhou.");
-            return; // Sai do método, o ataque não acontece
+            return;
         }
 
         //  Gasta 1 ponto de Mana (conforme as regras da tua View)
