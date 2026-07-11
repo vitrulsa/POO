@@ -43,4 +43,5 @@ public class Player extends Personagem{
     public String getClasseString() {
         return "";
     }
+
 }

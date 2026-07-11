@@ -16,7 +16,7 @@ public class Inimigo extends Personagem implements Serializable {
 
     @Override
     public void atacar() {
-        ControllerAção.atacar();
+        //
     }
 
     @Override
