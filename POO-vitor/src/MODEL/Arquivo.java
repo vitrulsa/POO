@@ -2,7 +2,6 @@ package MODEL;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -14,14 +13,11 @@ public class Arquivo {
 
     public static void salvarJogo() throws Exception {
         try {
-
-            MapaAtual mapa = new MapaAtual();
-
             FileOutputStream arqv = new FileOutputStream("lindorpg.dat");
             //manda p construtor... p criar arqv com esse nome no final
             ObjectOutputStream arqvSalvar = new ObjectOutputStream(arqv);
             //manda p construtor de objectoutputstream
-            arqvSalvar.writeObject(mapa.getJogador());
+            arqvSalvar.writeObject(MapaAtual.getJogador());
 
         } catch (IOException e) {
             throw new Exception("Algo deu errado salvando o jogo!");
@@ -46,10 +42,10 @@ public class Arquivo {
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("itens.dat"))) {
 
-            ArrayList<Banco> itens = (HashSet<Banco>) entrada.readObject();
+            ArrayList<Item> itens = (ArrayList<Item>) entrada.readObject();
 
             System.out.println("Itens carregados:");
-            for (Banco s : itens) {
+            for (Item s : itens) {
                 //System.out.println(s.getDescricao());
                 //item sem descrição?
             }
@@ -59,14 +55,12 @@ public class Arquivo {
         }
 
         try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("inimigos.dat"))){
-            HashSet<Banco> inimigos = (HashSet<Banco>) entrada.readObject();
+            ArrayList<Inimigo> inimigos = (ArrayList<Inimigo>) entrada.readObject();
 
             System.out.println("Inimigos carregados:");
-            for (Banco inimigo : inimigos){
+            for (Inimigo inimigo : inimigos){
                 System.out.println(inimigo.getNome());
             }
-
-            MapaAtual.setBancoInimigo();
 
         } catch (IOException e){
             System.out.println("Falha abrindo arquivo para carregar inimigos.");
@@ -76,28 +70,24 @@ public class Arquivo {
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("salas.dat"))) {
 
-            HashSet<Banco> salas = (HashSet<Banco>) entrada.readObject();
+            ArrayList<Sala> salas = (ArrayList<Sala>) entrada.readObject();
 
             System.out.println("Salas carregadas:");
-            for (Banco s : salas) {
+            for (Sala s : salas) {
                 System.out.println(s.getDescricao());
             }
-
-            MapaAtual.setBancoSala(salas);
 
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Falha abrindo arquivo de salas.");
         }
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("npcs.dat"))) {
-            HashSet<Banco> npcs = (HashSet<Banco>) entrada.readObject();
+            ArrayList<NPC> npcs = (ArrayList<NPC>) entrada.readObject();
 
+            System.out.println("NPCs carregados:");
             for (NPC npc : npcs) {
                 System.out.println(npc.getNome());
             }
-
-            MapaAtual.setBancoNPC(npcs);
-
         } catch (IOException e) {
             System.out.println("Falha abrindo arquivo para carregar NPCs.");
         } catch (ClassNotFoundException e) {

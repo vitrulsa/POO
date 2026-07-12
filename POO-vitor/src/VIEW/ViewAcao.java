@@ -22,28 +22,40 @@ public class ViewAcao {
     public static void usarItem(ArrayList<Item> inventario) throws Exception {
 
         System.out.println("Escolha um item para utilizar:\n--- Inventário ---");
+        int quantidade = 0;
         for (Item item : inventario) {
             System.out.println((inventario.indexOf(item) + 1) + ": " + item.getNome());
+            quantidade++;
         }
 
-        try {
+        if (quantidade > 0){
             Scanner s = new Scanner(System.in);
-            int i = s.nextInt();
+            while(true){
+                try {
+                    int i = s.nextInt();
 
-            ControllerAcao.usarItem(inventario.get(i));
-        } catch (IncompatibleClassChangeError e) {
-            throw new Exception(e);
-        } catch (InputMismatchException e) {
-            System.out.println("Insira um número de 1 à "+ inventario.size());
-            throw new Exception(e);
+                    if (i > 0 && i <= quantidade){
+                        ControllerAcao.usarItem(inventario.get(i));
+                        break;
+                    } else{
+                        System.out.println("Insira um número de 1 à "+ quantidade);
+                    }
+                } catch (IncompatibleClassChangeError e) {
+                    throw new Exception(e);
+                } catch (InputMismatchException e) {
+                    System.out.println("Insira um número de 1 à "+ quantidade);
+                    throw new Exception(e);
+                }
+            }
         }
+
     }
 
     public static void atacar(ArrayList<Inimigo> inimigoNaSala) throws Exception {
 
         int i = escolherAlvo(inimigoNaSala);
         if (i > 0)
-            ControllerAcao.atacar(inimigoNaSala.get(i - 1));
+            ControllerAcao.atacar(ControllerJogo.getPlayer(), inimigoNaSala.get(i - 1), null);
     }
 
     public static void falar(ArrayList<NPC> NPCsNaSala) throws Exception{
@@ -55,19 +67,23 @@ public class ViewAcao {
         }
         // se houver NPCS na sala, escolhe NPC pra falar
         if (i > 0){
-            try {
-                Scanner s = new Scanner(System.in);
-                int entrada = s.nextInt();
+            Scanner s = new Scanner(System.in);
+            while(true){
+                try {
+                    int entrada = s.nextInt();
 
-                if (entrada > 0 && entrada <= i)
-                    ControllerAcao.falar(NPCsNaSala.get(entrada));
-                else
+                    if (entrada > 0 && entrada <= i){
+                        System.out.println(ControllerAcao.falar(NPCsNaSala.get(entrada)));
+                        break;
+                    }
+                    else
+                        System.out.println("Insira um número de 1 à "+ i);
+                } catch (IncompatibleClassChangeError e) {
+                    throw new Exception(e);
+                } catch (InputMismatchException e) {
                     System.out.println("Insira um número de 1 à "+ i);
-            } catch (IncompatibleClassChangeError e) {
-                throw new Exception(e);
-            } catch (InputMismatchException e) {
-                System.out.println("Insira um número de 1 à "+ i);
-                throw new Exception(e);
+                    throw new Exception(e);
+                }
             }
         } else{
             // se nao houver NPCs na sala
@@ -90,19 +106,22 @@ public class ViewAcao {
         }
         // se player possuir magias
         if (i > 0){
-            try {
-                Scanner s = new Scanner(System.in);
-                int entrada = s.nextInt();
+            Scanner s = new Scanner(System.in);
+            while (true){
+                try {
+                    int entrada = s.nextInt();
 
-                if (entrada > 0 && entrada <= i)
-                    ControllerAcao.usarMagia(magias.get(entrada - 1));
-                else
+                    if (entrada > 0 && entrada <= i){
+                        ControllerAcao.usarMagia(magias.get(entrada - 1));
+                        break;
+                    }else
+                        System.out.println("Insira um número de 1 à "+ i);
+                } catch (IncompatibleClassChangeError e) {
+                    throw new Exception(e);
+                } catch (InputMismatchException e) {
                     System.out.println("Insira um número de 1 à "+ i);
-            } catch (IncompatibleClassChangeError e) {
-                throw new Exception(e);
-            } catch (InputMismatchException e) {
-                System.out.println("Insira um número de 1 à "+ i);
-                throw new Exception(e);
+                    throw new Exception(e);
+                }
             }
         } else{
             // se nao houver magias
@@ -111,26 +130,28 @@ public class ViewAcao {
     }
 
     public static int escolherAlvo(ArrayList<Inimigo> inimigoNaSala) throws Exception{
+        int quantidade = 0;
         for (Inimigo inimigo : inimigoNaSala) {
             System.out.println((inimigoNaSala.indexOf(inimigo) + 1) + ": " + inimigo.getNome());
+            quantidade++;
         }
 
-        if (inimigoNaSala.size() > 0){
+        if (quantidade > 0){
             System.out.println("Quem você vai atacar primeiro?");
+            Scanner s = new Scanner(System.in);
             try {
-                Scanner s = new Scanner(System.in);
                 int i = s.nextInt();
 
-                if (i > 0 && i <= inimigoNaSala.size())
+                if (i > 0 && i <= quantidade)
                     return i;
                 else {
-                    System.out.println("Insira um número de 1 à " + inimigoNaSala.size());
+                    System.out.println("Insira um número de 1 à " + quantidade);
                     return 0;
                 }
             } catch (IncompatibleClassChangeError e) {
                 throw new Exception(e);
             } catch (InputMismatchException e) {
-                System.out.println("Insira um número de 1 à "+ inimigoNaSala.size());
+                System.out.println("Insira um número de 1 à "+ quantidade);
                 throw new Exception(e);
             }
         } else{
@@ -146,24 +167,29 @@ public class ViewAcao {
         ArrayList<iInfoBasica> listaObjetos = ControllerAcao.checarCenario(salaAtual);
         System.out.println("Nessa sala, existem: ");
 
+        int quantidade = 0;
         for(iInfoBasica objetos : listaObjetos){
-            System.out.println((listaObjetos.indexOf(objetos) + 1) + ": " + objetos.getClasseString() + "! "+ objetos.getNome());
+            System.out.println((listaObjetos.indexOf(objetos)+1) + ": " + objetos.getClasseString() + "! "+ objetos.getNome());
+            quantidade += 1;
         }
 
-        if (listaObjetos.size() == 0) {
+        if (quantidade == 0) {
             System.out.println("Nada");
             return;
         }
 
         System.out.println("Você deseja ver alguma descrição?");
 
+        Scanner s = new Scanner(System.in);
         try {
-            Scanner s = new Scanner(System.in);
-            int d = s.nextInt() - 1;
-            if (d > 0 && d <= listaObjetos.size()){
-                System.out.println(listaObjetos.get(d).getNome() + ": " + listaObjetos.get(d).getDescricao());
-            } else{
-                System.out.println("Insira um número de 1 à " + listaObjetos.size() + "!");
+            while (true){
+                int d = s.nextInt();
+                if (d > 0 && d <= quantidade){
+                    System.out.println(listaObjetos.get(d).getNome() + ": " + listaObjetos.get(d).getDescricao());
+                    break;
+                } else{
+                    System.out.println("Insira um número de 1 à " + quantidade + "!");
+                }
             }
         } catch (IncompatibleClassChangeError e) {
             throw new Exception(e);
@@ -185,7 +211,50 @@ public class ViewAcao {
         }
     }
 
-    public static void equipar(ArrayList<Item> inventario){
+    public static void equipar(ArrayList<Item> inventario) throws Exception{
+        System.out.println("Escolha uma arma para equipar:\n--- Inventário ---");
+        ArrayList<Arma> armas = new ArrayList<>();
+        int quantidade = 0;
+        for (Item item : inventario) {
+            if (item instanceof Arma arma){
+                System.out.println("[" + quantidade + "] " + arma.getNome());
+                armas.add(arma);
+                quantidade++;
+            }
+        }
 
+        if (quantidade > 0){
+            Scanner s = new Scanner(System.in);
+            while (true){
+                try {
+                    int i = s.nextInt();
+
+                    if (i >0 && i <= quantidade){
+                        ControllerAcao.equipar(armas.get(i));
+                        break;
+                    }else{
+                        System.out.println("Insira um número de 1 à "+ quantidade);
+                    }
+                } catch (IncompatibleClassChangeError e) {
+                    throw new Exception(e);
+                } catch (InputMismatchException e) {
+                    System.out.println("Insira um número de 1 à "+ quantidade);
+                    throw new Exception(e);
+                }
+            }
+        }
+
+    }
+
+    public static void dano(Personagem atacante, Personagem alvo, int dano){
+        if (dano > 0){
+            System.out.println(">>> " + atacante.getNome() + " acerta " + alvo.getNome() + " e causa " + dano + " de dano! <<<");
+
+            if (alvo.getHp() <= 0){
+                System.out.println(">>> " + alvo.getNome() + " morreu! <<<");
+            }
+        } else if (dano == 0) {
+            System.out.println(">>> " + atacante.getNome() + " errou! <<<");
+        }
     }
 }

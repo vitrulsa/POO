@@ -1,9 +1,12 @@
 package CONTROLLER;
 
 import MODEL.Inicializar;
+import MODEL.personagens.Item;
 import MODEL.personagens.Magia;
 import MODEL.personagens.Player;
 import VIEW.ViewJogo;
+
+import java.util.ArrayList;
 
 public class ControllerJogo {
 
@@ -47,6 +50,7 @@ public class ControllerJogo {
         int forca;
         int dest;
         int manaMax;
+        ArrayList<Item> inventario = new ArrayList<>();
         Magia[] magias;
         switch(raca){
             case "Anão":

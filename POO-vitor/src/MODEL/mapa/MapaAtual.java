@@ -1,66 +1,35 @@
 package MODEL.mapa;
-import MODEL.bancodados.Banco;
+import MODEL.bancodados.BancoItens;
+import MODEL.bancodados.BancoMagia;
 import MODEL.personagens.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class MapaAtual {
     //isso é pra jogar!!! ebaaa!!!
     private static Player jogador;
 
-    private static HashSet<Banco> bancoMagia;
-    private static HashSet<Banco> bancoNPC;
-    private static HashSet<Banco> bancoItem;
-    private static HashSet<Banco> bancoSala;
-    private static HashSet<Banco> bancoInimigo;
+    private static ArrayList<Object> bancos;
 
-    public static HashSet<Banco> getBancoInimigo() {
-        return bancoInimigo;
+    public static ArrayList<Object> getBancos() {
+        return bancos;
     }
 
-    public static void setBancoInimigo(HashSet<Banco> bancoInimigo) {
-        MapaAtual.bancoInimigo = bancoInimigo;
+    public static <T> void setBancos(T bancos) { //pode ser de banco magia ou itm ou inimigo...
+        //mas, no final, td vira object!
+        //use instanceof
+        //a gnt deveria ter feito eles herdarem de um banco grande :/ aí era mais simples
+        MapaAtual.bancos.add((Object) bancos);
     }
 
-    public static Banco getBancoItem() {
-        return bancoItem;
-    }
-
-    public static void setBancoItem(HashSet<Banco> bancoItem) {
-        MapaAtual.bancoItem = bancoItem;
-    }
-
-    public static Banco getBancoNPC() {
-        return bancoNPC;
-    }
-
-    public static void setBancoNPC(HashSet<Banco> bancoNPC) {
-        MapaAtual.bancoNPC = bancoNPC;
-    }
-
-    public static Banco getBancoMagia() {
-        return bancoMagia;
-    }
-
-    public static void setBancoMagia(HashSet<Banco> bancoMagia) {
-        MapaAtual.bancoMagia = bancoMagia;
-    }
 
     public static Player getJogador() {
-
         return jogador;
     }
 
     public static void setJogador(Player novoJogador) {
         jogador = novoJogador;
-    }
-
-    public static Banco getBancoSala() {
-        return bancoSala;
-    }
-
-    public static void setBancoSala(HashSet<Banco> bancoSala) {
-        MapaAtual.bancoSala = bancoSala;
     }
 
     //tem mais alguma coisa?

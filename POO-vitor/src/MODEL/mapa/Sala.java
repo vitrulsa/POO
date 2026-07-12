@@ -39,18 +39,9 @@ public class Sala implements Serializable {
         ArrayList<NPC> arrayNPC = getNpcNaSala();
 
         ArrayList<iInfoBasica> ObjetosSala = new ArrayList<>();
-
-        for(Inimigo i : arrayInimigo){
-            ObjetosSala.add((iInfoBasica) i);
-        }
-
-        for(Item i : arrayItem){
-            ObjetosSala.add((iInfoBasica) i);
-        }
-
-        for(NPC i : arrayNPC){
-            ObjetosSala.add((iInfoBasica) i);
-        }
+        ObjetosSala.addAll(arrayInimigo);
+        ObjetosSala.addAll(arrayItem);
+        ObjetosSala.addAll(arrayNPC);
 
         return ObjetosSala;
 
@@ -74,22 +65,20 @@ public class Sala implements Serializable {
         return estadoSala;
     }
 
-    public void setInimigoNaSala(Inimigo inimigo) {
-        if(inimigoNaSala.size() < MAX_INIMIGO) inimigoNaSala.add(inimigo);
+    public void setInimigoNaSala(ArrayList<Inimigo> inimigoNaSala) {
+        this.inimigoNaSala = inimigoNaSala;
     }
 
-    public void setItemNaSala(Item item) {
-
-        if(itemNaSala.size() < MAX_ITEM) itemNaSala.add(item);
+    public void setItemNaSala(ArrayList<Item> itemNaSala) {
+        this.itemNaSala = itemNaSala;
     }
 
     public void setEstadoSala(String estadoSala) {
         this.estadoSala = estadoSala;
     }
 
-    public void setNpcNaSala(NPC npc) {
-
-        if(npcNaSala.size() < MAX_NPC) npcNaSala.add(npc);
+    public void setNpcNaSala(ArrayList<NPC> npcNaSala) {
+        this.npcNaSala = npcNaSala;
     }
 
 }
