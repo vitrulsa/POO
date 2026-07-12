@@ -39,9 +39,18 @@ public class Sala implements Serializable {
         ArrayList<NPC> arrayNPC = getNpcNaSala();
 
         ArrayList<iInfoBasica> ObjetosSala = new ArrayList<>();
-        ObjetosSala.addAll(arrayInimigo);
-        ObjetosSala.addAll(arrayItem);
-        ObjetosSala.addAll(arrayNPC);
+
+        for(Inimigo i : arrayInimigo){
+            ObjetosSala.add((iInfoBasica) i);
+        }
+
+        for(Item i : arrayItem){
+            ObjetosSala.add((iInfoBasica) i);
+        }
+
+        for(NPC i : arrayNPC){
+            ObjetosSala.add((iInfoBasica) i);
+        }
 
         return ObjetosSala;
 
