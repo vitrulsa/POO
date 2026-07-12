@@ -15,6 +15,10 @@ void main() {
 //    magias[0] = bancoMagia.getMagia("Bola de fogo");
 //    bancoInimigo.adicionarInimigo("Goblin", "Goblin", 5, 12, 10, 12, 1, magias);
 //    bancoInimigo.criarBanco();
+
+    View view = new View();
+
+    view.mostrarMenuInicial();
 }
 
 

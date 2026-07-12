@@ -26,6 +26,13 @@ public class View {
         do{
             raca = escolherRaca();
         } while(!raca.equals("Anão") && !raca.equals("Elfo") && !raca.equals("Halfling") && !raca.equals("Humano"));
+
+
+        mostrarClasses();
+        String classe;
+        do{
+            classe = escolherClasse();
+        } while(!classe.equals("Guerreiro") && !classe.equals("Mago") && !classe.equals("Patrulheiro") && !classe.equals("Ladino"));
     }
 
     public void mostrarRacas(){
@@ -48,7 +55,7 @@ public class View {
                 
                 """;
 
-        IO.print(racas);
+        System.out.print(racas);
     }
 
     public void explicarRacas(String raca){
@@ -115,10 +122,18 @@ public class View {
                 """;
 
         switch (raca) {
-            case "Anão" -> IO.print(anao);
-            case "Elfo" -> IO.print(elfo);
-            case "Halfling" -> IO.print(halfling);
-            case "Humano" -> IO.print(humano);
+            case "Anão":
+                System.out.print(anao);
+                break;
+            case "Elfo":
+                System.out.print(elfo);
+                break;
+            case "Halfling":
+                System.out.print(halfling);
+                break;
+            case "Humano":
+                System.out.print(humano);
+                break;
         }
     }
 
@@ -126,16 +141,152 @@ public class View {
         String menu = """
                Digite sua raça:\s""";
 
-        String escolha = receberInput(menu);
+        String escolha;
+        while (true) {
+            escolha = receberInput(menu);
+
+            if (escolha.equals("Anão") || escolha.equals("Elfo") || escolha.equals("Halfling") || escolha.equals("Humano")){
+                break;
+            }else{
+                System.out.println("Escolha uma das raças anteriores (digite o nome corretamente).");
+            }
+        }
 
         explicarRacas(escolha);
 
         String confirmar = """
                 Deseja escolher a raça %s? [S/N]\s""".formatted(escolha);
 
-        if (receberInput(confirmar).equals("S"))
-            return escolha;
-        else
-            return "N";
+        do{
+            String resposta = receberInput(confirmar).toLowerCase();
+            if (resposta.equals("s") || resposta.equals("sim"))
+                return escolha;
+            else if (resposta.equals("n") || resposta.equals("não") || resposta.equals("nao"))
+                return "N";
+            else
+                System.out.println("Responda com S (sim) ou N (não).");
+        } while(true);
     }
+
+    public void mostrarClasses(){
+        String classes = """
+                A indicação "Corpo-a-corpo" e "À distância" significa o tipo de arma
+                que a classe é capaz de usar.
+                Exemplo: Um Guerreiro pode usar apenas armas corpo-a-corpo, enquanto um
+                Patrulheiro pode apenas usar armas à distância.
+                
+                Armas corpo-a-corpo utilizam sua força, enquanto armas à distância
+                utilizam sua destreza. Magias também utilizam destreza.
+                
+                |Classes      | Corpo-a-corpo | À distância | Armadura |  Aprende magia? |
+                |-------------|---------------|-------------|----------|-----------------|
+                |Guerreiro    |       X       |             |    16    |                 |
+                |-------------|---------------|-------------|----------|-----------------|
+                |Ladino       |       X       |      X      |    14    |                 |
+                |-------------|---------------|-------------|----------|-----------------|
+                |Mago         |       X       |             |    10    |        X        |
+                |-------------|---------------|-------------|----------|-----------------|
+                |Patrulheiro  |               |      X      |    12    |        X        |
+                |-------------|---------------|-------------|----------|-----------------|
+                
+                """;
+
+        System.out.print(classes);
+    }
+
+    public void explicarClasses(String classe){
+
+        String guerreiro = """
+                
+                Guerreiro       |
+                --------------------------------------------------------------------------------------------
+                Guerreiros são conhecidos por sua força bruta e habilidade corpo-a-corpo incomparável.
+                Existem muitos soldados e combatentes pelo mundo, porém poucos são caracterizados como
+                verdadeiros Guerreiros. Guerreiros se orgulham de suas grandes armas e de seu conhecimento
+                sobre o combate, levando-os a sua ignorância em relação ao arcanismo.
+                --------------------------------------------------------------------------------------------
+                """;
+
+        String ladino = """
+                
+                Ladino          |
+                --------------------------------------------------------------------------------------------
+                Ladinos são traiçoeiros e versáteis. Geralmente relacionados com o cenário criminoso,
+                por serem sorrateiros e habilidosos, mas eles não são necessariamente maus: alguns
+                Ladinos utilizam suas técnicas para o bem, porém isso não nega a existência de muitos
+                Ladinos que são ótimos ladrões. Ladinos são capazes de utilizar qualquer tipo de arma, mas
+                lhes falta a capacidade de controlar o arcano.
+                --------------------------------------------------------------------------------------------
+                """;
+
+        String mago = """
+                
+                Mago            |
+                --------------------------------------------------------------------------------------------
+                Raramente, ao visitar-se diversas cidades e vilas, é possível se deparar com um Mago. Magos
+                são conhecidos por estudarem durante anos as técnicas arcanas, até finalmente serem capazes
+                de lançar poderosos feitiços que alteram a realidade. Entretanto, esse foco único nos
+                estudos arcanos geralmente faz com que Magos tenham pouco desenvolvimento físico e treino
+                com armas complexas, levando-os a serem a classe mais fraca fisicamente dentre as 4.
+                --------------------------------------------------------------------------------------------
+                """;
+
+        String patrulheiro = """
+                
+                Patrulheiro     |
+                --------------------------------------------------------------------------------------------
+                Patrulheiros são experientes caçadores e mentes táticas, possuidores de incríveis
+                habilidades físicas e de precisão. Apesar de não serem os mais fortes ou robustos, eles
+                compensam suas fraquezas com seus conhecimentos arcanos e vários anos de treinamento com
+                armas à longa distância.
+                --------------------------------------------------------------------------------------------
+                """;
+
+        switch (classe) {
+            case "Guerreiro":
+                System.out.print(guerreiro);
+                break;
+            case "Ladino":
+                System.out.print(ladino);
+                break;
+            case "Mago":
+                System.out.print(mago);
+                break;
+            case "Patrulheiro":
+                System.out.print(patrulheiro);
+                break;
+        }
+    }
+
+    public String escolherClasse(){
+        String menu = """
+               Digite sua classe:\s""";
+
+        String escolha;
+        while (true) {
+            escolha = receberInput(menu);
+
+            if (escolha.equals("Guerreiro") || escolha.equals("Ladino") || escolha.equals("Mago") || escolha.equals("Patrulheiro")){
+                break;
+            }else{
+                System.out.println("Escolha uma das classes anteriores (digite o nome corretamente).");
+            }
+        }
+
+        explicarClasses(escolha);
+
+        String confirmar = """
+                Deseja escolher a classe %s? [S/N]\s""".formatted(escolha);
+
+        do{
+            String resposta = receberInput(confirmar).toLowerCase();
+            if (resposta.equals("s") || resposta.equals("sim"))
+                return escolha;
+            else if (resposta.equals("n") || resposta.equals("não") || resposta.equals("nao"))
+                return "N";
+            else
+                System.out.println("Responda com S (sim) ou N (não).");
+        } while(true);
+    }
+
 }

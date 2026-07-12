@@ -14,13 +14,13 @@ public class ControllerJogo {
     public static void Inicializar() {
         Inicializar.criarInimigo(NUM_INIMIGOSINICIAL);
         Inicializar.criarNPC(NUM_NPCINICIAL);
-        Inicializar.criarItem(NUM_ITEMINICIAL);
+        //Inicializar.criarItem(NUM_ITEMINICIAL);
         Inicializar.criarMagia(NUM_MAGIAINICIAL);
         //p isso precisa de banco!
 
         Player meuPlayer = Inicializar.criarPlayer();
 
-        meuPlayer.setSalaAtual(Inicializar.mapaInicial(Inicializar.criarSalas(NUM_SALAS)));
+       // meuPlayer.setSalaAtual(Inicializar.mapaInicial(Inicializar.criarSalas(NUM_SALAS)));
         //mapainicial cria o mapa em si, dando ligações + dá de retorno a primeira sala de todas!
 
         //inventario já tá lá, é null

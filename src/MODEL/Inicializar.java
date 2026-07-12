@@ -30,16 +30,16 @@ public class Inicializar {
         return NPCCriados;
     }
 
-    public static Item[] criarItem(int numItem)
-    {
-        Item[] itemCriado = new Item[numItem];
-
-        for(int i = 0; i < numItem; i++){
-            itemCriado[i] = new Item("nda", null, 0, 0, 0);
-        }
-
-        return itemCriado;
-    }
+//    public static Item[] criarItem(int numItem)
+//    {
+//        Item[] itemCriado = new Item[numItem];
+//
+//        for(int i = 0; i < numItem; i++){
+//            itemCriado[i] = new Item("nda", null, 0, 0, 0);
+//        }
+//
+//        return itemCriado;
+//    }
 
     public static Magia[] criarMagia(int numMagia)
     {
@@ -69,13 +69,13 @@ public class Inicializar {
         return salaCriadas;
     }
 
-    public static void mapaRandom(Sala[] sala){
-
-        Random k = new Random();
-
-        k.
-
-    }
+//    public static void mapaRandom(Sala[] sala){
+//
+//        Random k = new Random();
+//
+//        k.
+//
+//    }
 
     public static Sala mapaInicial(Sala[] sala){
         //ok, pensem em como criar o coiso pfv
