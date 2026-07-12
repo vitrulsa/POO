@@ -1,5 +1,7 @@
 package MODEL.personagens;
 
+import MODEL.mapa.Sala;
+
 import java.util.ArrayList;
 
 public class Player extends Personagem{
@@ -44,4 +46,7 @@ public class Player extends Personagem{
         return "";
     }
 
+    public void setSalaAtual(Sala sala){
+
+    }
 }

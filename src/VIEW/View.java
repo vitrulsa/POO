@@ -1,5 +1,7 @@
 package VIEW;
 
+import CONTROLLER.ControllerInicializar;
+
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -12,6 +14,13 @@ public class View {
     }
 
     public void mostrarMenuInicial(){
+        try{
+            ControllerInicializar.Inicializar();
+        } catch(Exception e){
+            System.out.println("Erro tentando inicializar RPG");
+            return;
+        }
+
         String menu = """
                 ---------------------------------------------------
                                     Bem Vindo!
