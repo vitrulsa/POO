@@ -3,10 +3,7 @@ package VIEW;
 import CONTROLLER.ControllerAcao;
 import CONTROLLER.ControllerJogo;
 import MODEL.mapa.MapaAtual;
-import MODEL.personagens.Inimigo;
-import MODEL.personagens.Item;
-import MODEL.personagens.NPC;
-import MODEL.personagens.Personagem;
+import MODEL.personagens.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -45,30 +42,9 @@ public class ViewAcao {
 
     public static void atacar(Personagem atacante, ArrayList<Inimigo> inimigoNaSala) throws Exception {
 
-        System.out.println("Quem você vai atacar primeiro?");
-        int quantidade = 0;
-        for (Inimigo inimigo : inimigoNaSala) {
-            System.out.println((inimigoNaSala.indexOf(inimigo) + 1) + ": " + inimigo.getNome());
-            quantidade++;
-        }
-
-        if (quantidade > 0){
-            try {
-                Scanner s = new Scanner(System.in);
-                int i = s.nextInt();
-
-                ControllerAcao.atacar(atacante, inimigoNaSala.get(i));
-
-            } catch (IncompatibleClassChangeError e) {
-                throw new Exception(e);
-            } catch (InputMismatchException e) {
-                System.out.println("Insira um número de 1 à "+ quantidade);
-                throw new Exception(e);
-            }
-        } else{
-            // se nao houver inimigos na sala
-            System.out.println("Não há inimigos na sala atual.");
-        }
+        int i = escolherAlvo(inimigoNaSala);
+        if (i > 0)
+            ControllerAcao.atacar(inimigoNaSala.get(i - 1));
     }
 
     public static void falar(ArrayList<NPC> NPCsNaSala) throws Exception{
@@ -84,8 +60,10 @@ public class ViewAcao {
                 Scanner s = new Scanner(System.in);
                 int entrada = s.nextInt();
 
-                ControllerAcao.atacar(NPCsNaSala.get(entrada));
-
+                if (entrada > 0 && entrada <= i)
+                    ControllerAcao.falar(NPCsNaSala.get(entrada));
+                else
+                    System.out.println("Insira um número de 1 à "+ i);
             } catch (IncompatibleClassChangeError e) {
                 throw new Exception(e);
             } catch (InputMismatchException e) {
@@ -98,8 +76,70 @@ public class ViewAcao {
         }
     }
 
-    public static void usarMagia(){ throws Exception
+    public static void usarMagia(ArrayList<Magia> magias) throws Exception {
+        // se nao tiver mana
+        if (ControllerJogo.getPlayer().getManaAtual() == 0) {
+            System.out.println("Não possui mana!");
+            return;
+        }
 
+        // mostrar as magias que o player possui
+        int i = 0;
+        for (Magia magia : magias){
+            i++;
+            System.out.println("[" + i + "] " + magia.getNome());
+        }
+        // se player possuir magias
+        if (i > 0){
+            try {
+                Scanner s = new Scanner(System.in);
+                int entrada = s.nextInt();
+
+                if (entrada > 0 && entrada <= i)
+                    ControllerAcao.usarMagia(magias.get(entrada - 1));
+                else
+                    System.out.println("Insira um número de 1 à "+ i);
+            } catch (IncompatibleClassChangeError e) {
+                throw new Exception(e);
+            } catch (InputMismatchException e) {
+                System.out.println("Insira um número de 1 à "+ i);
+                throw new Exception(e);
+            }
+        } else{
+            // se nao houver magias
+            System.out.println("Você não conhece magias.");
+        }
     }
 
+    public static int escolherAlvo(ArrayList<Inimigo> inimigoNaSala) throws Exception{
+        int quantidade = 0;
+        for (Inimigo inimigo : inimigoNaSala) {
+            System.out.println((inimigoNaSala.indexOf(inimigo) + 1) + ": " + inimigo.getNome());
+            quantidade++;
+        }
+
+        if (quantidade > 0){
+            System.out.println("Quem você vai atacar primeiro?");
+            try {
+                Scanner s = new Scanner(System.in);
+                int i = s.nextInt();
+
+                if (i > 0 && i <= quantidade)
+                    return i;
+                else {
+                    System.out.println("Insira um número de 1 à " + quantidade);
+                    return 0;
+                }
+            } catch (IncompatibleClassChangeError e) {
+                throw new Exception(e);
+            } catch (InputMismatchException e) {
+                System.out.println("Insira um número de 1 à "+ quantidade);
+                throw new Exception(e);
+            }
+        } else{
+            // se nao houver inimigos na sala
+            System.out.println("Não há inimigos na sala atual.");
+            return 0;
+        }
+    }
 }

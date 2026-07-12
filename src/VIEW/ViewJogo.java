@@ -67,7 +67,7 @@ public class ViewJogo {
                     System.out.println("Você deseja usar um item ou magia? Digite o número da sua escolha.");
                     System.out.println("[1] Item.");
                     System.out.println("[2] Magia.");
-                    opcao = 0;
+                    int opcao = 0;
                     while (true) {
                         System.out.println("Digite o numero correspondente a opção que deseje.");
                         opcao = lerVariasOpcoes(comando, scanner, 2);
@@ -76,73 +76,14 @@ public class ViewJogo {
                     }
 
                     if (opcao == 1){ // usar item
-                        ArrayList<Item> inventario = ControllerJogo.getPlayer().getInventario();
-                        i = 0;
-                        for (Item item : inventario){
-                            i++;
-                            System.out.println("[" + i + "] " + item.getNome());
-                        }
-                        // se houver itens no inventario, escolhe item para usar
-                        if (i > 0){
-                            opcao = 0;
-                            while (true) {
-                                System.out.println("Digite o numero correspondente ao item que deseje usar.");
-                                opcao = lerVariasOpcoes(comando, scanner, i);
-                                if (opcao != 0)
-                                    break;
-                            }
-
-                            // tentando usar uma arma ao inves de equipar
-                            if (inventario.get(opcao - 1) instanceof Arma arma){
-                                System.out.println("Para equipar uma arma, use o comando EQUIPAR.");
-                                break;
-                            }
-
-                            ControllerAcao.usarItem(inventario.get(opcao - 1));
-                        } else{
-                            // se nao houver itens no inventario
-                            System.out.println("Não há itens no seu inventario.");
-                        }
+                        ControllerAcao.usarItem();
                     }
                     else if (opcao == 2){ // usar magia
-                        // se nao tiver mana
-                        if (ControllerJogo.getPlayer().getManaAtual() == 0) {
-                            System.out.println("Não possui mana!");
-                            break;
-                        }
-
-                        // pegar as magias que o player possui
-                        ArrayList<Magia> magias = ControllerJogo.getPlayer().getMagias();
-                        i = 0;
-                        for (Magia magia : magias){
-                            i++;
-                            System.out.println("[" + i + "] " + magia.getNome());
-                        }
-                        // se player possuir magias
-                        if (i > 0){
-                            int opcaoMagia = 0;
-                            while (true) {
-                                System.out.println("Digite o numero correspondente a magia que deseja usar.");
-                                opcaoMagia = lerVariasOpcoes(comando, scanner, i);
-                                if (opcaoMagia != 0)
-                                    break;
-                            }
-
-                            if (!magias.get(opcaoMagia - 1).getTipo().equals("cura")){
-                                opcao = atacar(comando, scanner);
-                                if (opcao != 0)
-                                    ControllerAcao.usarMagia(ControllerJogo.InimigosNaSala().get(opcao - 1), magias.get(opcaoMagia - 1));
-                            }
-                        } else{
-                            // se nao houver magias
-                            System.out.println("Você não conhece magias.");
-                        }
+                        ControllerAcao.usarMagia();
                     }
-
                     break;
 
                 case "6":
-
                     if (args.length > 1){
                         ControllerAcao.equipar(args[1]);
                     } else{
