@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ViewJogo {
     public static void iniciarJogo(){
-
+        interpretadorComandos();
     }
 
     public static void mostrarComandos(){
@@ -48,15 +48,27 @@ public class ViewJogo {
 
             switch (comando) {
                 case "1": // ver
-                    ControllerAcao.ver();
+                    try{
+                        ControllerAcao.ver();
+                    } catch(Exception e){
+                        System.out.println("Erro tentando ver a sala. Tente novamente.");
+                    }
                     break;
 
                 case "2": // falar
-
+                    try{
+                        ControllerAcao.falar();
+                    } catch (Exception e) {
+                        System.out.println("Erro tentando falar. Tente novamente.");
+                    }
                     break;
 
                 case "3": // atacar
-                    ControllerAcao.atacar();
+                    try{
+                        ControllerAcao.atacar();
+                    } catch(Exception e){
+                        System.out.println("Erro tentando atacar. Tente novamente.");
+                    }
                     break;
 
                 case "4": // inventario
@@ -76,18 +88,26 @@ public class ViewJogo {
                     }
 
                     if (opcao == 1){ // usar item
-                        ControllerAcao.usarItem();
+                        try{
+                            ControllerAcao.usarItem();
+                        } catch(Exception e){
+                            System.out.println("Erro tentando usar item. Tente novamente.");
+                        }
                     }
                     else if (opcao == 2){ // usar magia
-                        ControllerAcao.usarMagia();
+                        try{
+                            ControllerAcao.usarMagia();
+                        } catch(Exception e){
+                            System.out.println("Erro tentando usar magia. Tente novamente.");
+                        }
                     }
                     break;
 
                 case "6":
-                    if (args.length > 1){
-                        ControllerAcao.equipar(args[1]);
-                    } else{
-                        System.out.println("Digite o nome da ARMA que deseja equipar.");
+                    try{
+                        ControllerAcao.equipar();
+                    } catch (Exception e) {
+                        System.out.println("Erro tentando equipar arma. Tente novamente.");
                     }
                     break;
 
@@ -99,8 +119,8 @@ public class ViewJogo {
                     System.out.println("Fechando jogo...");
                     return;
 
-                case "n", "s", "l", "o":
-                    ControllerAcao.mover(comando);
+//                case "n", "s", "l", "o":
+//                    ControllerAcao.mover(comando);
 
                 default:
                     System.out.println("Comando não reconhecido. Tente novamente.");
@@ -125,30 +145,6 @@ public class ViewJogo {
         }
 
         return 0;
-    }
-
-    public static int atacar(String comando, Scanner scanner){
-        // pega os inimigos na sala
-        ArrayList<Inimigo> inimigos = ControllerJogo.InimigosNaSala();
-        int i = 0;
-        for (Inimigo inimigo : inimigos){
-            i++;
-            System.out.println("[" + i + "] " + inimigo.getNome());
-        }
-        // se houver inimigos na sala, escolhe inimigo pra atacar
-        if (i > 0){
-            int opcao = 0;
-            while (true) {
-                System.out.println("Digite o numero correspondente ao inimigo que deseje atacar.");
-                opcao = lerVariasOpcoes(comando, scanner, i);
-                if (opcao != 0)
-                    return opcao;
-            }
-        } else{
-            // se nao houver inimigos na sala
-            System.out.println("Não há inimigos na sala atual.");
-            return 0;
-        }
     }
 
 }

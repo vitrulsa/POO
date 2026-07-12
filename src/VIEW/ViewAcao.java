@@ -41,7 +41,7 @@ public class ViewAcao {
         }
     }
 
-    public static void atacar(Personagem atacante, ArrayList<Inimigo> inimigoNaSala) throws Exception {
+    public static void atacar(ArrayList<Inimigo> inimigoNaSala) throws Exception {
 
         int i = escolherAlvo(inimigoNaSala);
         if (i > 0)
@@ -177,6 +177,21 @@ public class ViewAcao {
             System.out.println("Insira um número de 1 à "+ listaObjetos.size() + "!");
             throw new Exception(e);
         }
+
+    }
+
+    public static void exibirMagias(ArrayList<Magia> magias){
+        if (magias.isEmpty()){
+            System.out.println("Você não possui magias.");
+        } else{
+            System.out.println("---Magias---");
+            for (Magia magia : magias){
+                System.out.println(magia.getNome() + ":" + magia.getDescricao());
+            }
+        }
+    }
+
+    public static void equipar(ArrayList<Item> inventario){
 
     }
 }
