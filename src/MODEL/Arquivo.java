@@ -13,14 +13,11 @@ public class Arquivo {
 
     public static void salvarJogo() throws Exception {
         try {
-
-            MapaAtual mapa = new MapaAtual();
-
             FileOutputStream arqv = new FileOutputStream("lindorpg.dat");
             //manda p construtor... p criar arqv com esse nome no final
             ObjectOutputStream arqvSalvar = new ObjectOutputStream(arqv);
             //manda p construtor de objectoutputstream
-            arqvSalvar.writeObject(mapa.getJogador());
+            arqvSalvar.writeObject(MapaAtual.getJogador());
 
         } catch (IOException e) {
             throw new Exception("Algo deu errado salvando o jogo!");

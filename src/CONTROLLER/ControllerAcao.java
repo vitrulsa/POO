@@ -129,8 +129,8 @@ public class ControllerAcao {
         }
     }
 
-    public static void falar(NPC npc){
-
+    public static String falar(NPC npc){
+        return npc.getDescricao();
     }
     public static void falar() throws Exception{
         try {
@@ -145,16 +145,21 @@ public class ControllerAcao {
     }
 
     public static void equipar(Arma arma){
-        ArrayList<Item> inventario = ControllerJogo.getPlayer().getInventario();
-
-        for (Item item : inventario){
-            if (item.getNome().equals(nome) && item instanceof Arma arma){
-                ControllerJogo.getPlayer().setArmaEquipada(arma);
-                ViewAcao.equipou(arma);
+        Player player = ControllerJogo.getPlayer();
+        Arma equipadaAtual = player.getArmaEquipada();
+        int indexArma = 0, indexAtual = 0;
+        for (Item item: player.getInventario()){
+            if (item.getNome().equals(arma.getNome())){
+                indexArma = indexAtual;
+                break;
             }
+            indexAtual++;
         }
 
-        ViewAcao.equipou(null);
+        ArrayList<Item> inventario = player.getInventario();
+        inventario.remove(indexArma);
+        inventario.add(indexArma, equipadaAtual);
+        player.setArmaEquipada(arma);
     }
 
     public static void equipar() throws Exception{

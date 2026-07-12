@@ -1,25 +1,22 @@
 package CONTROLLER;
 
+import MODEL.mapa.LigacoesMapa;
+import MODEL.mapa.MapaAtual;
 import MODEL.mapa.Sala;
 
 public class ControllerMover {
 
-    static void andarEsquerda(){ //me dê sala atual e te digo pra onde tu irás
-        Sala sala; //preciso receber a sala atual de alguma forma!!!
-        //SalaNode.moverSalaEsq(sala);
+    static void andar(char direcao){
+        LigacoesMapa.moverSalaEsq(MapaAtual.getJogador().getSalaAtual());
     }
     static void andarDireita(){
-        Sala sala;
-        //SalaNode.moverSalaDir(sala);
+        LigacoesMapa.moverSalaDir(MapaAtual.getJogador().getSalaAtual());
     }
     static void andarCima(){
-        Sala sala;
-        //SalaNode.moverSalaCima(sala);
+        LigacoesMapa.moverSalaCima(MapaAtual.getJogador().getSalaAtual());
     }
     static void andarBaixo(){
-        Sala sala;
-        //SalaNode.moverSalaBaixo(sala);
+        LigacoesMapa.moverSalaBaixo(MapaAtual.getJogador().getSalaAtual());
     }
 
 }
-
