@@ -113,7 +113,6 @@ public class ControllerAcao {
             //  Verificar se o alvo morreu
             if (alvo.getHp() <= 0) {
                 alvo.setHp(0);
-                alvo.setEstado("Morto");
                 System.out.println(">>> " + alvo.getNome() + " caiu em combate! <<<");
                 atacante.getSalaAtual().getInimigoNaSala().remove(index - 1);
             } else {
