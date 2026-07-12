@@ -1,27 +1,22 @@
 package VIEW;
 
-import CONTROLLER.ControllerInicializar;
+import CONTROLLER.ControllerJogo;
 import CONTROLLER.ControllerTutorial;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class View {
+public class ViewInicializar {
+    // funcao utilizada para continuamente printar um texto e ja receber a resposta do usuario
     public String receberInput(String texto){
-        IO.print(texto);
+        System.out.print(texto);
 
         Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         return scanner.nextLine();
     }
 
+    // primeira funcao do jogo, menu principal para criar o personagem
     public void mostrarMenuInicial(){
-//        try{
-//            ControllerInicializar.Inicializar();
-//        } catch(Exception e){
-//            System.out.println("Erro tentando inicializar RPG");
-//            return;
-//        }
-
         String menu = """
                 ---------------------------------------------------
                                     Bem Vindo!
@@ -30,6 +25,7 @@ public class View {
                 Digite seu nome:\s""";
         String nome = receberInput(menu);
 
+        // mostrar racas e fazer player escolher a raca
         mostrarRacas();
 
         String raca;
@@ -38,6 +34,7 @@ public class View {
         } while(!raca.equals("Anão") && !raca.equals("Elfo") && !raca.equals("Halfling") && !raca.equals("Humano"));
 
 
+        // mostrar classes e fazer player escolher classe
         mostrarClasses();
         String classe;
         do{
@@ -47,6 +44,7 @@ public class View {
         menu = """
                 Certo! Você gostaria de um tutorial sobre como funciona o jogo? [S/N]\s""";
 
+        // tutorial
         String resposta;
         do{
             resposta = receberInput(menu).toLowerCase();
@@ -54,11 +52,12 @@ public class View {
             if (!resposta.equals("n") && !resposta.equals("s") && !resposta.equals("sim") && !resposta.equals("nao") && !resposta.equals("não"))
                 System.out.println("Responda com S (sim) ou N (não).");
         } while (!resposta.equals("n") && !resposta.equals("s") && !resposta.equals("sim") && !resposta.equals("nao") && !resposta.equals("não"));
-
         if (resposta.equals("s") || resposta.equals("sim"))
             ControllerTutorial.iniciarTutorial();
-        else
-            return;
+
+
+        // ControllerJogo controla tudo
+        ControllerJogo.iniciarJogo(nome, raca, classe);
     }
 
     public void mostrarRacas(){

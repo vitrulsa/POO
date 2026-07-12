@@ -34,11 +34,8 @@ public class Player extends Personagem{
         System.out.println("Mana: " + this.getManaAtual() + "/" + this.getManaMax());
     }
 
-    public void exibirInventario() {
-        System.out.println("--- Inventário ---");
-        for (Item item : inventario) {
-            System.out.println(item);
-        }
+    public ArrayList<Item> getInventario() {
+        return inventario;
     }
 
     @Override

@@ -1,10 +1,10 @@
 package CONTROLLER;
 
 import MODEL.mapa.Sala;
-import MODEL.personagens.Magia;
-import MODEL.personagens.Personagem;
-import MODEL.personagens.iInfoBasica;
+import MODEL.personagens.*;
+import VIEW.ViewAcao;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ControllerAcao {
@@ -80,5 +80,9 @@ public class ControllerAcao {
         } else {
             System.out.println("HP restante de " + alvo.getNome() + ": " + alvo.getHp());
         }
+    }
+
+    public static void exibirInventario(){
+        ViewAcao.exibirInventario(ControllerJogo.getPlayer().getInventario());
     }
 }

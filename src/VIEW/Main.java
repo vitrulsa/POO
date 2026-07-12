@@ -1,13 +1,7 @@
-import MODEL.bancodados.BancoInimigo;
-import MODEL.bancodados.BancoItens;
-import MODEL.bancodados.BancoMagia;
-import MODEL.personagens.Item;
-import MODEL.personagens.Magia;
-import MODEL.personagens.TipoItem;
-import VIEW.View;
+import VIEW.ViewInicializar;
 
 void main() {
-    View view = new View();
+    ViewInicializar view = new ViewInicializar();
 
     view.mostrarMenuInicial();
 }

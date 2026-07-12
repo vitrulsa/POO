@@ -2,6 +2,7 @@ package CONTROLLER;
 
 import MODEL.Inicializar;
 import MODEL.personagens.Player;
+import VIEW.ViewJogo;
 
 public class ControllerJogo {
 
@@ -9,7 +10,8 @@ public class ControllerJogo {
     private static int NUM_NPCINICIAL = 10;
     private static int NUM_ITEMINICIAL = 10;
     private static int NUM_MAGIAINICIAL = 10;
-    private static  int NUM_SALAS = 1;
+    private static int NUM_SALAS = 1;
+    private static Player meuPlayer;
 
     public static void Inicializar() {
         //Inicializar.criarInimigo(NUM_INIMIGOSINICIAL);
@@ -18,7 +20,7 @@ public class ControllerJogo {
         //Inicializar.criarMagia(NUM_MAGIAINICIAL);
         //p isso precisa de banco!
 
-        Player meuPlayer = Inicializar.criarPlayer();
+        meuPlayer = Inicializar.criarPlayer();
 
        // meuPlayer.setSalaAtual(Inicializar.mapaInicial(Inicializar.criarSalas(NUM_SALAS)));
         //mapainicial cria o mapa em si, dando ligações + dá de retorno a primeira sala de todas!
@@ -27,8 +29,16 @@ public class ControllerJogo {
         //magias é a mesma coisa
     }
 
+    public static void iniciarJogo(String nome, String raca, String classe){
+        //Player player = new Player(nome, raca, ) terminar issaq
+        ViewJogo.iniciarJogo();
+    }
+
     public static void Salvar() {
 
     }
 
+    public static Player getPlayer(){
+        return meuPlayer;
+    }
 }
