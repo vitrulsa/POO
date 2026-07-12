@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashSet;
 import MODEL.personagens.Magia;
 
-public class BancoMagia{
+public class BancoMagia extends Banco{
     private HashSet<Magia> magias;
     private final String file = "magias.dat";
 
@@ -34,20 +34,18 @@ public class BancoMagia{
         }
     }
 
-    public void adicionarMagia(String nome, int dano, String tipo, String descricao){
-        Magia magia = new Magia(nome, dano, tipo, descricao);
-
+    public void adicionarBanco(Magia magia){
         magias.add(magia);
         for (Magia p : magias){
                 System.out.println(p.getNome());
             }
     }
 
-    public HashSet<Magia> getMagias(){
+    public HashSet<Magia> getBanco(){
         return magias;
     }
 
-    public Magia getMagia(String nome){
+    public Magia getDado(String nome){
         for (Magia magia : magias){
             if (magia.getNome().equals(nome)){
                 return magia;

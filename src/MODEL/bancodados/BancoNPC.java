@@ -6,7 +6,7 @@ import MODEL.personagens.Magia;
 import java.io.*;
 import java.util.HashSet;
 
-public class BancoNPC {
+public class BancoNPC extends Banco{
     private HashSet<NPC> npcs;
     private final String file = "npcs.dat";
 
@@ -36,12 +36,12 @@ public class BancoNPC {
 
     // use adicionarNPC() para adicionar um NPC ao banco e depois use criarBanco()
     // para salvar o arquivo
-    public void adicionarNPC(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias){
-        NPC npc = new NPC(nome, raca, hp, defesa, forca, dest, manaMax, magias);
-
+    public void adicionarBanco(NPC npc){
         npcs.add(npc);
         for (NPC p : npcs){
             System.out.println(p.getNome());
         }
     }
+
+    public
 }

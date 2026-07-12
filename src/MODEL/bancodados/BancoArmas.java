@@ -15,7 +15,7 @@ public class BancoArmas extends BancoItens {
 
     // Procura um item pelo nome e converte diretamente para Arma
     public Arma getArma(String nome) {
-        Item item = getItem(nome);
+        Item item = getDado(nome);
 
         if (item instanceof Arma) {
             return (Arma) item;

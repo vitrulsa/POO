@@ -6,7 +6,7 @@ import MODEL.personagens.Magia;
 import java.io.*;
 import java.util.HashSet;
 
-public class BancoInimigo {
+public class BancoInimigo extends Banco{
     private HashSet<Inimigo> inimigos;
     private final String file = "inimigos.dat";
 
@@ -26,6 +26,7 @@ public class BancoInimigo {
         }
     }
 
+    @Override
     public void criarBanco(){
         try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
             saida.writeObject(inimigos);
@@ -36,7 +37,8 @@ public class BancoInimigo {
 
     // use adicionarInimigo() para adicionar um inimigo ao banco e depois use criarBanco()
     // para salvar o arquivo
-    public void adicionarInimigo(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias){
+    @Override
+    public void adicionarBanco(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias){
         Inimigo inimigo = new Inimigo(nome, raca, hp, defesa, forca, dest, manaMax, magias);
 
         inimigos.add(inimigo);
@@ -45,7 +47,8 @@ public class BancoInimigo {
             }
     }
 
-    public Inimigo getInimigo(String nome){
+    @Override
+    public Inimigo getDado(String nome){
         for (Inimigo inimigo : inimigos){
             if (inimigo.getNome().equals(nome)){
                 return inimigo;

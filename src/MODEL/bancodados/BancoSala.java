@@ -5,7 +5,7 @@ import MODEL.mapa.Sala;
 import java.io.*;
 import java.util.ArrayList;
 
-public class BancoSala {
+public class BancoSala extends Banco{
 
     private ArrayList<Sala> salas;
     private final String file = "salas.dat";

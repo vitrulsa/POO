@@ -13,7 +13,9 @@ public class ViewTutorial {
         System.out.println("MAGIAS: Utilizar o comando MAGIAS te mostrará as magias que você pode usar.");
         System.out.println("USAR <magia> <alvo>: Utilizar o comando USAR te permite usar uma magia ao escrever o nome da magia em um alvo," +
                 "você pode deixar o campo de alvo vazio para utilizar a magia em si mesmo se ela permitir isso.");
+        System.out.println("TERMINAR: Fecha o jogo a qualquer momento.");
         System.out.println("Você pode andar pelo mapa digitando as direções cardinais \"N\", \"L\", \"S\" e \"O\"," +
                 "você precisa usar o comando VER para saber para qual(is) direção(ões) você pode ir.");
+        System.out.println("Você precisa digitar os nomes e comandos exatamente como apresentados para você, sem acentos.");
     }
 }

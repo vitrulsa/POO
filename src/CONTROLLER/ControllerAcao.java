@@ -82,11 +82,19 @@ public class ControllerAcao {
         }
     }
 
-    public static void exibirInventario(){
+    public static void inventario(){
         ViewAcao.exibirInventario(ControllerJogo.getPlayer().getInventario());
     }
 
     public static void usarItem(String item){
+
+    }
+
+    public static void ver(){
+
+    }
+
+    public static void falar(String nomeNPC){
 
     }
 }

@@ -22,12 +22,6 @@ public class Inicializar {
         return bancos;
     }
 
-    public static Player criarPlayer()
-    {
-        Player playerCriado = new Player("nda", "nda", 0, 0, 0, 0, 0, null);
-        return playerCriado;
-    }
-
     public static Sala[] criarSalas(int numSalas) {
         Sala[] salaCriadas = new Sala[numSalas];
 
