@@ -12,10 +12,10 @@ public class ControllerJogo {
     private static  int NUM_SALAS = 1;
 
     public static void Inicializar() {
-        Inicializar.criarInimigo(NUM_INIMIGOSINICIAL);
-        Inicializar.criarNPC(NUM_NPCINICIAL);
+        //Inicializar.criarInimigo(NUM_INIMIGOSINICIAL);
+        //Inicializar.criarNPC(NUM_NPCINICIAL);
         //Inicializar.criarItem(NUM_ITEMINICIAL);
-        Inicializar.criarMagia(NUM_MAGIAINICIAL);
+        //Inicializar.criarMagia(NUM_MAGIAINICIAL);
         //p isso precisa de banco!
 
         Player meuPlayer = Inicializar.criarPlayer();

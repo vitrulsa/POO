@@ -123,4 +123,6 @@ public abstract class Personagem implements iInfoBasica, Serializable {
         this.magias.add(magia);
     }
 
+    public ArrayList<Magia> getMagias(){ return this.magias; }
+
 }

@@ -1,6 +1,7 @@
 package VIEW;
 
 import CONTROLLER.ControllerInicializar;
+import CONTROLLER.ControllerTutorial;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -14,12 +15,12 @@ public class View {
     }
 
     public void mostrarMenuInicial(){
-        try{
-            ControllerInicializar.Inicializar();
-        } catch(Exception e){
-            System.out.println("Erro tentando inicializar RPG");
-            return;
-        }
+//        try{
+//            ControllerInicializar.Inicializar();
+//        } catch(Exception e){
+//            System.out.println("Erro tentando inicializar RPG");
+//            return;
+//        }
 
         String menu = """
                 ---------------------------------------------------
@@ -42,6 +43,22 @@ public class View {
         do{
             classe = escolherClasse();
         } while(!classe.equals("Guerreiro") && !classe.equals("Mago") && !classe.equals("Patrulheiro") && !classe.equals("Ladino"));
+
+        menu = """
+                Certo! Você gostaria de um tutorial sobre como funciona o jogo? [S/N]\s""";
+
+        String resposta;
+        do{
+            resposta = receberInput(menu).toLowerCase();
+
+            if (!resposta.equals("n") && !resposta.equals("s") && !resposta.equals("sim") && !resposta.equals("nao") && !resposta.equals("não"))
+                System.out.println("Responda com S (sim) ou N (não).");
+        } while (!resposta.equals("n") && !resposta.equals("s") && !resposta.equals("sim") && !resposta.equals("nao") && !resposta.equals("não"));
+
+        if (resposta.equals("s") || resposta.equals("sim"))
+            ControllerTutorial.iniciarTutorial();
+        else
+            return;
     }
 
     public void mostrarRacas(){

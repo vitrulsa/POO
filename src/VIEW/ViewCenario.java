@@ -1,6 +1,6 @@
 package VIEW;
 
-import CONTROLLER.ControllerAção;
+import CONTROLLER.ControllerAcao;
 import MODEL.mapa.Sala;
 import MODEL.personagens.Inimigo;
 import MODEL.personagens.Item;
@@ -16,8 +16,8 @@ public class ViewCenario {
         System.out.println("Você foi para "+ direcao + ".");
     }
 
-    public static void checarCenário(Sala sala){
-        ArrayList<iInfoBasica> visualizarNomes = ControllerAção.checarCenário(sala);
+    public static void checarCenario(Sala sala){
+        ArrayList<iInfoBasica> visualizarNomes = ControllerAcao.checarCenario(sala);
 
         Iterator<iInfoBasica> i = visualizarNomes.iterator();
         while (i.hasNext()){

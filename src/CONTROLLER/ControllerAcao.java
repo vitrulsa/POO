@@ -7,10 +7,10 @@ import MODEL.personagens.iInfoBasica;
 
 import java.util.ArrayList;
 
-public class ControllerAção {
+public class ControllerAcao {
 
 
-    public static ArrayList<iInfoBasica> checarCenário(Sala sala){
+    public static ArrayList<iInfoBasica> checarCenario(Sala sala){
         return sala.listarObjetos();
         //sla, nao gostei... queria divisao entr nome p saber o q é item vs o q é inimigo...
     }

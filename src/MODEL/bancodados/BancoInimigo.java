@@ -44,4 +44,16 @@ public class BancoInimigo {
                 System.out.println(p.getNome());
             }
     }
+
+    public Inimigo getInimigo(String nome){
+        for (Inimigo inimigo : inimigos){
+            if (inimigo.getNome().equals(nome)){
+                return inimigo;
+            }
+        }
+
+        System.out.println("Inimigo não encontrado no banco de dados");
+        return null;
+    }
+
 }

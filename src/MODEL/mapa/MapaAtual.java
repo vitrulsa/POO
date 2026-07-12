@@ -23,6 +23,7 @@ public class MapaAtual {
         MapaAtual.bancos.add((Object) bancos);
     }
 
+
     public static Player getJogador() {
         return jogador;
     }
