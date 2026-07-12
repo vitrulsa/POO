@@ -121,16 +121,16 @@ public class ViewAcao {
                 Scanner s = new Scanner(System.in);
                 int i = s.nextInt();
 
-                if (i > 0 && i <= quantidade)
+                if (i > 0 && i <= inimigoNaSala.size())
                     return i;
                 else {
-                    System.out.println("Insira um número de 1 à " + quantidade);
+                    System.out.println("Insira um número de 1 à " + inimigoNaSala.size());
                     return 0;
                 }
             } catch (IncompatibleClassChangeError e) {
                 throw new Exception(e);
             } catch (InputMismatchException e) {
-                System.out.println("Insira um número de 1 à "+ quantidade);
+                System.out.println("Insira um número de 1 à "+ inimigoNaSala.size());
                 throw new Exception(e);
             }
         } else{
