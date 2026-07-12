@@ -65,20 +65,22 @@ public class Sala implements Serializable {
         return estadoSala;
     }
 
-    public void setInimigoNaSala(ArrayList<Inimigo> inimigoNaSala) {
-        this.inimigoNaSala = inimigoNaSala;
+    public void setInimigoNaSala(Inimigo inimigo) {
+        if(inimigoNaSala.size() < MAX_INIMIGO) inimigoNaSala.add(inimigo);
     }
 
-    public void setItemNaSala(ArrayList<Item> itemNaSala) {
-        this.itemNaSala = itemNaSala;
+    public void setItemNaSala(Item item) {
+
+        if(itemNaSala.size() < MAX_ITEM) itemNaSala.add(item);
     }
 
     public void setEstadoSala(String estadoSala) {
         this.estadoSala = estadoSala;
     }
 
-    public void setNpcNaSala(ArrayList<NPC> npcNaSala) {
-        this.npcNaSala = npcNaSala;
+    public void setNpcNaSala(NPC npc) {
+
+        if(npcNaSala.size() < MAX_NPC) npcNaSala.add(npc);
     }
 
 }
