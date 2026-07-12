@@ -9,8 +9,24 @@ public class ViewJogo {
 
     }
 
+    public static void mostrarComandos(){
+        String comandos= """
+        [1] VER.
+        [2] FALAR.
+        [3] ATACAR.
+        [4] INVENTARIO.
+        [5] USAR.
+        [6] EQUIPAR.
+        [7] MAGIAS.
+        [8] TERMINAR.
+        """;
+
+        System.out.print(comandos);
+    }
+
     public static void interpretadorComandos(){
         while(true) {
+            mostrarComandos();
             Scanner scanner = new Scanner(System.in);
             System.out.print("> ");
 
@@ -71,4 +87,5 @@ public class ViewJogo {
             }
         }
     }
+
 }

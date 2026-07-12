@@ -6,6 +6,7 @@ public abstract class Item implements iInfoBasica, Serializable {
     private String nome;
     private int peso;
     private int valor;
+    private String descricao;
 
     protected Item(String nome, int peso, int valor) {
         this.nome = nome;
