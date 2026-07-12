@@ -7,10 +7,6 @@ import VIEW.ViewJogo;
 
 public class ControllerJogo {
 
-    private static int NUM_INIMIGOSINICIAL = 10;
-    private static int NUM_NPCINICIAL = 10;
-    private static int NUM_ITEMINICIAL = 10;
-    private static int NUM_MAGIAINICIAL = 10;
     private static int NUM_SALAS = 1;
     private static Player meuPlayer;
 

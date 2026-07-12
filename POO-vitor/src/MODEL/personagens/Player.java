@@ -8,6 +8,7 @@ public class Player extends Personagem{
 
     private ArrayList<Item> inventario = new ArrayList<Item>();
     private String classe;
+    private Sala salaAtual;
 
     public Player(String nome, String raca, String classe, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
@@ -17,6 +18,10 @@ public class Player extends Personagem{
 
     @Override
     public void atacar() {
+
+    }
+
+    public void usarItem(){
 
     }
 
@@ -46,6 +51,10 @@ public class Player extends Personagem{
     }
 
     public void setSalaAtual(Sala sala){
+        salaAtual = sala;
+    }
 
+    public Sala getSalaAtual() {
+        return salaAtual;
     }
 }
