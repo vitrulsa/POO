@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashSet;
 import MODEL.personagens.Magia;
 
-public class BancoMagia extends Banco{
+public class BancoMagia extends Banco<Magia>{
     private HashSet<Magia> magias;
     private final String file = "magias.dat";
 
@@ -26,6 +26,7 @@ public class BancoMagia extends Banco{
 
     // use adicionarMagia() para adicionar uma magia ao banco e depois use criarBanco()
     // para salvar o arquivo
+    @Override
     public void criarBanco(){
         try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
             saida.writeObject(magias);
@@ -34,6 +35,7 @@ public class BancoMagia extends Banco{
         }
     }
 
+    @Override
     public void adicionarBanco(Magia magia){
         magias.add(magia);
         for (Magia p : magias){
@@ -41,10 +43,12 @@ public class BancoMagia extends Banco{
             }
     }
 
+    @Override
     public HashSet<Magia> getBanco(){
         return magias;
     }
 
+    @Override
     public Magia getDado(String nome){
         for (Magia magia : magias){
             if (magia.getNome().equals(nome)){

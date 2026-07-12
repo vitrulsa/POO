@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.HashSet;
 import MODEL.personagens.*;
 
-public class BancoItens extends Banco{
+public class BancoItens extends Banco<Item>{
     private HashSet<Item> banco;
     private final String file = "itens.dat";
 
@@ -25,6 +25,7 @@ public class BancoItens extends Banco{
 
     // use adicionarBanco() para adicionar um item ao banco e depois use criarBancoItem()
     // para salvar o arquivo
+    @Override
     public void criarBanco(){
         try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
             saida.writeObject(banco);
@@ -33,16 +34,19 @@ public class BancoItens extends Banco{
         }
     }
 
+    @Override
     public void adicionarBanco(Item item) {
         if (item != null) {
             banco.add(item);
         }
     }
 
+    @Override
     public HashSet<Item> getBanco(){
         return banco;
     }
 
+    @Override
     public Item getDado(String nome){
         for (Item item : banco){
             if (item.getNome().equals(nome)){

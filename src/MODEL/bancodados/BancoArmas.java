@@ -29,7 +29,7 @@ public class BancoArmas extends BancoItens {
     public List<Arma> getTodasAsArmas() {
         List<Arma> apenasArmas = new ArrayList<>();
 
-        for (Item item : super.getItens()) {
+        for (Item item : super.getBanco()) {
             if (item instanceof Arma) {
                 apenasArmas.add((Arma) item);
             }
