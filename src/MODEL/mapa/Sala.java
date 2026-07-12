@@ -38,8 +38,6 @@ public class Sala implements Serializable {
 
         ArrayList<NPC> arrayNPC = getNpcNaSala();
 
-        //interface pois talvez possamos usar p mais coisas almém de nomes!!!!
-
         ArrayList<iInfoBasica> ObjetosSala = new ArrayList<>();
         ObjetosSala.addAll(arrayInimigo);
         ObjetosSala.addAll(arrayItem);

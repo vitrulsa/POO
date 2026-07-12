@@ -8,6 +8,10 @@ public interface iInfoBasica { //intrface p ajudar em caso de manipular mts obje
 
     public String getClasseString();
 
+    public void setDescricao(String descricao);
+
+    public String getDescricao();
+
     //se verem mais coisas qeu se repetem, coloquem ai!!!
 
 }

@@ -49,4 +49,7 @@ public class Player extends Personagem{
     public void setSalaAtual(Sala sala){
         salaAtual = sala;
     }
+    public Sala getSalaAtual(){
+        return salaAtual;
+    }
 }

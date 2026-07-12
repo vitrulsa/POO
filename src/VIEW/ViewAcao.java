@@ -3,6 +3,7 @@ package VIEW;
 import CONTROLLER.ControllerAcao;
 import CONTROLLER.ControllerJogo;
 import MODEL.mapa.MapaAtual;
+import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 
 import java.util.ArrayList;
@@ -141,5 +142,41 @@ public class ViewAcao {
             System.out.println("Não há inimigos na sala atual.");
             return 0;
         }
+    }
+
+    public static void verCenario(Sala salaAtual) throws Exception {
+        System.out.println(salaAtual.getDescricao());
+
+        ArrayList<iInfoBasica> listaObjetos = ControllerAcao.checarCenario(salaAtual);
+        System.out.println("Nessa sala, existem: ");
+
+        int quantidade = 0;
+        for(iInfoBasica objetos : listaObjetos){
+            System.out.println((listaObjetos.indexOf(objetos)+1) + ": " + objetos.getClasseString() + "! "+ objetos.getNome());
+            quantidade += 1;
+        }
+
+        if (quantidade == 0) {
+            System.out.println("Nada");
+            return;
+        }
+
+        System.out.println("Você deseja ver alguma descrição?");
+
+        try {
+            Scanner s = new Scanner(System.in);
+            int d = s.nextInt();
+            if (d > 0 && d <= quantidade){
+                System.out.println(listaObjetos.get(d).getNome() + ": " + listaObjetos.get(d).getDescricao());
+            } else{
+                System.out.println("Insira um número de 1 à " + quantidade + "!");
+            }
+        } catch (IncompatibleClassChangeError e) {
+            throw new Exception(e);
+        } catch (InputMismatchException e) {
+            System.out.println("Insira um número de 1 à "+ listaObjetos.size() + "!");
+            throw new Exception(e);
+        }
+
     }
 }
