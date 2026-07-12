@@ -4,12 +4,27 @@ import MODEL.personagens.Inimigo;
 import MODEL.personagens.Magia;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class BancoInimigo extends Banco{
-    private ArrayList<Inimigo> inimigos;
+    private HashSet<Inimigo> inimigos;
     private final String file = "inimigos.dat";
+
+    public BancoInimigo(){
+        inimigos = new HashSet<>();
+        try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))){
+            inimigos = (HashSet<Inimigo>) entrada.readObject();
+
+            System.out.println("Inimigos carregados:");
+            for (Inimigo inimigo : inimigos){
+                System.out.println(inimigo.getNome());
+            }
+        } catch (IOException e){
+            System.out.println("Falha abrindo arquivo para carregar inimigos.");
+        } catch (ClassNotFoundException e){
+            System.out.println("Falha lendo arquivo de inimigos.");
+        }
+    }
 
     @Override
     public void criarBanco(){
@@ -18,18 +33,6 @@ public class BancoInimigo extends Banco{
         } catch(IOException e){
             System.out.println("Erro salvando no arquivo de inimigos");
         }
-    }
-
-    @Override
-    public void adicionarBanco(Object obj) {
-        if(obj instanceof Inimigo) {
-            inimigos.add((Inimigo) obj);
-        }
-    }
-
-    @Override
-    public HashSet getBanco() {
-        return null;
     }
 
     // use adicionarInimigo() para adicionar um inimigo ao banco e depois use criarBanco()

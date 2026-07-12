@@ -1,5 +1,4 @@
 package MODEL.mapa;
-import MODEL.bancodados.Banco;
 import MODEL.bancodados.BancoItens;
 import MODEL.bancodados.BancoMagia;
 import MODEL.personagens.*;
@@ -11,33 +10,19 @@ public class MapaAtual {
     //isso é pra jogar!!! ebaaa!!!
     private static Player jogador;
 
-    public static Banco getBancoInimigo() {
-        return bancoInimigo;
+    private static ArrayList<Object> bancos;
+
+    public static ArrayList<Object> getBancos() {
+        return bancos;
     }
 
-    public static void setBancoInimigo(Banco bancoInimigo) {
-        MapaAtual.bancoInimigo = bancoInimigo;
+    public static <T> void setBancos(T bancos) { //pode ser de banco magia ou itm ou inimigo...
+        //mas, no final, td vira object!
+        //use instanceof
+        //a gnt deveria ter feito eles herdarem de um banco grande :/ aí era mais simples
+        MapaAtual.bancos.add((Object) bancos);
     }
 
-    public static Banco getBancoItem() {
-        return bancoItem;
-    }
-
-    public static void setBancoItem(Banco bancoItem) {
-        MapaAtual.bancoItem = bancoItem;
-    }
-
-    public static Banco getBancoMagia() {
-        return bancoMagia;
-    }
-
-    public static void setBancoMagia(Banco bancoMagia) {
-        MapaAtual.bancoMagia = bancoMagia;
-    }
-
-    private static Banco bancoInimigo;
-    private static Banco bancoItem;
-    private static Banco bancoMagia;
 
     public static Player getJogador() {
         return jogador;

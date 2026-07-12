@@ -8,10 +8,29 @@ import java.util.ArrayList;
 public class BancoSala extends Banco{
 
     private ArrayList<Sala> salas;
+    private final String file = "salas.dat";
+
+    public BancoSala() {
+        salas = new ArrayList<>();
+
+        try (ObjectInputStream entrada =
+                     new ObjectInputStream(new FileInputStream(file))) {
+
+            salas = (ArrayList<Sala>) entrada.readObject();
+
+            System.out.println("Salas carregadas:");
+            for (Sala s : salas) {
+                System.out.println(s.getDescricao());
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Falha abrindo arquivo de salas.");
+        }
+    }
 
     public void criarBanco() {
         try (ObjectOutputStream saida =
-                     new ObjectOutputStream(new FileOutputStream("salas.dat"))) {
+                     new ObjectOutputStream(new FileOutputStream(file))) {
 
             saida.writeObject(salas);
 

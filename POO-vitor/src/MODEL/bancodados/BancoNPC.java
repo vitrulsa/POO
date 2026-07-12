@@ -4,35 +4,34 @@ import MODEL.personagens.NPC;
 import MODEL.personagens.Magia;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class BancoNPC extends Banco{
-    private ArrayList<NPC> npcs;
+    private HashSet<NPC> npcs;
     private final String file = "npcs.dat";
 
-    public void criarBanco(){
+    public BancoNPC(){
+        npcs = new HashSet<>();
+        try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))){
+            npcs = (HashSet<NPC>) entrada.readObject();
 
-        try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
-            saida.writeObject(npcs);
-        } catch(IOException e){
-            System.out.println("Erro salvando no arquivo de magias");
+            System.out.println("NPCs carregados:");
+            for (NPC npc : npcs){
+                System.out.println(npc.getNome());
+            }
+        } catch (IOException e){
+            System.out.println("Falha abrindo arquivo para carregar NPCs.");
+        } catch (ClassNotFoundException e){
+            System.out.println("Falha lendo arquivo de NPCs.");
         }
     }
 
-    @Override
-    public void adicionarBanco(Object obj) {
-
-    }
-
-    @Override
-    public HashSet getBanco() {
-        return null;
-    }
-
-    @Override
-    public Object getDado(String nome) {
-        return null;
+    public void criarBanco(){
+        try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
+            saida.writeObject(npcs);
+        } catch(IOException e){
+            System.out.println("Erro salvando no arquivo de NPCs");
+        }
     }
 
     // use adicionarNPC() para adicionar um NPC ao banco e depois use criarBanco()
@@ -44,4 +43,5 @@ public class BancoNPC extends Banco{
         }
     }
 
+    public
 }

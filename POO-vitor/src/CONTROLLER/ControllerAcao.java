@@ -1,6 +1,5 @@
 package CONTROLLER;
 
-import MODEL.mapa.MapaAtual;
 import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 import VIEW.ViewAcao;
@@ -13,6 +12,7 @@ public class ControllerAcao {
 
     public static ArrayList<iInfoBasica> checarCenario(Sala sala){
         return sala.listarObjetos();
+        //sla, nao gostei... queria divisao entr nome p saber o q é item vs o q é inimigo...
     }
 
     public static void atacar(Personagem atacante, Personagem alvo) {
@@ -86,11 +86,7 @@ public class ControllerAcao {
         ViewAcao.exibirInventario(ControllerJogo.getPlayer().getInventario());
     }
 
-    public static boolean usarItem(Item item){
-
-
-
-        return false;
+    public static void usarItem(String item){
 
     }
 

@@ -3,14 +3,15 @@ package MODEL.bancodados;
 import MODEL.personagens.Arma;
 import MODEL.personagens.Item;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class BancoArmas extends BancoItens {
+
+    public BancoArmas() {
+        super(); // Chama o construtor do BancoItens
+    }
 
     // Procura um item pelo nome e converte diretamente para Arma
     public Arma getArma(String nome) {
