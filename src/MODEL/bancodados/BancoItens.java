@@ -8,7 +8,7 @@ public class BancoItens extends Banco<Item>{
     private HashSet<Item> banco;
     private final String file = "itens.dat";
 
-    public BancoItens() {
+    public BancoItens() throws Exception{
         this.banco = new HashSet<>();
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))) {
@@ -20,6 +20,7 @@ public class BancoItens extends Banco<Item>{
             }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Erro ao carregar itens");
+            throw e;
         }
     }
 

@@ -1,5 +1,6 @@
 package VIEW;
 
+import CONTROLLER.ControllerInicializar;
 import CONTROLLER.ControllerJogo;
 import CONTROLLER.ControllerTutorial;
 
@@ -17,6 +18,12 @@ public class ViewInicializar {
 
     // primeira funcao do jogo, menu principal para criar o personagem
     public void mostrarMenuInicial(){
+        try {
+            ControllerInicializar.inicializar();
+        } catch (Exception e){
+            System.out.println("Erro carregando bancos de dados!");
+            return;
+        }
         String menu = """
                 ---------------------------------------------------
                                     Bem Vindo!

@@ -1,11 +1,11 @@
 package CONTROLLER;
 
 import MODEL.Inicializar;
-import MODEL.personagens.Item;
-import MODEL.personagens.Magia;
-import MODEL.personagens.Player;
+import MODEL.mapa.Sala;
+import MODEL.personagens.*;
 import VIEW.ViewJogo;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ControllerJogo {
@@ -98,7 +98,14 @@ public class ControllerJogo {
                 break;
         }
         meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
-        meuPlayer.setSalaAtual(Inicializar.mapaInicial(Inicializar.criarSalas(NUM_SALAS)));
+        Sala sala = new Sala("teste");
+        ArrayList<Inimigo> inimigos = new ArrayList<>();
+        inimigos.add(ControllerInicializar.getBancoInimigo().getDado("Slime"));
+        ArrayList<Item> itens = new ArrayList<>();
+        itens.add(ControllerInicializar.getBancoItens().getDado("Chave"));
+        sala.setInimigoNaSala(inimigos);
+        sala.setItemNaSala(itens);
+        meuPlayer.setSalaAtual(sala);
         ViewJogo.iniciarJogo();
     }
 

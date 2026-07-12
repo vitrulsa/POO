@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class BancoArmas extends BancoItens {
 
-    public BancoArmas() {
-        super(); // Chama o construtor do BancoItens
+    public BancoArmas() throws Exception{
+        super();
     }
 
     // Procura um item pelo nome e converte diretamente para Arma

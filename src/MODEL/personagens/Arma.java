@@ -5,8 +5,8 @@ public class Arma extends Item {
     private int alcance;
     private String descricao;
 
-    public Arma(String nome, int peso, int valor, int dano, int alcance) {
-        super(nome, peso, valor);
+    public Arma(String nome, int peso, int valor, int dano, int alcance, String descricao) {
+        super(nome, peso, valor, descricao);
         this.dano = dano;
         this.alcance = alcance;
     }

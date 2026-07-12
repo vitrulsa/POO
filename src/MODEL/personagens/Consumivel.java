@@ -4,10 +4,9 @@ public class Consumivel extends Item {
     private int quantidade;
     private int valorEfeito;
     private TipoItem tipo;
-    private String descricao;
 
-    public Consumivel(String nome, int peso, int valor, int quantidade, int valorEfeito, TipoItem tipo) {
-        super(nome, peso, valor);
+    public Consumivel(String nome, int peso, String descricao, int valor, int quantidade, int valorEfeito, TipoItem tipo) {
+        super(nome, peso, valor, descricao);
         this.quantidade = quantidade;
         this.valorEfeito = valorEfeito;
         this.tipo = tipo;

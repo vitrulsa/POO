@@ -11,13 +11,13 @@ public class Inicializar {
 
     public static ArrayList<Object> criarBancos()
     {
-        BancoInimigo bancoInimigo = new BancoInimigo();
-        BancoItens bancoItens = new BancoItens();
+//        BancoInimigo bancoInimigo = new BancoInimigo();
+//        BancoItens bancoItens = new BancoItens();
         BancoMagia bancoMagia = new BancoMagia();
         ArrayList<Object> bancos = new ArrayList<>(3);
-        bancos.add(bancoInimigo);
-        bancos.add(bancoItens);
-        bancos.add(bancoMagia);
+//        bancos.add(bancoInimigo);
+//        bancos.add(bancoItens);
+//        bancos.add(bancoMagia);
 
         return bancos;
     }

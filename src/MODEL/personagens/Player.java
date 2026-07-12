@@ -31,7 +31,6 @@ public class Player extends Personagem{
     public void exibirStatus() {
         System.out.println("--- Status de "+ this.getNome() + "---");
         System.out.println("HP: " + this.getHp());
-        System.out.println("Estado: " + this.getEstado());
         System.out.println("Defesa: " + this.getDefesa());
         System.out.println("Força: " + this.getForca());
         System.out.println("Destreza: " + this.getDest());

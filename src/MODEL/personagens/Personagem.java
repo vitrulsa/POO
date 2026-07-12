@@ -28,7 +28,10 @@ public abstract class Personagem implements iInfoBasica, Serializable {
         this.dest = dest;
         this.manaMax = manaMax;
         this.manaAtual = manaMax;
-        this.magias = new ArrayList<Magia>(Arrays.asList(magias));
+        if (magias == null)
+            this.magias = null;
+        else
+            this.magias = new ArrayList<Magia>(Arrays.asList(magias));
     }
 
 
