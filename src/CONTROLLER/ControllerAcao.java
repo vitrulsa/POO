@@ -4,6 +4,7 @@ import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 import VIEW.ViewAcao;
 
+import javax.naming.ldap.Control;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
@@ -78,48 +79,29 @@ public class ControllerAcao {
         }
     }
 
-    public static void usarMagia(Magia magia) {
-        Player atacante = ControllerJogo.getPlayer();
-        System.out.println("\n>>> " + atacante.getNome() + " invoca " + magia.getNome() + "! <<<");
+    public static void usarMagia(Magia magia) throws Exception{
+        Player player = ControllerJogo.getPlayer();
 
-        //  Gasta 1 ponto de Mana
-        atacante.setManaAtual(atacante.getManaAtual() - 1);
-        System.out.println("Mana restante de " + atacante.getNome() + ": " + atacante.getManaAtual() + "/" + atacante.getManaMax());
-
-        if (!magia.getTipo().equals("cura")){
-            int index = 0;
-            while (true){
-                try{
-                    index = ViewAcao.escolherAlvo(atacante.getSalaAtual().getInimigoNaSala());
-                    break;
-                } catch(Exception e){
-                    System.out.println("Tente novamente.");
-                }
-            }
-            Inimigo alvo = atacante.getSalaAtual().getInimigoNaSala().get(index - 1);
-
-            //  Calcula o dano (Dano da magia - Defesa do alvo)
-            int danoCausado = magia.getDano() - alvo.getDefesa();
-
-            //  Garante que o dano não é negativo
-            if (danoCausado <= 0) {
-                danoCausado = 0;
-                System.out.println("A defesa de " + alvo.getNome() + " resistiu completamente ao tipo " + magia.getTipo() + "!");
-            } else {
-                // Tira o HP do alvo
-                alvo.setHp(alvo.getHp() - danoCausado);
-                System.out.println(alvo.getNome() + " sofreu " + danoCausado + " pontos de dano mágico!");
-            }
-
-            //  Verificar se o alvo morreu
-            if (alvo.getHp() <= 0) {
-                alvo.setHp(0);
-                System.out.println(">>> " + alvo.getNome() + " caiu em combate! <<<");
-                atacante.getSalaAtual().getInimigoNaSala().remove(index - 1);
-            } else {
-                System.out.println("HP restante de " + alvo.getNome() + ": " + alvo.getHp());
-            }
+        if (player.getManaAtual() == 0){
+            System.out.println("Sem mana! Use uma Poção de Mana ou um ataque normal!");
+            return;
         }
+
+        if (magia.getTipo() != "Cura"){
+            int i = 0;
+            try{
+                ViewAcao.escolherAlvo(player.getSalaAtual().getInimigoNaSala());
+            } catch (Exception e){
+                System.out.println("Erro no ControllerAcao");
+                throw e;
+            }
+
+            atacar(player, player.getSalaAtual().getInimigoNaSala().get(i - 1), magia);
+        } else{
+            player.setHp(player.getHp());
+        }
+
+        player.setManaAtual(player.getManaAtual() - 1);
     }
     public static void usarMagia() throws Exception{
         try{

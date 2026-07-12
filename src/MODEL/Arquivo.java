@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import CONTROLLER.ControllerJogo;
 import MODEL.personagens.*;
 import MODEL.bancodados.*;
 import MODEL.mapa.*;
@@ -17,7 +18,7 @@ public class Arquivo {
             //manda p construtor... p criar arqv com esse nome no final
             ObjectOutputStream arqvSalvar = new ObjectOutputStream(arqv);
             //manda p construtor de objectoutputstream
-            arqvSalvar.writeObject(MapaAtual.getJogador());
+//            arqvSalvar.writeObject(MapaAtual.getPlayer());
 
         } catch (IOException e) {
             throw new Exception("Algo deu errado salvando o jogo!");
@@ -34,7 +35,7 @@ public class Arquivo {
 
             Player meuPlayer = (Player) arqvCarregar.readObject();
             System.out.println("Jogador carregado!");
-            MapaAtual.setJogador(meuPlayer);
+//            MapaAtual.setPlayer(meuPlayer);
 
         } catch(IOException | ClassNotFoundException e){
             throw new Exception("Algum erro ocorreu recarregando o jogo!");

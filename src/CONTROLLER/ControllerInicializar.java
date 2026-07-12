@@ -15,7 +15,7 @@ public class ControllerInicializar {
 
     public static void Salvar() throws Exception {
 
-        MapaAtual.getJogador();
+        MapaAtual.getPlayer();
 
         Arquivo.salvarJogo();
     }

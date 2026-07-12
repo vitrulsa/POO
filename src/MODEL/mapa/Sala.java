@@ -24,9 +24,11 @@ public class Sala implements Serializable {
     Sala salaBaixo;
     private String estadoSala; //se é possível chegar na sala ou se precisa de uma chave antes
     //dá pra tirar se quiserem
+    private String nome;
     private String descricao;
 
-    public Sala(String desc){
+    public Sala(String nome, String desc){
+        this.nome = nome;
         this.descricao = desc;
     }
 
@@ -81,4 +83,5 @@ public class Sala implements Serializable {
         this.npcNaSala = npcNaSala;
     }
 
+    public String getNome(){return nome;}
 }

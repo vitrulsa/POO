@@ -7,16 +7,16 @@ import MODEL.mapa.Sala;
 public class ControllerMover {
 
     static void andar(char direcao){
-        LigacoesMapa.moverSalaEsq(MapaAtual.getJogador().getSalaAtual());
+        LigacoesMapa.moverSalaEsq(MapaAtual.getPlayer().getSalaAtual());
     }
     static void andarDireita(){
-        LigacoesMapa.moverSalaDir(MapaAtual.getJogador().getSalaAtual());
+        LigacoesMapa.moverSalaDir(MapaAtual.getPlayer().getSalaAtual());
     }
     static void andarCima(){
-        LigacoesMapa.moverSalaCima(MapaAtual.getJogador().getSalaAtual());
+        LigacoesMapa.moverSalaCima(MapaAtual.getPlayer().getSalaAtual());
     }
     static void andarBaixo(){
-        LigacoesMapa.moverSalaBaixo(MapaAtual.getJogador().getSalaAtual());
+        LigacoesMapa.moverSalaBaixo(MapaAtual.getPlayer().getSalaAtual());
     }
 
 }

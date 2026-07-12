@@ -98,7 +98,7 @@ public class ControllerJogo {
                 break;
         }
         meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
-        Sala sala = new Sala("teste");
+        Sala sala = new Sala("salateste", "teste");
         ArrayList<Inimigo> inimigos = new ArrayList<>();
         inimigos.add(ControllerInicializar.getBancoInimigo().getDado("Slime"));
         ArrayList<Item> itens = new ArrayList<>();

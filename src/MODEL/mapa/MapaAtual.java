@@ -1,36 +1,24 @@
 package MODEL.mapa;
+import CONTROLLER.ControllerJogo;
 import MODEL.bancodados.BancoItens;
 import MODEL.bancodados.BancoMagia;
+import MODEL.bancodados.BancoSala;
 import MODEL.personagens.*;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class MapaAtual {
-    //isso é pra jogar!!! ebaaa!!!
-    private static Player jogador;
+    private static BancoSala bancoSala;
 
-    private static ArrayList<Object> bancos;
+    private static LigacoesMapa ligacoesMapa;
 
-    public static ArrayList<Object> getBancos() {
-        return bancos;
+    private static Player player;
+
+    public static void setPlayer(Player p){
+        player = p;
     }
-
-    public static <T> void setBancos(T bancos) { //pode ser de banco magia ou itm ou inimigo...
-        //mas, no final, td vira object!
-        //use instanceof
-        //a gnt deveria ter feito eles herdarem de um banco grande :/ aí era mais simples
-        MapaAtual.bancos.add((Object) bancos);
+    public static Player getPlayer(){
+        return player;
     }
-
-
-    public static Player getJogador() {
-        return jogador;
-    }
-
-    public static void setJogador(Player novoJogador) {
-        jogador = novoJogador;
-    }
-
-    //tem mais alguma coisa?
 }

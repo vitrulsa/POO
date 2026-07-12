@@ -47,9 +47,11 @@ public class BancoSala{
         return salas;
     }
 
-    public Sala getSala(int indice) {
-        if (indice >= 0 && indice < salas.size())
-            return salas.get(indice);
+    public Sala getSala(String nome) {
+        for (Sala sala : salas){
+            if (sala.getNome().equals(nome))
+                return sala;
+        }
 
         return null;
     }
