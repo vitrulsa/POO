@@ -36,6 +36,8 @@ public class ViewJogo {
                 case "falar":
                     if (args.length > 1){
                         ControllerAcao.falar(args[1]);
+                    } else{
+                        System.out.println("Digite o nome do NPC com que deseja falar.");
                     }
                     break;
                 case "atacar":
@@ -52,8 +54,20 @@ public class ViewJogo {
                     break;
                 case "equipar":
                     if (args.length > 1){
-                        ControllerAcao.falar(args[1]);
+                        ControllerAcao.equipar(args[1]);
+                    } else{
+                        System.out.println("Digite o nome da ARMA que deseja equipar.");
                     }
+                    break;
+                case "magias":
+                    ControllerAcao.magias();
+                    break;
+                case "terminar":
+                    System.out.println("Fechando jogo...");
+                    return;
+                default:
+                    System.out.println("Comando não reconhecido. Tente novamente.");
+                    break;
             }
         }
     }

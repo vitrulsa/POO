@@ -97,4 +97,23 @@ public class ControllerAcao {
     public static void falar(String nomeNPC){
 
     }
+
+    public static void magias(){
+        ViewAcao.exibirMagias(ControllerJogo.getPlayer().getMagias());
+    }
+
+    public static boolean equipar(String nome){
+        ArrayList<Item> inventario = ControllerJogo.getPlayer().getInventario();
+
+        for (Item item : inventario){
+            if (item.getNome().equals(nome) && item instanceof Arma arma){
+                ControllerJogo.getPlayer().setArmaEquipada(arma);
+                ViewAcao.equipou(arma);
+                return true;
+            }
+        }
+
+        ViewAcao.equipou(null);
+        return false;
+    }
 }
