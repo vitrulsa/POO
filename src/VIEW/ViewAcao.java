@@ -52,10 +52,14 @@ public class ViewAcao {
     }
 
     public static void atacar(ArrayList<Inimigo> inimigoNaSala) throws Exception {
-
-        int i = escolherAlvo(inimigoNaSala);
-        if (i > 0)
-            ControllerAcao.atacar(ControllerJogo.getPlayer(), inimigoNaSala.get(i - 1), null);
+        try{
+            int i = escolherAlvo(inimigoNaSala);
+            if (i > 0)
+                ControllerAcao.atacar(ControllerJogo.getPlayer(), inimigoNaSala.get(i - 1), null);
+        } catch (Exception e){
+            System.out.println("Erro no ViewAcao");
+            throw e;
+        }
     }
 
     public static void falar(ArrayList<NPC> NPCsNaSala) throws Exception{
@@ -149,6 +153,7 @@ public class ViewAcao {
                     return 0;
                 }
             } catch (IncompatibleClassChangeError e) {
+                System.out.println("Erro de classe");
                 throw new Exception(e);
             } catch (InputMismatchException e) {
                 System.out.println("Insira um número de 1 à "+ quantidade);
@@ -185,7 +190,12 @@ public class ViewAcao {
             while (true){
                 int d = s.nextInt();
                 if (d > 0 && d <= quantidade){
-                    System.out.println(listaObjetos.get(d - 1).getNome() + ": " + listaObjetos.get(d - 1).getDescricao());
+                    if (listaObjetos.get(d - 1) instanceof Consumivel consumivel)
+                        System.out.println(consumivel.getNome() + ": " + consumivel.getDescricao());
+                    else if (listaObjetos.get(d - 1) instanceof NPC npc)
+                        System.out.println(npc.getNome() + " NPC " + npc.getRaca());
+                    else if (listaObjetos.get(d - 1) instanceof Inimigo inimigo)
+                        System.out.println("Inimigo " + inimigo.getNome() + "!");
                     break;
                 } else{
                     System.out.println("Insira um número de 1 à " + quantidade + "!");

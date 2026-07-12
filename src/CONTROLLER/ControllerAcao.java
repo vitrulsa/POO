@@ -31,10 +31,10 @@ public class ControllerAcao {
 
         int dado = 0;
         switch(tipoDano){
-            case 1:
+            case 0:
                 dado = rand.nextInt(20) + atacante.getForca();
                 break;
-            case 2, 3:
+            case 1, 2:
                 dado = rand.nextInt(20) + atacante.getDest();
                 break;
         }
@@ -42,16 +42,16 @@ public class ControllerAcao {
         if (dado >= alvo.getDefesa()){
             int dano = 0;
             switch (tipoDano){
-                case 1:
+                case 0:
                     if (arma != null)
                         dano = rand.nextInt(arma.getDano()) + atacante.getForca();
                     else
-                        dano = atacante.getForca();
+                        dano = rand.nextInt(4) + atacante.getForca();
                     break;
-                case 2:
+                case 1:
                     dano = rand.nextInt(arma.getDano()) + atacante.getDest();
                     break;
-                case 3:
+                case 2:
                     dano = rand.nextInt(magia.getDano());
             }
 
@@ -73,6 +73,7 @@ public class ControllerAcao {
         try{
             ViewAcao.atacar(ControllerJogo.getPlayer().getSalaAtual().getInimigoNaSala());
         } catch(Exception e){
+            System.out.println("Erro no ControllerAcao");
             throw e;
         }
     }
@@ -199,8 +200,9 @@ public class ControllerAcao {
         if (!inimigos.isEmpty()){
             Random rand = new Random();
             for (Inimigo inimigo : inimigos){
-                if (inimigo.getMagias().isEmpty())
+                if (inimigo.getMagias() == null){
                     atacar(inimigo, player, null);
+                }
                 else{
                     Magia magia = null;
                     if(inimigo.getManaAtual() > 0){
@@ -208,9 +210,12 @@ public class ControllerAcao {
                     }
 
                     int chance = rand.nextInt(2);
-                    if (chance == 0)
+                    if (chance == 0) {
                         atacar(inimigo, player, magia);
-                    else
+                        if (inimigo.getManaAtual() > 0){
+                            inimigo.setManaAtual(inimigo.getManaAtual() - 1);
+                        }
+                    }else
                         atacar(inimigo, player, null);
                 }
             }

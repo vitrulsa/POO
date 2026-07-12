@@ -77,6 +77,8 @@ public class ViewJogo {
                     } catch(Exception e){
                         System.out.println("Erro tentando atacar. Tente novamente.");
                     }
+
+
                     break;
 
                 case "4": // inventario
