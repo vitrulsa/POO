@@ -7,7 +7,6 @@ public abstract class Personagem implements iInfoBasica, Serializable {
     protected String nome;
     protected String raca;
     protected int hp;
-    protected String estado; // morto, paralisado, incapacitado, etc
     protected int defesa; // numero que o inimigo tem que superar para causar o dano que nem no d&d
     protected int forca; // numero que soma na tentativa do player dar dano no inimigo e no dano dado que nem no d&d
     protected int dest; // numero que soma na tentativa do player dar dano no inimigo e no dano dado que nem no d&d
@@ -55,14 +54,6 @@ public abstract class Personagem implements iInfoBasica, Serializable {
 
     public void setHp(int hp) {
         this.hp = hp;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
 
     public int getDefesa() {

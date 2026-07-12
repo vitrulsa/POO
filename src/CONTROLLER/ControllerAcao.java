@@ -6,6 +6,7 @@ import VIEW.ViewAcao;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ControllerAcao {
 
@@ -15,35 +16,57 @@ public class ControllerAcao {
         //sla, nao gostei... queria divisao entr nome p saber o q é item vs o q é inimigo...
     }
 
-    public static void atacar(Inimigo alvo) {
-        Player atacante = ControllerJogo.getPlayer();
-        System.out.println("\n>>> " + atacante.getNome() + " ataca " + alvo.getNome() + " <<<");
-
-        int danoCausado = atacante.getForca();
-
-        if (atacante.getArmaEquipada() != null) {
-            danoCausado += atacante.getArmaEquipada().getDano();
-            System.out.println(atacante.getNome() + " ataca com a sua " + atacante.getArmaEquipada().getNome() + "!");
+    public static void atacar(Personagem atacante, Personagem alvo, Magia magia) {
+        Random rand = new Random();
+        int tipoDano;
+        Arma arma = atacante.getArmaEquipada();
+        if (magia == null){
+            if (arma != null)
+                tipoDano = atacante.getArmaEquipada().getAlcance(); // 0 corpo-a-corpo, 1 a-distancia
+            else
+                tipoDano = 0;
+        } else{
+            tipoDano = 2;
         }
 
-        danoCausado = danoCausado - alvo.getDefesa();
-
-
-        if (danoCausado <= 0) {
-            danoCausado = 0;
-            System.out.println("A armadura de " + alvo.getNome() + " bloqueou totalmente o ataque!");
-        } else {
-
-            alvo.setHp(alvo.getHp() - danoCausado);
-            System.out.println(alvo.getNome() + " sofreu " + danoCausado + " pontos de dano!");
+        int dado = 0;
+        switch(tipoDano){
+            case 1:
+                dado = rand.nextInt(20) + atacante.getForca();
+                break;
+            case 2, 3:
+                dado = rand.nextInt(20) + atacante.getDest();
+                break;
         }
 
-        if (alvo.getHp() <= 0) {
-            alvo.setHp(0);
-            alvo.setEstado("Morto");
-            System.out.println(">>> " + alvo.getNome() + " caiu em combate! <<<");
-        } else {
-            System.out.println("HP restante de " + alvo.getNome() + ": " + alvo.getHp());
+        if (dado >= alvo.getDefesa()){
+            int dano = 0;
+            switch (tipoDano){
+                case 1:
+                    if (arma != null)
+                        dano = rand.nextInt(arma.getDano()) + atacante.getForca();
+                    else
+                        dano = atacante.getForca();
+                    break;
+                case 2:
+                    dano = rand.nextInt(arma.getDano()) + atacante.getDest();
+                    break;
+                case 3:
+                    dano = rand.nextInt(magia.getDano());
+            }
+
+            if (dano < 0)
+                dano = 0;
+
+            alvo.setHp(alvo.getHp() - dano);
+            ViewAcao.dano(atacante, alvo, dano);
+
+            if (alvo.getHp() <= 0){
+                if (alvo instanceof Inimigo inimigo)
+                    ControllerJogo.getPlayer().getSalaAtual().getInimigoNaSala().remove(inimigo);
+            }
+        } else{
+            ViewAcao.dano(atacante, alvo, 0);
         }
     }
     public static void atacar() throws Exception{
@@ -168,5 +191,32 @@ public class ControllerAcao {
         } catch (Exception e){
             throw e;
         }
+    }
+
+    public static boolean turnoInimigos(){
+        Player player = ControllerJogo.getPlayer();
+        ArrayList<Inimigo> inimigos = player.getSalaAtual().getInimigoNaSala();
+
+        if (!inimigos.isEmpty()){
+            Random rand = new Random();
+            for (Inimigo inimigo : inimigos){
+                if (inimigo.getMagias().isEmpty())
+                    atacar(inimigo, player, null);
+                else{
+                    Magia magia = null;
+                    if(inimigo.getManaAtual() > 0){
+                        magia = inimigo.getMagias().get(rand.nextInt(inimigo.getMagias().size()));
+                    }
+
+                    int chance = rand.nextInt(2);
+                    if (chance == 0)
+                        atacar(inimigo, player, magia);
+                    else
+                        atacar(inimigo, player, null);
+                }
+            }
+        }
+
+        return player.getHp() <= 0;
     }
 }

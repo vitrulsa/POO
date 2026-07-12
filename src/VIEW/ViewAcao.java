@@ -55,7 +55,7 @@ public class ViewAcao {
 
         int i = escolherAlvo(inimigoNaSala);
         if (i > 0)
-            ControllerAcao.atacar(inimigoNaSala.get(i - 1));
+            ControllerAcao.atacar(ControllerJogo.getPlayer(), inimigoNaSala.get(i - 1), null);
     }
 
     public static void falar(ArrayList<NPC> NPCsNaSala) throws Exception{
@@ -223,23 +223,38 @@ public class ViewAcao {
             }
         }
 
-        Scanner s = new Scanner(System.in);
-        while (true){
-            try {
-                int i = s.nextInt();
+        if (quantidade > 0){
+            Scanner s = new Scanner(System.in);
+            while (true){
+                try {
+                    int i = s.nextInt();
 
-                if (i >0 && i <= quantidade){
-                    ControllerAcao.equipar(armas.get(i));
-                    break;
-                }else{
+                    if (i >0 && i <= quantidade){
+                        ControllerAcao.equipar(armas.get(i));
+                        break;
+                    }else{
+                        System.out.println("Insira um número de 1 à "+ quantidade);
+                    }
+                } catch (IncompatibleClassChangeError e) {
+                    throw new Exception(e);
+                } catch (InputMismatchException e) {
                     System.out.println("Insira um número de 1 à "+ quantidade);
+                    throw new Exception(e);
                 }
-            } catch (IncompatibleClassChangeError e) {
-                throw new Exception(e);
-            } catch (InputMismatchException e) {
-                System.out.println("Insira um número de 1 à "+ quantidade);
-                throw new Exception(e);
             }
+        }
+
+    }
+
+    public static void dano(Personagem atacante, Personagem alvo, int dano){
+        if (dano > 0){
+            System.out.println(">>> " + atacante.getNome() + " acerta " + alvo.getNome() + " e causa " + dano + " de dano! <<<");
+
+            if (alvo.getHp() <= 0){
+                System.out.println(">>> " + alvo.getNome() + " morreu! <<<");
+            }
+        } else if (dano == 0) {
+            System.out.println(">>> " + atacante.getNome() + " errou! <<<");
         }
     }
 }

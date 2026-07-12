@@ -58,6 +58,10 @@ public class ViewJogo {
                 case "2": // falar
                     try{
                         ControllerAcao.falar();
+                        if (ControllerAcao.turnoInimigos()){
+                            System.out.println("Você morreu.");
+                            return;
+                        }
                     } catch (Exception e) {
                         System.out.println("Erro tentando falar. Tente novamente.");
                     }
@@ -66,6 +70,10 @@ public class ViewJogo {
                 case "3": // atacar
                     try{
                         ControllerAcao.atacar();
+                        if (ControllerAcao.turnoInimigos()){
+                            System.out.println("Você morreu.");
+                            return;
+                        }
                     } catch(Exception e){
                         System.out.println("Erro tentando atacar. Tente novamente.");
                     }
@@ -90,6 +98,10 @@ public class ViewJogo {
                     if (opcao == 1){ // usar item
                         try{
                             ControllerAcao.usarItem();
+                            if (ControllerAcao.turnoInimigos()){
+                                System.out.println("Você morreu.");
+                                return;
+                            }
                         } catch(Exception e){
                             System.out.println("Erro tentando usar item. Tente novamente.");
                         }
@@ -97,6 +109,10 @@ public class ViewJogo {
                     else if (opcao == 2){ // usar magia
                         try{
                             ControllerAcao.usarMagia();
+                            if (ControllerAcao.turnoInimigos()){
+                                System.out.println("Você morreu.");
+                                return;
+                            }
                         } catch(Exception e){
                             System.out.println("Erro tentando usar magia. Tente novamente.");
                         }
