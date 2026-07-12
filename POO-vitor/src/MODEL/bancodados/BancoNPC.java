@@ -1,0 +1,47 @@
+package MODEL.bancodados;
+
+import MODEL.personagens.NPC;
+import MODEL.personagens.Magia;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class BancoNPC extends Banco{
+    private ArrayList<NPC> npcs;
+    private final String file = "npcs.dat";
+
+    public void criarBanco(){
+
+        try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
+            saida.writeObject(npcs);
+        } catch(IOException e){
+            System.out.println("Erro salvando no arquivo de magias");
+        }
+    }
+
+    @Override
+    public void adicionarBanco(Object obj) {
+
+    }
+
+    @Override
+    public HashSet getBanco() {
+        return null;
+    }
+
+    @Override
+    public Object getDado(String nome) {
+        return null;
+    }
+
+    // use adicionarNPC() para adicionar um NPC ao banco e depois use criarBanco()
+    // para salvar o arquivo
+    public void adicionarBanco(NPC npc){
+        npcs.add(npc);
+        for (NPC p : npcs){
+            System.out.println(p.getNome());
+        }
+    }
+
+}
