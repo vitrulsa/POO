@@ -5,9 +5,10 @@ import MODEL.personagens.Item;
 import MODEL.personagens.NPC;
 import MODEL.personagens.iInfoBasica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Sala {
+public class Sala  implements Serializable {
     //1 sala qual quer. tem ligação com outras, inimigos, itens ou npcs.
     private int MAX_INIMIGO = 3;
     private int MAX_NPC = 3;
@@ -23,6 +24,11 @@ public class Sala {
     Sala salaBaixo;
     private String estadoSala; //se é possível chegar na sala ou se precisa de uma chave antes
     //dá pra tirar se quiserem
+    private String descricao;
+
+    public Sala(String desc){
+        this.descricao = desc;
+    }
 
     public ArrayList<iInfoBasica> listarObjetos(){
 
@@ -58,6 +64,8 @@ public class Sala {
     public String getEstadoSala(){
         return estadoSala;
     }
+
+    public String getDescricao() { return descricao; }
 
     public void setInimigoNaSala(ArrayList<Inimigo> inimigoNaSala) {
         this.inimigoNaSala = inimigoNaSala;
