@@ -169,7 +169,7 @@ public class ViewAcao {
 
         int quantidade = 0;
         for(iInfoBasica objetos : listaObjetos){
-            System.out.println((listaObjetos.indexOf(objetos)+1) + ": " + objetos.getClasseString() + "! "+ objetos.getNome());
+            System.out.println((listaObjetos.indexOf(objetos)+1) + ": " + objetos.getNome());
             quantidade += 1;
         }
 
@@ -185,7 +185,7 @@ public class ViewAcao {
             while (true){
                 int d = s.nextInt();
                 if (d > 0 && d <= quantidade){
-                    System.out.println(listaObjetos.get(d).getNome() + ": " + listaObjetos.get(d).getDescricao());
+                    System.out.println(listaObjetos.get(d - 1).getNome() + ": " + listaObjetos.get(d - 1).getDescricao());
                     break;
                 } else{
                     System.out.println("Insira um número de 1 à " + quantidade + "!");

@@ -8,7 +8,7 @@ public class BancoMagia extends Banco<Magia>{
     private HashSet<Magia> magias;
     private final String file = "magias.dat";
 
-    public BancoMagia(){
+    public BancoMagia() throws Exception{
         magias = new HashSet<>();
         try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))){
             magias = (HashSet<Magia>) entrada.readObject();
@@ -19,8 +19,10 @@ public class BancoMagia extends Banco<Magia>{
             }
         } catch (IOException e){
             System.out.println("Falha abrindo arquivo para carregar magias.");
+            throw e;
         } catch (ClassNotFoundException e){
             System.out.println("Falha lendo arquivo de magias.");
+            throw e;
         }
     }
 

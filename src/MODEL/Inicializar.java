@@ -13,7 +13,7 @@ public class Inicializar {
     {
 //        BancoInimigo bancoInimigo = new BancoInimigo();
 //        BancoItens bancoItens = new BancoItens();
-        BancoMagia bancoMagia = new BancoMagia();
+//        BancoMagia bancoMagia = new BancoMagia();
         ArrayList<Object> bancos = new ArrayList<>(3);
 //        bancos.add(bancoInimigo);
 //        bancos.add(bancoItens);
