@@ -2,6 +2,7 @@ package MODEL;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -45,10 +46,10 @@ public class Arquivo {
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("itens.dat"))) {
 
-            ArrayList<Item> itens = (ArrayList<Item>) entrada.readObject();
+            ArrayList<Banco> itens = (HashSet<Banco>) entrada.readObject();
 
             System.out.println("Itens carregados:");
-            for (Item s : itens) {
+            for (Banco s : itens) {
                 //System.out.println(s.getDescricao());
                 //item sem descrição?
             }
@@ -58,12 +59,14 @@ public class Arquivo {
         }
 
         try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("inimigos.dat"))){
-            ArrayList<Inimigo> inimigos = (ArrayList<Inimigo>) entrada.readObject();
+            HashSet<Banco> inimigos = (HashSet<Banco>) entrada.readObject();
 
             System.out.println("Inimigos carregados:");
-            for (Inimigo inimigo : inimigos){
+            for (Banco inimigo : inimigos){
                 System.out.println(inimigo.getNome());
             }
+
+            MapaAtual.setBancoInimigo();
 
         } catch (IOException e){
             System.out.println("Falha abrindo arquivo para carregar inimigos.");
@@ -73,24 +76,28 @@ public class Arquivo {
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("salas.dat"))) {
 
-            ArrayList<Sala> salas = (ArrayList<Sala>) entrada.readObject();
+            HashSet<Banco> salas = (HashSet<Banco>) entrada.readObject();
 
             System.out.println("Salas carregadas:");
-            for (Sala s : salas) {
+            for (Banco s : salas) {
                 System.out.println(s.getDescricao());
             }
+
+            MapaAtual.setBancoSala(salas);
 
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Falha abrindo arquivo de salas.");
         }
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("npcs.dat"))) {
-            ArrayList<NPC> npcs = (ArrayList<NPC>) entrada.readObject();
+            HashSet<Banco> npcs = (HashSet<Banco>) entrada.readObject();
 
-            System.out.println("NPCs carregados:");
             for (NPC npc : npcs) {
                 System.out.println(npc.getNome());
             }
+
+            MapaAtual.setBancoNPC(npcs);
+
         } catch (IOException e) {
             System.out.println("Falha abrindo arquivo para carregar NPCs.");
         } catch (ClassNotFoundException e) {
