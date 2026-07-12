@@ -1,7 +1,6 @@
 package CONTROLLER;
 
 import MODEL.mapa.Sala;
-import MODEL.mapa.SalaNode;
 
 public class ControllerMover {
 

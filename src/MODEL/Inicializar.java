@@ -1,57 +1,26 @@
 package MODEL;
 
-import MODEL.mapa.Sala;
+import MODEL.mapa.*;
+import MODEL.bancodados.*;
 import MODEL.personagens.*;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Inicializar {
 
-    public static Inimigo[] criarInimigo(int numInimigos)
+    public static ArrayList<Object> criarBancos()
     {
-        Inimigo[] inimigosCriados = new Inimigo[numInimigos];
+        BancoInimigo bancoInimigo = new BancoInimigo();
+        BancoItens bancoItens = new BancoItens();
+        BancoMagia bancoMagia = new BancoMagia();
+        ArrayList<Object> bancos = new ArrayList<>(3);
+        bancos.add(bancoInimigo);
+        bancos.add(bancoItens);
+        bancos.add(bancoMagia);
 
-        for(int i = 0; i < numInimigos; i++){
-            inimigosCriados[i] = new Inimigo("nda", "nda", 0, 0, 0, 0, 0, null);
-        }
-
-        return inimigosCriados;
+        return bancos;
     }
-
-    public static NPC[] criarNPC(int numNPC)
-    {
-
-        NPC[] NPCCriados = new NPC[numNPC];
-
-        for(int i = 0; i < numNPC; i++){
-            NPCCriados[i] = new NPC("nda", "nda", 0, 0, 0, 0, 0, null);
-        }
-
-        return NPCCriados;
-    }
-
-//    public static Item[] criarItem(int numItem)
-//    {
-//        Item[] itemCriado = new Item[numItem];
-//
-//        for(int i = 0; i < numItem; i++){
-//            itemCriado[i] = new Item("nda", null, 0, 0, 0);
-//        }
-//
-//        return itemCriado;
-//    }
-
-    public static Magia[] criarMagia(int numMagia)
-    {
-        Magia[] MagiaCriado = new Magia[numMagia];
-
-        for(int i = 0; i < numMagia; i++){
-            MagiaCriado[i] = new Magia("nda", 0, "nda", "nda");
-        }
-
-        return MagiaCriado;
-    }
-
 
     public static Player criarPlayer()
     {
@@ -69,13 +38,11 @@ public class Inicializar {
         return salaCriadas;
     }
 
-//    public static void mapaRandom(Sala[] sala){
-//
-//        Random k = new Random();
-//
-//        k.
-//
-//    }
+    public static void mapaRandom(Sala[] sala){
+
+        Random k = new Random();
+        //fiz nada mas pode ter aki tbm
+    }
 
     public static Sala mapaInicial(Sala[] sala){
         //ok, pensem em como criar o coiso pfv
