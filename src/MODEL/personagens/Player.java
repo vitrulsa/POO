@@ -9,6 +9,7 @@ public class Player extends Personagem{
     private ArrayList<Item> inventario = new ArrayList<Item>();
     private String classe;
     private Sala salaAtual;
+    private String descricao;
 
     public Player(String nome, String raca, String classe, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
@@ -51,5 +52,15 @@ public class Player extends Personagem{
     }
     public Sala getSalaAtual(){
         return salaAtual;
+    }
+
+    @Override
+    public String getDescricao(){
+        return descricao;
+    }
+
+    @Override
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
     }
 }

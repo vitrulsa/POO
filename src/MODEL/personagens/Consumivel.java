@@ -4,6 +4,7 @@ public class Consumivel extends Item {
     private int quantidade;
     private int valorEfeito;
     private TipoItem tipo;
+    private String descricao;
 
     public Consumivel(String nome, int peso, int valor, int quantidade, int valorEfeito, TipoItem tipo) {
         super(nome, peso, valor);
@@ -43,4 +44,14 @@ public class Consumivel extends Item {
     }
 
     public int getQuantidade() { return quantidade; }
+
+    @Override
+    public String getDescricao(){
+        return descricao;
+    }
+
+    @Override
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
+    }
 }

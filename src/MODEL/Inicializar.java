@@ -25,9 +25,9 @@ public class Inicializar {
     public static Sala[] criarSalas(int numSalas) {
         Sala[] salaCriadas = new Sala[numSalas];
 
-        for (int i = 0; i < numSalas; i++) {
-            salaCriadas[i] = new Sala();
-        }
+//        for (int i = 0; i < numSalas; i++) {
+//            salaCriadas[i] = new Sala();
+//        }
 
         return salaCriadas;
     }

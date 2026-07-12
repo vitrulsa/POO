@@ -97,7 +97,7 @@ public class ControllerAcao {
         ViewAcao.exibirInventario(ControllerJogo.getPlayer().getInventario());
     }
 
-    public static void usarItem(String item){
+    public static void usarItem(Item item){
 
     }
 

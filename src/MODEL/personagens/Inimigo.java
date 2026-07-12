@@ -4,6 +4,7 @@ import CONTROLLER.ControllerAcao;
 import java.io.Serializable;
 
 public class Inimigo extends Personagem implements Serializable {
+    private String descricao;
 
     public Inimigo(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
@@ -27,5 +28,15 @@ public class Inimigo extends Personagem implements Serializable {
     @Override
     public String getClasseString() {
         return Inimigo.class.toString();
+    }
+
+    @Override
+    public String getDescricao(){
+        return descricao;
+    }
+
+    @Override
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
     }
 }
