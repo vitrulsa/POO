@@ -94,7 +94,7 @@ public class ControllerAcao {
 
     }
 
-    public static void falar(String nomeNPC){
+    public static void falar(NPC npc){
 
     }
 
