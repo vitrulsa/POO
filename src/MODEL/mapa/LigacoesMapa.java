@@ -5,21 +5,25 @@ public class LigacoesMapa { //responsabilidade: sabe qual sala se liga c qual + 
 
     public static Sala ligarSalasEsq(Sala sala, Sala esq){
         sala.salaEsquerda = esq;
+        esq.salaDireita = sala;
         return sala.salaEsquerda;
     }
     public static Sala ligarSalasDir(Sala sala, Sala dir)
     {
         sala.salaDireita = dir;
+        dir.salaEsquerda = sala;
         return sala.salaDireita;
     }
     public Sala ligarSalasCima(Sala sala, Sala cima)
     {
         sala.salaCima = cima;
+        cima.salaBaixo = sala;
         return sala.salaCima;
     }
     public static Sala ligarSalasBaixo(Sala sala, Sala baixo)
     {
         sala.salaBaixo = baixo;
+        baixo.salaCima = sala;
         return sala.salaBaixo;
     }
 

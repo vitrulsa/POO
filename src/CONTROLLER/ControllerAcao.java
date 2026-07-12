@@ -85,4 +85,8 @@ public class ControllerAcao {
     public static void exibirInventario(){
         ViewAcao.exibirInventario(ControllerJogo.getPlayer().getInventario());
     }
+
+    public static void usarItem(String item){
+
+    }
 }

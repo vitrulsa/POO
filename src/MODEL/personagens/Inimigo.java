@@ -1,5 +1,5 @@
 package MODEL.personagens;
-import CONTROLLER.ControllerAção;
+import CONTROLLER.ControllerAcao;
 
 import java.io.Serializable;
 

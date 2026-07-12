@@ -7,9 +7,11 @@ import java.util.ArrayList;
 public class Player extends Personagem{
 
     private ArrayList<Item> inventario = new ArrayList<Item>();
+    private String classe;
 
-    public Player(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
+    public Player(String nome, String raca, String classe, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
+        this.classe = classe;
     }
 
 
