@@ -3,9 +3,10 @@ package MODEL.personagens;
 public class Arma extends Item {
     private int dano;
     private int alcance;
+    private String descricao;
 
-    public Arma(String nome, int peso, int valor, int dano, int alcance) {
-        super(nome, peso, valor);
+    public Arma(String nome, int peso, int valor, int dano, int alcance, String descricao) {
+        super(nome, peso, valor, descricao);
         this.dano = dano;
         this.alcance = alcance;
     }
@@ -22,5 +23,15 @@ public class Arma extends Item {
     @Override
     public String toString() {
         return getNome() + " [dano: " + dano + ", alcance: " + alcance + ", peso: " + getPeso() + "]";
+    }
+
+    @Override
+    public String getDescricao(){
+        return descricao;
+    }
+
+    @Override
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
     }
 }
