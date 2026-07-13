@@ -28,8 +28,7 @@ public class ViewInicializar {
         }
         String menu = """
                 ---------------------------------------------------
-                                    Bem Vindo!
-                                  [nome do jogo]
+                                   Bem Vindo a Chicluest!
                 
                 Você gostaria de recarregar um jogo (1) ou começar um novo (2)?\s\n""";
 
