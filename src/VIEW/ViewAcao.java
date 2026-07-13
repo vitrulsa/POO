@@ -82,12 +82,13 @@ public class ViewAcao {
                     int entrada = s.nextInt();
 
                     if (entrada > 0 && entrada <= i){
-                        System.out.println(ControllerAcao.falar(NPCsNaSala.get(entrada)));
+                        System.out.println(ControllerAcao.falar(NPCsNaSala.get(entrada - 1)));
                         break;
                     }
                     else
                         System.out.println("Insira um número de 1 à "+ i);
                 } catch (IncompatibleClassChangeError e) {
+                    System.out.println("Erro no ViewAcao.");
                     throw new Exception(e);
                 } catch (InputMismatchException e) {
                     System.out.println("Insira um número de 1 à "+ i);
@@ -210,8 +211,11 @@ public class ViewAcao {
             while (true){
                 int d = s.nextInt();
                 if (d > 0 && d <= quantidade){
-                    if (listaObjetos.get(d - 1) instanceof Consumivel consumivel)
+                    if (listaObjetos.get(d - 1) instanceof Consumivel consumivel) {
                         System.out.println(consumivel.getNome() + ": " + consumivel.getDescricao());
+                        ControllerJogo.getPlayer().getInventario().add(consumivel);
+                        ControllerJogo.getPlayer().getSalaAtual().getItemNaSala().remove(consumivel);
+                    }
                     else if (listaObjetos.get(d - 1) instanceof NPC npc)
                         System.out.println(npc.getNome() + " NPC " + npc.getRaca());
                     else if (listaObjetos.get(d - 1) instanceof Inimigo inimigo)
@@ -242,7 +246,7 @@ public class ViewAcao {
     }
 
     public static void equipar(ArrayList<Item> inventario) throws Exception{
-        System.out.println("Escolha uma arma para equipar:\n--- Inventário ---");
+
         ArrayList<Arma> armas = new ArrayList<>();
         int quantidade = 0;
         for (Item item : inventario) {
@@ -251,6 +255,11 @@ public class ViewAcao {
                 armas.add(arma);
                 quantidade++;
             }
+        }
+        if (quantidade == 0){
+            System.out.println("Sem armas para equipar");
+        } else{
+            System.out.println("Escolha uma arma para equipar.");
         }
 
         if (quantidade > 0){
