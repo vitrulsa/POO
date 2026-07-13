@@ -209,7 +209,7 @@ public class ViewAcao {
         }
 
         if (quantidade == 0) {
-            System.out.println("Nada");
+            System.out.println("Só você e o nada.");
             return;
         }
 

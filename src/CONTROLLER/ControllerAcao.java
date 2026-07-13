@@ -124,6 +124,10 @@ public class ControllerAcao {
     }
 
     public static String falar(NPC npc){
+        if(npc.getNome().equals("Rainha Chiclete")){
+            ControllerJogo.finalizarJogo();
+            return " ";
+        }
         return npc.getDescricao();
     }
 

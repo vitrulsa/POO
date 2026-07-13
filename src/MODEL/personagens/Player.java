@@ -12,6 +12,14 @@ public class Player extends Personagem{
     private String descricao;
     private int ouro;
 
+    public String getClasse() {
+        return classe;
+    }
+
+    private String classe;
+    private Sala salaAtual;
+    private String descricao;
+
     public Player(String nome, String raca, String classe, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
         this.classe = classe;
@@ -34,6 +42,10 @@ public class Player extends Personagem{
         return inventario;
     }
 
+    public void setInventario(ArrayList<Item> inventario){
+        this.inventario = inventario;
+    }
+
     @Override
     public String getClasseString() {
         return "";
@@ -42,6 +54,29 @@ public class Player extends Personagem{
     public void setSalaAtual(Sala sala){
         salaAtual = sala;
     }
+
+   
+
+    public boolean possuiChave(){
+        for(Item item : inventario){
+            if(item instanceof Consumivel consumivel){
+                if(consumivel.getNome().equals("Chave"))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean possuiChocolate(){
+        for(Item item : inventario){
+            if(item instanceof Consumivel consumivel){
+                if(consumivel.getNome().equals("Chocolate"))
+                    return true;
+            }
+        }
+        return false;
+    }
+
     public Sala getSalaAtual(){
         return salaAtual;
     }

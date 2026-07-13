@@ -112,14 +112,39 @@ public class ControllerJogo {
                 inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
                 break;
         }
-        Player meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
-        meuPlayer.setArmaEquipada(arma);
-        inventario.add(ControllerInicializar.getBancoItens().getDado("Pergaminho"));
-        inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
-        meuPlayer.getInventario().addAll(inventario);
+        if(ControllerJogo.getPlayer() == null) {
+            Player meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
 
-        MapaAtual.ligarSalas(meuPlayer);
+            meuPlayer.setArmaEquipada(arma);
+            inventario.add(ControllerInicializar.getBancoItens().getDado("Pergaminho"));
+            inventario.add(ControllerInicializar.getBancoItens().getDado("Chocolate"));
+            inventario.add(ControllerInicializar.getBancoItens().getDado("Chave"));
+            inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
+            meuPlayer.getInventario().addAll(inventario);
+            MapaAtual.ligarSalas(meuPlayer);
+        } else {
+            MapaAtual.ligarSalas(MapaAtual.getPlayer());
+        }
+
         ViewJogo.iniciarJogo();
+    }
+
+    public static void finalizarJogo(){
+        if (getPlayer().possuiChocolate()){
+            System.out.println("Após impedir os planos da Máquina de Lavar de roubar o castelo com a força de seu mago robô você finalmente entrega a mensagem e o chocolate para Rainha Chiclete.\n" +
+                    "\n" +
+                    "Rainha Chiclete: Muito obrigada pela mensagem, pelo visto o Duque Lito me convidou para comer bolo no castelo dele, espero que não seja uma armadilha, meu amigo encanador já caiu numa dessas.\n" +
+                    "A Rainha então pede sua escolta até o castelo do Duque, onde vocês três comem bolo de limão.\n" +
+                    "\n" +
+                    "Fim.");
+        } else {
+            System.out.println("Após impedir os planos da Máquina de Lavar de roubar o castelo com a força de seu mago robô você finalmente entrega a mensagem para Rainha Chiclete.\n" +
+                    "\n" +
+                    "Rainha Chiclete: Muito obrigada pela mensagem, pelo visto o Duque Lito me convidou para comer bolo no castelo dele, espero que não seja uma armadilha.\n" +
+                    "\n" +
+                    "Fim.");
+        }
+        System.exit(0);
     }
 
     public static Player getPlayer(){
@@ -137,8 +162,12 @@ public class ControllerJogo {
     public static boolean getEstadoCombate() {
         return MapaAtual.isEmCombate();
     }
-
-
+    public static Player getJogador(){
+        return MapaAtual.getPlayer();
+    }
+    public static void setJogador(Player meuPlayer){
+        MapaAtual.setPlayer(meuPlayer);
+    }
     public static void setEstadoCombate(){
         MapaAtual.setEmCombate();
     }

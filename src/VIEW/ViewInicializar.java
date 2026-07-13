@@ -3,6 +3,8 @@ package VIEW;
 import CONTROLLER.ControllerInicializar;
 import CONTROLLER.ControllerJogo;
 import CONTROLLER.ControllerTutorial;
+import MODEL.Arquivo;
+import MODEL.mapa.MapaAtual;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -17,7 +19,7 @@ public class ViewInicializar {
     }
 
     // primeira funcao do jogo, menu principal para criar o personagem
-    public void mostrarMenuInicial(){
+    public void mostrarMenuInicial() {
         try {
             ControllerInicializar.inicializar();
         } catch (Exception e){
@@ -29,42 +31,78 @@ public class ViewInicializar {
                                     Bem Vindo!
                                   [nome do jogo]
                 
-                Digite seu nome:\s""";
-        String nome = receberInput(menu);
+                Você gostaria de recarregar um jogo (1) ou começar um novo (2)?\s\n""";
 
-        // mostrar racas e fazer player escolher a raca
-        mostrarRacas();
+        String opcao = receberInput(menu);
 
-        String raca;
-        do{
-            raca = escolherRaca();
-        } while(!raca.equals("Anão") && !raca.equals("Elfo") && !raca.equals("Halfling") && !raca.equals("Humano"));
+        do {
+            if (opcao.equals("1")) {
+                try {
+                    Arquivo.carregarJogo();
+                    System.out.println("Jogo foi recarregado! "+ ControllerJogo.getPlayer().getNome() + " está em: "+ControllerJogo.getPlayer().getSalaAtual().getNome() + "!");
+                    ControllerJogo.iniciarJogo(ControllerJogo.getPlayer().getNome(), ControllerJogo.getPlayer().getRaca(), ControllerJogo.getPlayer().getClasse());
+                } catch (Exception e) {
+                    System.out.println("Não foi possível recarregar! " + e.getMessage());
+                }
+            } else if (opcao.equals("2")) {
+
+                System.out.println("\n[Começando novo jogo...]\n");
+
+                String nome = receberInput("Digite seu nome: ");
+
+                // mostrar racas e fazer player escolher a raca
+                mostrarRacas();
+
+                String raca;
+                do {
+                    raca = escolherRaca();
+                } while (!raca.equals("Anão") && !raca.equals("Elfo") && !raca.equals("Halfling") && !raca.equals("Humano"));
+
+                // mostrar classes e fazer player escolher classe
+                mostrarClasses();
+                String classe;
+                do {
+                    classe = escolherClasse();
+                } while (!classe.equals("Guerreiro") && !classe.equals("Mago") && !classe.equals("Patrulheiro") && !classe.equals("Ladino"));
 
 
-        // mostrar classes e fazer player escolher classe
-        mostrarClasses();
-        String classe;
-        do{
-            classe = escolherClasse();
-        } while(!classe.equals("Guerreiro") && !classe.equals("Mago") && !classe.equals("Patrulheiro") && !classe.equals("Ladino"));
+                introEnredo(nome);
 
-        menu = """
-                Certo! Você gostaria de um tutorial sobre como funciona o jogo? [S/N]\s""";
+                menu = """
+                        Você gostaria de um tutorial sobre como funciona o jogo? [S/N]\s""";
 
-        // tutorial
-        String resposta;
-        do{
-            resposta = receberInput(menu).toLowerCase();
+                // tutorial
+                String resposta;
+                do {
+                    resposta = receberInput(menu).toLowerCase();
 
-            if (!resposta.equals("n") && !resposta.equals("s") && !resposta.equals("sim") && !resposta.equals("nao") && !resposta.equals("não"))
-                System.out.println("Responda com S (sim) ou N (não).");
-        } while (!resposta.equals("n") && !resposta.equals("s") && !resposta.equals("sim") && !resposta.equals("nao") && !resposta.equals("não"));
-        if (resposta.equals("s") || resposta.equals("sim"))
-            ControllerTutorial.iniciarTutorial();
+                    if (!resposta.equals("n") && !resposta.equals("s") && !resposta.equals("sim") && !resposta.equals("nao") && !resposta.equals("não"))
+                        System.out.println("Responda com S (sim) ou N (não).");
+                } while (!resposta.equals("n") && !resposta.equals("s") && !resposta.equals("sim") && !resposta.equals("nao") && !resposta.equals("não"));
+                if (resposta.equals("s") || resposta.equals("sim"))
+                    ControllerTutorial.iniciarTutorial();
 
 
-        // ControllerJogo controla tudo
-        ControllerJogo.iniciarJogo(nome, raca, classe);
+                // ControllerJogo controla tudo
+                ControllerJogo.iniciarJogo(nome, raca, classe);
+            }
+        } while((!opcao.equals("1") && !opcao.equals("2")));
+
+    }
+
+    public void introEnredo(String nome){
+        String enredo = """
+                Há muitos séculos, a antiga civilização ruiu, forçando a sociedade a retornar
+                a um estado medieval, onde a natureza dominou as ruínas, animais sofreram
+                mutações e máquinas antigas anseiam por poder.
+                
+                Você é um aventureiro contratado pelo Duque Lito para entregar um importante 
+                pergaminho à Rainha Chiclete, suas habilidades serão necessárias para enfrentar 
+                os perigos do mundo pós apocalíptico de Étila.
+                
+                """;
+
+        System.out.print("Saudações " + nome + "!\n" + enredo);
     }
 
     public void mostrarRacas(){

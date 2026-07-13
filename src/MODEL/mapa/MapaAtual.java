@@ -5,6 +5,19 @@ import MODEL.personagens.*;
 
 public class MapaAtual {
     private static Player player;
+    private static boolean emCombate;
+
+    public static boolean isEmCombate() {
+        return emCombate;
+    }
+
+    public static void setEmCombate() {
+        if(!player.getSalaAtual().getInimigoNaSala().isEmpty()){
+            emCombate = true;
+        } else {
+            emCombate = false;
+        }
+    }
 
     public static void setPlayer(Player p){
         player = p;
@@ -52,6 +65,11 @@ public class MapaAtual {
         LigacoesMapa.ligarSalasDir(salaHallDoCastelo, salaQuarto);
         LigacoesMapa.ligarSalasBaixo(salaQuarto, salaCloset);
 
+        setPlayer(p);
+        if(p.getSalaAtual() == null){
+            player.setSalaAtual(salaBosqueInicial);
+        }
+      
         boolean mestreExiste = false;
         for (NPC npc : salaHallDoCastelo.getNpcNaSala()) {
             if (npc.getNome().equals("Mestre Arcano")) mestreExiste = true;
@@ -61,7 +79,6 @@ public class MapaAtual {
             salaHallDoCastelo.getNpcNaSala().add(mestre);
         }
 
-        setPlayer(p);
-        player.setSalaAtual(salaBosqueInicial);
+      
     }
 }
