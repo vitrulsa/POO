@@ -65,7 +65,10 @@ public class ViewJogo {
 
                 case "2": // falar
                     try{
-                        ControllerAcao.falar();
+                        if(ControllerAcao.falar() == false){
+                            System.out.println("Você está numa luta!\nVai falar com quem, o inimigo?!");
+                        }
+
                         if (ControllerAcao.turnoInimigos()){
                             System.out.println("Você morreu.");
                             return;
@@ -78,6 +81,7 @@ public class ViewJogo {
                 case "3": // atacar
                     try{
                         ControllerAcao.atacar();
+                        ControllerJogo.setEstadoCombate();
                         if (ControllerAcao.turnoInimigos()){
                             System.out.println("Você morreu.");
                             return;
@@ -153,7 +157,13 @@ public class ViewJogo {
 
                 case "c", "b", "d", "e":
                     try{
-                        ControllerAcao.mover(comando);
+
+                        ControllerJogo.setEstadoCombate();
+                        if(ControllerAcao.mover(comando) == false){
+                            System.out.println("Você está em combate!\nFugir é covardia!");
+                            break;
+                        }
+
                         switch (comando){
                             case "c":
                                 System.out.println("Andando para cima...");

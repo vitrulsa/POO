@@ -190,7 +190,7 @@ public class ViewAcao {
         }
 
         ArrayList<iInfoBasica> listaObjetos = ControllerAcao.checarCenario(salaAtual);
-        System.out.print("Nessa sala, existem: ");
+        System.out.println("Nessa sala, existem: ");
 
         int quantidade = 0;
         for(iInfoBasica objetos : listaObjetos){
@@ -199,7 +199,7 @@ public class ViewAcao {
         }
 
         if (quantidade == 0) {
-            System.out.println("Nada.");
+            System.out.println("Só você e o nada.");
             return;
         }
 

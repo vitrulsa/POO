@@ -37,7 +37,7 @@ public class Arquivo {
             Player meuPlayer = (Player) arqvCarregar.readObject();
             System.out.println("Jogador carregado! " + meuPlayer.getNome());
             MapaAtual.setPlayer(meuPlayer);
-            ControllerJogo.setMeuPlayer(meuPlayer);
+            //tudo pega daqui
 
         } catch(IOException | ClassNotFoundException e){
             throw new Exception("Algum erro ocorreu recarregando o jogo.\nTem certeza que tem o arquivo do jogo?\n" + e);

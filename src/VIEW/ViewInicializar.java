@@ -79,7 +79,6 @@ public class ViewInicializar {
                 if (resposta.equals("s") || resposta.equals("sim"))
                     ControllerTutorial.iniciarTutorial();
 
-
                 // ControllerJogo controla tudo
                 ControllerJogo.iniciarJogo(nome, raca, classe);
             }

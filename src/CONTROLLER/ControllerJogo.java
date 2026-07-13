@@ -17,12 +17,6 @@ public class ControllerJogo {
     private static int NUM_MAGIAINICIAL = 10;
     private static int NUM_SALAS = 1;
 
-    public static void setMeuPlayer(Player meuPlayer) {
-        ControllerJogo.meuPlayer = meuPlayer;
-    }
-
-    private static Player meuPlayer;
-
     public static void iniciarJogo(String nome, String raca, String classe){
 
         /*
@@ -118,7 +112,7 @@ public class ControllerJogo {
                 inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
                 break;
         }
-        meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
+        Player meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
         meuPlayer.setArmaEquipada(arma);
         meuPlayer.getInventario().addAll(inventario);
 
@@ -127,6 +121,14 @@ public class ControllerJogo {
     }
 
     public static Player getPlayer(){
-        return meuPlayer;
+        return MapaAtual.getPlayer();
+    }
+
+    public static boolean getEstadoCombate() {
+        return MapaAtual.isEmCombate();
+    }
+
+    public static void setEstadoCombate(){
+        MapaAtual.setEmCombate();
     }
 }
