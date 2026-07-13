@@ -117,8 +117,6 @@ public class ControllerJogo {
 
             meuPlayer.setArmaEquipada(arma);
             inventario.add(ControllerInicializar.getBancoItens().getDado("Pergaminho"));
-            inventario.add(ControllerInicializar.getBancoItens().getDado("Chocolate"));
-            inventario.add(ControllerInicializar.getBancoItens().getDado("Chave"));
             inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
             meuPlayer.getInventario().addAll(inventario);
             MapaAtual.ligarSalas(meuPlayer);
