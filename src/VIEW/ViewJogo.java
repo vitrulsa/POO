@@ -32,6 +32,7 @@ public class ViewJogo {
     public static void mostrarStatus(){
         System.out.println("HP: " + ControllerJogo.getPlayer().getHp() + " / " + ControllerJogo.getPlayer().getMaxHp());
         System.out.println("Mana: " + ControllerJogo.getPlayer().getManaAtual() + " / " + ControllerJogo.getPlayer().getManaMax());
+        System.out.println("Ouro: " + ControllerJogo.getPlayer().getOuro());
     }
 
     public static void interpretadorComandos(){

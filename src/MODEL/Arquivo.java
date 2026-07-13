@@ -72,7 +72,43 @@ public class Arquivo {
         } catch(IOException | ClassNotFoundException e){
             throw new Exception("Algum erro ocorreu recarregando o jogo.\nTem certeza que tem o arquivo do jogo?\n" + e);
 
+            System.out.println("Inimigos carregados:");
+            for (Inimigo inimigo : inimigos){
+                System.out.println(inimigo.getNome());
+            }
+
+        } catch (IOException e){
+            System.out.println("Falha abrindo arquivo para carregar inimigos.");
+        } catch (ClassNotFoundException e){
+            System.out.println("Falha lendo arquivo de inimigos.");
         }
+
+        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("salas.dat"))) {
+
+            ArrayList<Sala> salas = (ArrayList<Sala>) entrada.readObject();
+
+            System.out.println("Salas carregadas:");
+            for (Sala s : salas) {
+                System.out.println(s.getDescricao());
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Falha abrindo arquivo de salas.");
+        }
+
+        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("npcs.dat"))) {
+            ArrayList<NPC> npcs = (ArrayList<NPC>) entrada.readObject();
+
+            System.out.println("NPCs carregados:");
+            for (NPC npc : npcs) {
+                System.out.println(npc.getNome());
+            }
+        } catch (IOException e) {
+            System.out.println("Falha abrindo arquivo para carregar NPCs.");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Falha lendo arquivo de NPCs.");
+        }
+
 
     }
 

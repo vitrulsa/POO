@@ -4,10 +4,8 @@ import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 import VIEW.ViewInicializar;
 
-void main() throws Exception {
+void main() {
     ViewInicializar view = new ViewInicializar();
-
-
 
     view.mostrarMenuInicial();
 }

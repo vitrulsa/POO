@@ -14,7 +14,7 @@ public class ViewInicializar {
     public String receberInput(String texto){
         System.out.print(texto);
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         return scanner.nextLine();
     }
 

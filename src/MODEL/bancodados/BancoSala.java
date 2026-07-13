@@ -5,7 +5,7 @@ import MODEL.mapa.Sala;
 import java.io.*;
 import java.util.ArrayList;
 
-public class BancoSala {
+public class BancoSala{
 
     private ArrayList<Sala> salas;
     private final String file = "salas.dat";
@@ -18,10 +18,10 @@ public class BancoSala {
 
             salas = (ArrayList<Sala>) entrada.readObject();
 
-            System.out.println("Salas carregadas:");
-            for (Sala s : salas) {
-                System.out.println(s.getDescricao());
-            }
+//            System.out.println("Salas carregadas:");
+//            for (Sala s : salas) {
+//                System.out.println(s.getNome());
+//            }
 
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Falha abrindo arquivo de salas.");
@@ -47,9 +47,11 @@ public class BancoSala {
         return salas;
     }
 
-    public Sala getSala(int indice) {
-        if (indice >= 0 && indice < salas.size())
-            return salas.get(indice);
+    public Sala getSala(String nome) {
+        for (Sala sala : salas){
+            if (sala.getNome().equals(nome))
+                return sala;
+        }
 
         return null;
     }

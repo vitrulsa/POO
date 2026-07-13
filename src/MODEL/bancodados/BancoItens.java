@@ -4,28 +4,30 @@ import java.io.*;
 import java.util.HashSet;
 import MODEL.personagens.*;
 
-public class BancoItens implements Serializable {
+public class BancoItens extends Banco<Item>{
     private HashSet<Item> banco;
     private final String file = "itens.dat";
 
-    public BancoItens() {
+    public BancoItens() throws Exception{
         this.banco = new HashSet<>();
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))) {
             this.banco = (HashSet<Item>) entrada.readObject();
 
-            System.out.println("Itens carregados:");
-            for (Item item : banco){
-                System.out.println(item.getNome());
-            }
+//            System.out.println("Itens carregados:");
+//            for (Item item : banco){
+//                System.out.println(item.getNome());
+//            }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Erro ao carregar itens");
+            throw e;
         }
     }
 
-    // use adicionarItem() para adicionar um item ao banco e depois use criarBancoItem()
+    // use adicionarBanco() para adicionar um item ao banco e depois use criarBancoItem()
     // para salvar o arquivo
-    public void criarBancoItem(){
+    @Override
+    public void criarBanco(){
         try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
             saida.writeObject(banco);
         } catch(IOException e){
@@ -33,24 +35,27 @@ public class BancoItens implements Serializable {
         }
     }
 
-    public void adicionarItem(Item item) {
+    @Override
+    public void adicionarBanco(Item item) {
         if (item != null) {
             banco.add(item);
         }
     }
 
-    public HashSet<Item> getItens(){
+    @Override
+    public HashSet<Item> getBanco(){
         return banco;
     }
 
-    public Item getItem(String nome){
+    @Override
+    public Item getDado(String nome){
         for (Item item : banco){
             if (item.getNome().equals(nome)){
                 return item;
             }
         }
 
-        System.out.println("Item não encontrado no banco de dados");
+        System.out.println(nome + " não encontrado no banco de dados");
         return null;
     }
 

@@ -1,9 +1,12 @@
 package CONTROLLER;
 
+import MODEL.Inicializar;
 import MODEL.mapa.MapaAtual;
+import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 import VIEW.ViewJogo;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ControllerJogo {

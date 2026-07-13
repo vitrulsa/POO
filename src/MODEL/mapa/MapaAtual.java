@@ -69,5 +69,16 @@ public class MapaAtual {
         if(p.getSalaAtual() == null){
             player.setSalaAtual(salaBosqueInicial);
         }
+      
+        boolean mestreExiste = false;
+        for (NPC npc : salaHallDoCastelo.getNpcNaSala()) {
+            if (npc.getNome().equals("Mestre Arcano")) mestreExiste = true;
+        }
+        if (!mestreExiste) {
+            NPC mestre = new NPC("Mestre Arcano", "Elfo", 999, 50, 10, 10, 100, null, "Saudações, viajante! Posso lhe ensinar feitiços poderosos... por um preço razoável.");
+            salaHallDoCastelo.getNpcNaSala().add(mestre);
+        }
+
+      
     }
 }
