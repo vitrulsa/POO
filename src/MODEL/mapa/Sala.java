@@ -8,7 +8,7 @@ import MODEL.personagens.iInfoBasica;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Sala  implements Serializable {
+public class Sala implements Serializable {
     //1 sala qual quer. tem ligação com outras, inimigos, itens ou npcs.
     private int MAX_INIMIGO = 3;
     private int MAX_NPC = 3;
@@ -18,15 +18,34 @@ public class Sala  implements Serializable {
     private ArrayList<NPC> npcNaSala = new ArrayList<>(MAX_NPC);
     private ArrayList<Item> itemNaSala = new ArrayList<>(MAX_ITEM);
 
+    public Sala getSalaDireita() {
+        return salaDireita;
+    }
+
+    public Sala getSalaEsquerda() {
+        return salaEsquerda;
+    }
+
+    public Sala getSalaCima() {
+        return salaCima;
+    }
+
+    public Sala getSalaBaixo() {
+        return salaBaixo;
+    }
+
     Sala salaDireita;
     Sala salaEsquerda;
     Sala salaCima;
     Sala salaBaixo;
+
     private String estadoSala; //se é possível chegar na sala ou se precisa de uma chave antes
     //dá pra tirar se quiserem
+    private String nome;
     private String descricao;
 
-    public Sala(String desc){
+    public Sala(String nome, String desc){
+        this.nome = nome;
         this.descricao = desc;
     }
 
@@ -38,8 +57,6 @@ public class Sala  implements Serializable {
 
         ArrayList<NPC> arrayNPC = getNpcNaSala();
 
-        //interface pois talvez possamos usar p mais coisas almém de nomes!!!!
-
         ArrayList<iInfoBasica> ObjetosSala = new ArrayList<>();
         ObjetosSala.addAll(arrayInimigo);
         ObjetosSala.addAll(arrayItem);
@@ -48,6 +65,8 @@ public class Sala  implements Serializable {
         return ObjetosSala;
 
     }
+
+    public String getDescricao() { return descricao; }
 
     public ArrayList<Inimigo> getInimigoNaSala(){//retorna todos os inimigos para poder atacar um deles
         return inimigoNaSala;
@@ -65,8 +84,6 @@ public class Sala  implements Serializable {
         return estadoSala;
     }
 
-    public String getDescricao() { return descricao; }
-
     public void setInimigoNaSala(ArrayList<Inimigo> inimigoNaSala) {
         this.inimigoNaSala = inimigoNaSala;
     }
@@ -83,4 +100,5 @@ public class Sala  implements Serializable {
         this.npcNaSala = npcNaSala;
     }
 
+    public String getNome(){return nome;}
 }
