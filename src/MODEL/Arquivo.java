@@ -74,8 +74,6 @@ public class Arquivo {
 
         }
 
-        new ControllerInicializar();
-
     }
 
 }

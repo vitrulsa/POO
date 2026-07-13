@@ -109,13 +109,18 @@ public class ControllerJogo {
                 inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
                 break;
         }
-        Player meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
-        meuPlayer.setArmaEquipada(arma);
-        inventario.add(ControllerInicializar.getBancoItens().getDado("Pergaminho"));
-        inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
-        meuPlayer.getInventario().addAll(inventario);
+        if(ControllerJogo.getPlayer() == null) {
+            Player meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
 
-        MapaAtual.ligarSalas(meuPlayer);
+            meuPlayer.setArmaEquipada(arma);
+            inventario.add(ControllerInicializar.getBancoItens().getDado("Pergaminho"));
+            inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
+            meuPlayer.getInventario().addAll(inventario);
+            MapaAtual.ligarSalas(meuPlayer);
+        } else {
+            MapaAtual.ligarSalas(MapaAtual.getPlayer());
+        }
+
         ViewJogo.iniciarJogo();
     }
 
