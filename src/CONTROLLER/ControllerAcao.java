@@ -18,6 +18,40 @@ public class ControllerAcao {
 
     public static void atacar(Personagem atacante, Personagem alvo, Magia magia) {
         CombateAtual.atacar(atacante, alvo, magia);
+
+        if (alvo instanceof Inimigo && alvo.getHp() <= 0) {
+            gerarDrop((Inimigo) alvo); // Gera o ouro e os itens
+
+            // Remove o inimigo morto da sala para ele desaparecer do mapa
+            ControllerJogo.getPlayer().getSalaAtual().getInimigoNaSala().remove(alvo);
+        }
+    }
+
+    private static void gerarDrop(Inimigo inimigo) {
+        java.util.Random rand = new java.util.Random();
+        Player player = ControllerJogo.getPlayer();
+
+        System.out.println("\n*** O inimigo " + inimigo.getNome() + " foi derrotado! ***");
+
+        //  Drop de Ouro garantido (Sorteia entre 5 e 15 moedas)
+        int ouroDrop = rand.nextInt(11) + 5;
+        player.setOuro(player.getOuro() + ouroDrop);
+        System.out.println("-> Saqueaste " + ouroDrop + " moedas de ouro do corpo!");
+
+        // Chance de 30% de dropar um consumível (Poção de Vida)
+        if (rand.nextInt(100) < 30) {
+            Item pocao = ControllerInicializar.getBancoItens().getDado("Poção de Vida");
+            if (pocao != null) {
+                player.getInventario().add(pocao);
+                System.out.println("-> O inimigo dropou " + pocao.getNome() + "! O item foi para o teu inventário.");
+            }
+        }
+
+        // Chance de 20% do inimigo dropar a própria arma que tinhaa
+        if (inimigo.getArmaEquipada() != null && rand.nextInt(100) < 20) {
+            player.getInventario().add(inimigo.getArmaEquipada());
+            System.out.println("-> O inimigo deixou cair: " + inimigo.getArmaEquipada().getNome() + "! Foi para o teu inventário.");
+        }
     }
 
     public static void atacar() throws Exception{

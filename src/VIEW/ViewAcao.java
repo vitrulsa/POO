@@ -82,7 +82,16 @@ public class ViewAcao {
                     int entrada = s.nextInt();
 
                     if (entrada > 0 && entrada <= i){
-                        System.out.println(ControllerAcao.falar(NPCsNaSala.get(entrada - 1)));
+                        NPC npcEscolhido = NPCsNaSala.get(entrada - 1);
+
+                        System.out.println(ControllerAcao.falar(npcEscolhido));
+
+                        if (npcEscolhido.getNome().equals("Vendedor Silvio")) {
+                            ViewLoja.abrirLoja(); // Abre o menu da Loja
+                        } else if (npcEscolhido.getNome().equals("Mestre Arcano")) {
+                            ViewMestre.abrirMenu(); // Abre o menu de magias
+                        }
+
                         break;
                     }
                     else
