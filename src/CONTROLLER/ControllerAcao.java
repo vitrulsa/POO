@@ -199,6 +199,10 @@ public class ControllerAcao {
                 break;
             case "d":
                 try{
+                    if(ControllerJogo.getPortaTrancada()){
+                        System.out.println("A porta está trancada! Talvez a chave esteja em algum lugar no castelo.");
+                        break;
+                    }
                     ControllerMover.andarDireita();
                 } catch (Exception e) {
                     throw e;

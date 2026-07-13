@@ -172,6 +172,7 @@ public class ViewAcao {
     }
 
     public static void verCenario(Sala salaAtual) throws Exception {
+
         System.out.println(salaAtual.getDescricao());
 
         System.out.println("Você pode ir para: ");

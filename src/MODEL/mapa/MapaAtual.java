@@ -66,6 +66,11 @@ public class MapaAtual {
         LigacoesMapa.ligarSalasBaixo(salaQuarto, salaCloset);
 
         setPlayer(p);
-        player.setSalaAtual(salaBosqueInicial);
+
+        if(p.getSalaAtual() == null){
+            player.setSalaAtual(salaBosqueInicial);
+        } else {
+            //nda, pois já tem sala
+        }
     }
 }

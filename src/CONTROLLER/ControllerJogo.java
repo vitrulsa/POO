@@ -1,12 +1,9 @@
 package CONTROLLER;
 
-import MODEL.Inicializar;
 import MODEL.mapa.MapaAtual;
-import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 import VIEW.ViewJogo;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ControllerJogo {
@@ -114,6 +111,8 @@ public class ControllerJogo {
         }
         Player meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
         meuPlayer.setArmaEquipada(arma);
+        inventario.add(ControllerInicializar.getBancoItens().getDado("Pergaminho"));
+        inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
         meuPlayer.getInventario().addAll(inventario);
 
         MapaAtual.ligarSalas(meuPlayer);
@@ -124,10 +123,23 @@ public class ControllerJogo {
         return MapaAtual.getPlayer();
     }
 
+    public static boolean getPortaTrancada(){
+        //if (getPlayer().getSalaAtual().getNome().equals("Hall do castelo")
+           //     && !getPlayer().possuiChave()){
+          //  return true;
+        //}
+        return false;
+    }
+
     public static boolean getEstadoCombate() {
         return MapaAtual.isEmCombate();
     }
-
+    public static Player getJogador(){
+        return MapaAtual.getPlayer();
+    }
+    public static void setJogador(Player meuPlayer){
+        MapaAtual.setPlayer(meuPlayer);
+    }
     public static void setEstadoCombate(){
         MapaAtual.setEmCombate();
     }

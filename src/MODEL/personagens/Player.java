@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 public class Player extends Personagem{
     private int max_hp;
+
+    public void setInventario(ArrayList<Item> inventario) {
+        this.inventario = inventario;
+    }
+
     private ArrayList<Item> inventario = new ArrayList<Item>();
 
     public String getClasse() {
