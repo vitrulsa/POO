@@ -151,7 +151,7 @@ public class ViewAcao {
     public static int escolherAlvo(ArrayList<Inimigo> inimigoNaSala) throws Exception{
         int quantidade = 0;
         for (Inimigo inimigo : inimigoNaSala) {
-            System.out.println((inimigoNaSala.indexOf(inimigo) + 1) + ": " + inimigo.getNome());
+            System.out.println((quantidade + 1) + ": " + inimigo.getNome());
             quantidade++;
         }
 
@@ -204,7 +204,7 @@ public class ViewAcao {
 
         int quantidade = 0;
         for(iInfoBasica objetos : listaObjetos){
-            System.out.println((listaObjetos.indexOf(objetos)+1) + ": " + objetos.getNome());
+            System.out.println((quantidade + 1) + ": " + objetos.getNome());
             quantidade += 1;
         }
 
