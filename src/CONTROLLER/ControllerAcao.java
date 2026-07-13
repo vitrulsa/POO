@@ -1,5 +1,6 @@
 package CONTROLLER;
 
+import MODEL.mapa.CombateAtual;
 import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 import VIEW.ViewAcao;
@@ -11,64 +12,14 @@ import java.util.Random;
 
 public class ControllerAcao {
 
-
     public static ArrayList<iInfoBasica> checarCenario(Sala sala){
         return sala.listarObjetos();
     }
 
     public static void atacar(Personagem atacante, Personagem alvo, Magia magia) {
-        Random rand = new Random();
-        int tipoDano;
-        Arma arma = atacante.getArmaEquipada();
-        if (magia == null){
-            if (arma != null)
-                tipoDano = atacante.getArmaEquipada().getAlcance(); // 0 corpo-a-corpo, 1 a-distancia
-            else
-                tipoDano = 0;
-        } else{
-            tipoDano = 2;
-        }
-
-        int dado = 0;
-        switch(tipoDano){
-            case 0:
-                dado = rand.nextInt(20) + atacante.getForca();
-                break;
-            case 1, 2:
-                dado = rand.nextInt(20) + atacante.getDest();
-                break;
-        }
-
-        if (dado >= alvo.getDefesa()){
-            int dano = 0;
-            switch (tipoDano){
-                case 0:
-                    if (arma != null)
-                        dano = rand.nextInt(arma.getDano()) + atacante.getForca();
-                    else
-                        dano = rand.nextInt(4) + atacante.getForca();
-                    break;
-                case 1:
-                    dano = rand.nextInt(arma.getDano()) + atacante.getDest();
-                    break;
-                case 2:
-                    dano = rand.nextInt(magia.getDano());
-            }
-
-            if (dano < 0)
-                dano = 0;
-
-            alvo.setHp(alvo.getHp() - dano);
-            ViewAcao.dano(atacante, alvo, dano);
-
-            if (alvo.getHp() <= 0){
-                if (alvo instanceof Inimigo inimigo)
-                    ControllerJogo.getPlayer().getSalaAtual().getInimigoNaSala().remove(inimigo);
-            }
-        } else{
-            ViewAcao.dano(atacante, alvo, 0);
-        }
+        CombateAtual.atacar(atacante, alvo, magia);
     }
+
     public static void atacar() throws Exception{
         try{
             ViewAcao.atacar(ControllerJogo.getPlayer().getSalaAtual().getInimigoNaSala());
@@ -104,6 +55,7 @@ public class ControllerAcao {
 
         player.setManaAtual(player.getManaAtual() - 1);
     }
+
     public static void usarMagia() throws Exception{
         try{
             ViewAcao.usarMagia(ControllerJogo.getPlayer().getMagias());
@@ -140,12 +92,20 @@ public class ControllerAcao {
     public static String falar(NPC npc){
         return npc.getDescricao();
     }
-    public static void falar() throws Exception{
+
+    public static Boolean falar() throws Exception{
+
+        if(ControllerJogo.getEstadoCombate() == true){
+            return false;
+        }
+
         try {
             ViewAcao.falar(ControllerJogo.getPlayer().getSalaAtual().getNpcNaSala());
         } catch (Exception e) {
             throw e;
         }
+
+        return true;
     }
 
     public static void magias(){
@@ -209,7 +169,12 @@ public class ControllerAcao {
         return player.getHp() <= 0;
     }
 
-    public static void mover(String comando) throws Exception{
+    public static boolean mover(String comando) throws Exception{
+
+        if(ControllerJogo.getEstadoCombate() == true){
+            return false;
+        }
+
         switch (comando){
             case "c":
                 try{
@@ -234,11 +199,16 @@ public class ControllerAcao {
                 break;
             case "d":
                 try{
+                    if(ControllerJogo.getPortaTrancada()){
+                        System.out.println("A porta está trancada! Talvez a chave esteja em algum lugar no castelo.");
+                        break;
+                    }
                     ControllerMover.andarDireita();
                 } catch (Exception e) {
                     throw e;
                 }
                 break;
         }
+        return true;
     }
 }

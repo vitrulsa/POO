@@ -16,7 +16,6 @@ public class ControllerJogo {
     private static int NUM_ITEMINICIAL = 10;
     private static int NUM_MAGIAINICIAL = 10;
     private static int NUM_SALAS = 1;
-    private static Player meuPlayer;
 
     public static void iniciarJogo(String nome, String raca, String classe){
 
@@ -113,8 +112,10 @@ public class ControllerJogo {
                 inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
                 break;
         }
-        meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
+        Player meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
         meuPlayer.setArmaEquipada(arma);
+        inventario.add(ControllerInicializar.getBancoItens().getDado("Pergaminho"));
+        inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
         meuPlayer.getInventario().addAll(inventario);
 
         MapaAtual.ligarSalas(meuPlayer);
@@ -122,6 +123,23 @@ public class ControllerJogo {
     }
 
     public static Player getPlayer(){
-        return meuPlayer;
+        return MapaAtual.getPlayer();
+    }
+
+    public static boolean getPortaTrancada(){
+        if (getPlayer().getSalaAtual().getNome().equals("Hall do castelo")
+                && !getPlayer().possuiChave()){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean getEstadoCombate() {
+        return MapaAtual.isEmCombate();
+    }
+
+
+    public static void setEstadoCombate(){
+        MapaAtual.setEmCombate();
     }
 }
