@@ -72,15 +72,7 @@ public class Arquivo {
         } catch(IOException | ClassNotFoundException e){
             throw new Exception("Algum erro ocorreu recarregando o jogo.\nTem certeza que tem o arquivo do jogo?\n" + e);
 
-            System.out.println("Inimigos carregados:");
-            for (Inimigo inimigo : inimigos){
-                System.out.println(inimigo.getNome());
-            }
 
-        } catch (IOException e){
-            System.out.println("Falha abrindo arquivo para carregar inimigos.");
-        } catch (ClassNotFoundException e){
-            System.out.println("Falha lendo arquivo de inimigos.");
         }
 
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("salas.dat"))) {
