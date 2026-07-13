@@ -124,6 +124,7 @@ public class ViewJogo {
                     else if (opcao == 2){ // usar magia
                         try{
                             ControllerAcao.usarMagia();
+                            ControllerJogo.setEstadoCombate();
                             if (ControllerAcao.turnoInimigos()){
                                 System.out.println("Você morreu.");
                                 return;

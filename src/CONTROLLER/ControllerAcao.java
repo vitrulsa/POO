@@ -74,7 +74,7 @@ public class ControllerAcao {
         if (magia.getTipo() != "Cura"){
             int i = 0;
             try{
-                ViewAcao.escolherAlvo(player.getSalaAtual().getInimigoNaSala());
+                i = ViewAcao.escolherAlvo(player.getSalaAtual().getInimigoNaSala());
             } catch (Exception e){
                 System.out.println("Erro no ControllerAcao");
                 throw e;

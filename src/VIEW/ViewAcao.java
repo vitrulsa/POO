@@ -29,7 +29,7 @@ public class ViewAcao {
         System.out.println("Escolha um item para utilizar:\n--- Inventário ---");
         int quantidade = 0;
         for (Item item : inventario) {
-            System.out.println("[" + quantidade + "] " + item.getNome());
+            System.out.println("[" + (quantidade + 1) + "] " + item.getNome());
             quantidade++;
         }
 
