@@ -15,7 +15,7 @@ public class Arquivo {
 
     public static void salvarJogo() throws Exception {
         try {
-            FileOutputStream arqv = new FileOutputStream("lindorpg.dat");
+            FileOutputStream arqv = new FileOutputStream("chicluestsave.dat");
             //manda p construtor... p criar arqv com esse nome no final
             ObjectOutputStream arqvSalvar = new ObjectOutputStream(arqv);
             //manda p construtor de objectoutputstream
@@ -42,7 +42,7 @@ public class Arquivo {
     public static void carregarJogo() throws Exception {
 
         try {
-            FileInputStream arqv = new FileInputStream("lindorpg.dat");
+            FileInputStream arqv = new FileInputStream("chicluestsave.dat");
             //manda p construtor... p criar arqv com esse nome no final
             ObjectInputStream arqvCarregar = new ObjectInputStream(arqv);
             //manda p construtor de objectoutputstream
