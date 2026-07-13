@@ -1,6 +1,7 @@
 package CONTROLLER;
 
 import MODEL.Inicializar;
+import MODEL.mapa.MapaAtual;
 import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 import VIEW.ViewJogo;
@@ -98,14 +99,7 @@ public class ControllerJogo {
                 break;
         }
         meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
-        Sala sala = new Sala("salateste", "teste");
-        ArrayList<Inimigo> inimigos = new ArrayList<>();
-        inimigos.add(ControllerInicializar.getBancoInimigo().getDado("Slime"));
-        ArrayList<Item> itens = new ArrayList<>();
-        itens.add(ControllerInicializar.getBancoItens().getDado("Chave"));
-        sala.setInimigoNaSala(inimigos);
-        sala.setItemNaSala(itens);
-        meuPlayer.setSalaAtual(sala);
+        MapaAtual.ligarSalas(meuPlayer);
         ViewJogo.iniciarJogo();
     }
 

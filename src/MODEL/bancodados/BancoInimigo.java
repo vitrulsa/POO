@@ -15,10 +15,10 @@ public class BancoInimigo extends Banco<Inimigo>{
         try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))){
             inimigos = (HashSet<Inimigo>) entrada.readObject();
 
-            System.out.println("Inimigos carregados:");
-            for (Inimigo inimigo : inimigos){
-                System.out.println(inimigo.getNome());
-            }
+//            System.out.println("Inimigos carregados:");
+//            for (Inimigo inimigo : inimigos){
+//                System.out.println(inimigo.getNome());
+//            }
         } catch (IOException e){
             System.out.println("Falha abrindo arquivo para carregar inimigos.");
             throw e;
@@ -58,7 +58,7 @@ public class BancoInimigo extends Banco<Inimigo>{
             }
         }
 
-        System.out.println("Inimigo não encontrado no banco de dados");
+        System.out.println(nome + " não encontrado no banco de dados");
         return null;
     }
 

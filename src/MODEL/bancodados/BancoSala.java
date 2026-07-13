@@ -18,10 +18,10 @@ public class BancoSala{
 
             salas = (ArrayList<Sala>) entrada.readObject();
 
-            System.out.println("Salas carregadas:");
-            for (Sala s : salas) {
-                System.out.println(s.getDescricao());
-            }
+//            System.out.println("Salas carregadas:");
+//            for (Sala s : salas) {
+//                System.out.println(s.getNome());
+//            }
 
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Falha abrindo arquivo de salas.");

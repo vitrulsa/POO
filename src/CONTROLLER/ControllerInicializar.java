@@ -12,13 +12,7 @@ public class ControllerInicializar {
     private static BancoArmas bancoArmas;
     private static BancoNPC bancoNPC;
     private static BancoMagia bancoMagias;
-
-    public static void Salvar() throws Exception {
-
-        MapaAtual.getPlayer();
-
-        Arquivo.salvarJogo();
-    }
+    private static BancoSala bancoSalas;
 
     public static void inicializar() throws Exception{
         try{
@@ -27,6 +21,7 @@ public class ControllerInicializar {
             bancoArmas = new BancoArmas();
             bancoNPC = new BancoNPC();
             bancoMagias = new BancoMagia();
+            bancoSalas = new BancoSala();
         } catch (Exception e){
             throw e;
         }
@@ -46,5 +41,8 @@ public class ControllerInicializar {
     }
     public static BancoNPC getBancoNPC(){
         return bancoNPC;
+    }
+    public static BancoSala getBancoSalas(){
+        return bancoSalas;
     }
 }

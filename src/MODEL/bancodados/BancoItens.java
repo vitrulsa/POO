@@ -14,10 +14,10 @@ public class BancoItens extends Banco<Item>{
         try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))) {
             this.banco = (HashSet<Item>) entrada.readObject();
 
-            System.out.println("Itens carregados:");
-            for (Item item : banco){
-                System.out.println(item.getNome());
-            }
+//            System.out.println("Itens carregados:");
+//            for (Item item : banco){
+//                System.out.println(item.getNome());
+//            }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Erro ao carregar itens");
             throw e;
@@ -55,7 +55,7 @@ public class BancoItens extends Banco<Item>{
             }
         }
 
-        System.out.println("Item não encontrado no banco de dados");
+        System.out.println(nome + " não encontrado no banco de dados");
         return null;
     }
 

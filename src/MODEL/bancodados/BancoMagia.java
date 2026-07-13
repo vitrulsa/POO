@@ -13,10 +13,10 @@ public class BancoMagia extends Banco<Magia>{
         try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))){
             magias = (HashSet<Magia>) entrada.readObject();
 
-            System.out.println("Magias carregadas:");
-            for (Magia magia : magias){
-                System.out.println(magia.getNome());
-            }
+//            System.out.println("Magias carregadas:");
+//            for (Magia magia : magias){
+//                System.out.println(magia.getNome());
+//            }
         } catch (IOException e){
             System.out.println("Falha abrindo arquivo para carregar magias.");
             throw e;

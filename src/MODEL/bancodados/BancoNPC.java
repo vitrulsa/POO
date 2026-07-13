@@ -57,7 +57,7 @@ public class BancoNPC extends Banco<NPC>{
             }
         }
 
-        System.out.println("NPC não encontrado no banco de dados");
+        System.out.println(nome + " não encontrado no banco de dados");
         return null;
     }
 }

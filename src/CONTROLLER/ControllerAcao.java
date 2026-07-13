@@ -112,7 +112,7 @@ public class ControllerAcao {
     }
 
     public static void inventario(){
-        ViewAcao.exibirInventario(ControllerJogo.getPlayer().getInventario());
+        ViewAcao.exibirInventario(ControllerJogo.getPlayer());
     }
 
     public static void usarItem(Item item){

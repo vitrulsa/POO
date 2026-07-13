@@ -12,11 +12,13 @@ import java.util.Scanner;
 
 public class ViewAcao {
 
-    public static void exibirInventario(ArrayList<Item> inventario) {
+    public static void exibirInventario(Player player) {
         System.out.println("--- Inventário ---");
-        for (Item item : inventario) {
+        for (Item item : player.getInventario()) {
             System.out.println(item.getNome());
         }
+
+        System.out.println("Arma equipada: " + player.getArmaEquipada().getNome());
     }
 
     public static void usarItem(ArrayList<Item> inventario) throws Exception {
