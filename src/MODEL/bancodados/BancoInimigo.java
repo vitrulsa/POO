@@ -6,26 +6,29 @@ import MODEL.personagens.Magia;
 import java.io.*;
 import java.util.HashSet;
 
-public class BancoInimigo {
+public class BancoInimigo extends Banco<Inimigo>{
     private HashSet<Inimigo> inimigos;
     private final String file = "inimigos.dat";
 
-    public BancoInimigo(){
+    public BancoInimigo() throws Exception{
         inimigos = new HashSet<>();
         try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))){
             inimigos = (HashSet<Inimigo>) entrada.readObject();
 
-            System.out.println("Inimigos carregados:");
-            for (Inimigo inimigo : inimigos){
-                System.out.println(inimigo.getNome());
-            }
+//            System.out.println("Inimigos carregados:");
+//            for (Inimigo inimigo : inimigos){
+//                System.out.println(inimigo.getNome());
+//            }
         } catch (IOException e){
             System.out.println("Falha abrindo arquivo para carregar inimigos.");
+            throw e;
         } catch (ClassNotFoundException e){
             System.out.println("Falha lendo arquivo de inimigos.");
+            throw e;
         }
     }
 
+    @Override
     public void criarBanco(){
         try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
             saida.writeObject(inimigos);
@@ -36,12 +39,27 @@ public class BancoInimigo {
 
     // use adicionarInimigo() para adicionar um inimigo ao banco e depois use criarBanco()
     // para salvar o arquivo
-    public void adicionarInimigo(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias){
-        Inimigo inimigo = new Inimigo(nome, raca, hp, defesa, forca, dest, manaMax, magias);
-
+    @Override
+    public void adicionarBanco(Inimigo inimigo){
         inimigos.add(inimigo);
         for (Inimigo p : inimigos){
                 System.out.println(p.getNome());
             }
     }
+
+    @Override
+    public HashSet<Inimigo> getBanco(){ return inimigos;}
+
+    @Override
+    public Inimigo getDado(String nome){
+        for (Inimigo inimigo : inimigos){
+            if (inimigo.getNome().equals(nome)){
+                return inimigo;
+            }
+        }
+
+        System.out.println(nome + " não encontrado no banco de dados");
+        return null;
+    }
+
 }

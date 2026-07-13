@@ -9,13 +9,13 @@ import java.util.Random;
 
 public class BancoArmas extends BancoItens {
 
-    public BancoArmas() {
-        super(); // Chama o construtor do BancoItens
+    public BancoArmas() throws Exception{
+        super();
     }
 
     // Procura um item pelo nome e converte diretamente para Arma
     public Arma getArma(String nome) {
-        Item item = getItem(nome);
+        Item item = getDado(nome);
 
         if (item instanceof Arma) {
             return (Arma) item;
@@ -29,7 +29,7 @@ public class BancoArmas extends BancoItens {
     public List<Arma> getTodasAsArmas() {
         List<Arma> apenasArmas = new ArrayList<>();
 
-        for (Item item : super.getItens()) {
+        for (Item item : super.getBanco()) {
             if (item instanceof Arma) {
                 apenasArmas.add((Arma) item);
             }

@@ -1,26 +1,34 @@
 package CONTROLLER;
 
+import MODEL.mapa.LigacoesMapa;
+import MODEL.mapa.MapaAtual;
 import MODEL.mapa.Sala;
-import MODEL.mapa.SalaNode;
 
 public class ControllerMover {
 
-    static void andarEsquerda(){ //me dê sala atual e te digo pra onde tu irás
-        Sala sala; //preciso receber a sala atual de alguma forma!!!
-        //SalaNode.moverSalaEsq(sala);
+    public static void andarEsquerda() throws Exception{
+        if (LigacoesMapa.moverSalaEsq(MapaAtual.getPlayer().getSalaAtual()) == null)
+            throw new Exception();
+        else
+            ControllerJogo.getPlayer().setSalaAtual(LigacoesMapa.moverSalaEsq(MapaAtual.getPlayer().getSalaAtual()));
     }
-    static void andarDireita(){
-        Sala sala;
-        //SalaNode.moverSalaDir(sala);
+    public static void andarDireita() throws Exception{
+        if (LigacoesMapa.moverSalaDir(MapaAtual.getPlayer().getSalaAtual()) == null)
+            throw new Exception();
+        else
+            ControllerJogo.getPlayer().setSalaAtual(LigacoesMapa.moverSalaDir(MapaAtual.getPlayer().getSalaAtual()));
     }
-    static void andarCima(){
-        Sala sala;
-        //SalaNode.moverSalaCima(sala);
+    public static void andarCima() throws Exception{
+        if (LigacoesMapa.moverSalaCima(MapaAtual.getPlayer().getSalaAtual()) == null)
+            throw new Exception();
+        else
+            ControllerJogo.getPlayer().setSalaAtual(LigacoesMapa.moverSalaCima(MapaAtual.getPlayer().getSalaAtual()));
     }
-    static void andarBaixo(){
-        Sala sala;
-        //SalaNode.moverSalaBaixo(sala);
+    public static void andarBaixo() throws Exception{
+        if (LigacoesMapa.moverSalaBaixo(MapaAtual.getPlayer().getSalaAtual()) == null)
+            throw new Exception();
+        else
+            ControllerJogo.getPlayer().setSalaAtual(LigacoesMapa.moverSalaBaixo(MapaAtual.getPlayer().getSalaAtual()));
     }
 
 }
-
