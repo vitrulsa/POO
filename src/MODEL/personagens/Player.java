@@ -5,7 +5,7 @@ import MODEL.mapa.Sala;
 import java.util.ArrayList;
 
 public class Player extends Personagem{
-
+    private int max_hp;
     private ArrayList<Item> inventario = new ArrayList<Item>();
     private String classe;
     private Sala salaAtual;
@@ -14,6 +14,7 @@ public class Player extends Personagem{
     public Player(String nome, String raca, String classe, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
         this.classe = classe;
+        this.max_hp = hp;
     }
 
 
@@ -25,16 +26,6 @@ public class Player extends Personagem{
     @Override
     public void usarMagia() {
 
-    }
-
-
-    public void exibirStatus() {
-        System.out.println("--- Status de "+ this.getNome() + "---");
-        System.out.println("HP: " + this.getHp());
-        System.out.println("Defesa: " + this.getDefesa());
-        System.out.println("Força: " + this.getForca());
-        System.out.println("Destreza: " + this.getDest());
-        System.out.println("Mana: " + this.getManaAtual() + "/" + this.getManaMax());
     }
 
     public ArrayList<Item> getInventario() {
@@ -62,4 +53,6 @@ public class Player extends Personagem{
     public void setDescricao(String descricao){
         this.descricao = descricao;
     }
+
+    public int getMaxHp(){ return max_hp; }
 }

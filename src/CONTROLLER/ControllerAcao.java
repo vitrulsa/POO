@@ -98,7 +98,9 @@ public class ControllerAcao {
 
             atacar(player, player.getSalaAtual().getInimigoNaSala().get(i - 1), magia);
         } else{
-            player.setHp(player.getHp());
+            player.setHp(player.getHp() + 15);
+            if (player.getMaxHp() < player.getHp())
+                    player.setHp(player.getMaxHp());
         }
 
         player.setManaAtual(player.getManaAtual() - 1);
@@ -116,7 +118,9 @@ public class ControllerAcao {
     }
 
     public static void usarItem(Item item){
-
+        if (item instanceof Consumivel consumivel){
+            consumivel.usar(ControllerJogo.getPlayer());
+        }
     }
     public static void usarItem() throws Exception{
         try{
@@ -204,5 +208,38 @@ public class ControllerAcao {
         }
 
         return player.getHp() <= 0;
+    }
+
+    public static void mover(String comando) throws Exception{
+        switch (comando){
+            case "c":
+                try{
+                    ControllerMover.andarCima();
+                } catch (Exception e) {
+                    throw e;
+                }
+                break;
+            case "b":
+                try{
+                    ControllerMover.andarBaixo();
+                } catch (Exception e) {
+                    throw e;
+                }
+                break;
+            case "e":
+                try{
+                    ControllerMover.andarEsquerda();
+                } catch (Exception e) {
+                    throw e;
+                }
+                break;
+            case "d":
+                try{
+                    ControllerMover.andarDireita();
+                } catch (Exception e) {
+                    throw e;
+                }
+                break;
+        }
     }
 }

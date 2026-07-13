@@ -27,9 +27,15 @@ public class ViewJogo {
         System.out.print(comandos);
     }
 
+    public static void mostrarStatus(){
+        System.out.println("HP: " + ControllerJogo.getPlayer().getHp() + " / " + ControllerJogo.getPlayer().getMaxHp());
+        System.out.println("Mana: " + ControllerJogo.getPlayer().getManaAtual() + " / " + ControllerJogo.getPlayer().getManaMax());
+    }
+
     public static void interpretadorComandos(){
         while(true) {
             mostrarComandos();
+            mostrarStatus();
             Scanner scanner = new Scanner(System.in);
             System.out.print("> ");
 
@@ -137,9 +143,27 @@ public class ViewJogo {
                     System.out.println("Fechando jogo...");
                     return;
 
-//                case "n", "s", "l", "o":
-//                    ControllerAcao.mover(comando);
-
+                case "c", "b", "d", "e":
+                    try{
+                        ControllerAcao.mover(comando);
+                        switch (comando){
+                            case "c":
+                                System.out.println("Andando para cima...");
+                                break;
+                            case "e":
+                                System.out.println("Andando para esquerda...");
+                                break;
+                            case "d":
+                                System.out.println("Andando para direita...");
+                                break;
+                            case "b":
+                                System.out.println("Andando para baixo...");
+                                break;
+                        }
+                    } catch (Exception e){
+                        System.out.println("Tentativa de movimento inválido!");
+                    }
+                    break;
                 default:
                     System.out.println("Comando não reconhecido. Tente novamente.");
                     break;

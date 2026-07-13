@@ -18,10 +18,27 @@ public class Sala implements Serializable {
     private ArrayList<NPC> npcNaSala = new ArrayList<>(MAX_NPC);
     private ArrayList<Item> itemNaSala = new ArrayList<>(MAX_ITEM);
 
+    public Sala getSalaDireita() {
+        return salaDireita;
+    }
+
+    public Sala getSalaEsquerda() {
+        return salaEsquerda;
+    }
+
+    public Sala getSalaCima() {
+        return salaCima;
+    }
+
+    public Sala getSalaBaixo() {
+        return salaBaixo;
+    }
+
     Sala salaDireita;
     Sala salaEsquerda;
     Sala salaCima;
     Sala salaBaixo;
+
     private String estadoSala; //se é possível chegar na sala ou se precisa de uma chave antes
     //dá pra tirar se quiserem
     private String nome;

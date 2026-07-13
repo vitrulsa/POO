@@ -18,7 +18,10 @@ public class ViewAcao {
             System.out.println(item.getNome());
         }
 
-        System.out.println("Arma equipada: " + player.getArmaEquipada().getNome());
+        if (player.getArmaEquipada() != null)
+            System.out.println("Arma equipada: " + player.getArmaEquipada().getNome());
+        else
+            System.out.println("Nenhuma arma equipada");
     }
 
     public static void usarItem(ArrayList<Item> inventario) throws Exception {
@@ -26,7 +29,7 @@ public class ViewAcao {
         System.out.println("Escolha um item para utilizar:\n--- Inventário ---");
         int quantidade = 0;
         for (Item item : inventario) {
-            System.out.println((inventario.indexOf(item) + 1) + ": " + item.getNome());
+            System.out.println("[" + quantidade + "] " + item.getNome());
             quantidade++;
         }
 
@@ -170,6 +173,21 @@ public class ViewAcao {
 
     public static void verCenario(Sala salaAtual) throws Exception {
         System.out.println(salaAtual.getDescricao());
+
+        System.out.println("Você pode ir para: ");
+
+        if(salaAtual.getSalaCima() != null) {
+            System.out.println("Cima: " + salaAtual.getSalaCima().getNome());
+        }
+        if(salaAtual.getSalaDireita() != null){
+            System.out.println("Direita: " + salaAtual.getSalaDireita().getNome());
+        }
+        if(salaAtual.getSalaBaixo() != null) {
+            System.out.println("Baixo: " + salaAtual.getSalaBaixo().getNome());
+        }
+        if(salaAtual.getSalaEsquerda() != null) {
+            System.out.println("Esquerda: " + salaAtual.getSalaEsquerda().getNome());
+        }
 
         ArrayList<iInfoBasica> listaObjetos = ControllerAcao.checarCenario(salaAtual);
         System.out.println("Nessa sala, existem: ");

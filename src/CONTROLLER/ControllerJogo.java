@@ -52,6 +52,7 @@ public class ControllerJogo {
         int dest;
         int manaMax;
         ArrayList<Item> inventario = new ArrayList<>();
+        Arma arma = null;
         Magia[] magias;
         switch(raca){
             case "Anão":
@@ -84,21 +85,38 @@ public class ControllerJogo {
             case "Guerreiro":
                 defesa = 16;
                 magias = new Magia[0];
+                arma = ControllerInicializar.getBancoArmas().getArma("Espada Longa");
                 break;
             case "Ladino":
                 defesa = 14;
                 magias = new Magia[0];
+                arma = ControllerInicializar.getBancoArmas().getArma("Rapieira");
                 break;
             case "Mago":
                 defesa = 10;
                 magias = new Magia[3];
+                magias[0] = ControllerInicializar.getBancoMagias().getDado("Cura");
+                magias[1] = ControllerInicializar.getBancoMagias().getDado("Estilhacar");
+                magias[2] = ControllerInicializar.getBancoMagias().getDado("Bola de Fogo");
+                inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
+                inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
+                inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
+                inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
+                inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
+                inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Vida"));
                 break;
             default: // case "Patrulheiro"
                 defesa = 12;
                 magias = new Magia[1];
+                arma = ControllerInicializar.getBancoArmas().getArma("Arco");
+                magias[0] = ControllerInicializar.getBancoMagias().getDado("Raio Adoecente");
+                inventario.add(ControllerInicializar.getBancoItens().getDado("Poção de Mana"));
                 break;
         }
         meuPlayer = new Player(nome, raca, classe, hp, defesa, forca, dest, manaMax, magias);
+        meuPlayer.setArmaEquipada(arma);
+        meuPlayer.getInventario().addAll(inventario);
+
         MapaAtual.ligarSalas(meuPlayer);
         ViewJogo.iniciarJogo();
     }

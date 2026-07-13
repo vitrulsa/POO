@@ -22,15 +22,16 @@ public class Consumivel extends Item {
         switch (this.tipo) {
             case POCAO_VIDA:
                 alvo.setHp(alvo.getHp() + valorEfeito);
-                System.out.println("Usou " + getNome() + ". Recuperou " + valorEfeito + " de Vida (HP).");
+                if (alvo instanceof Player player && player.getMaxHp() < player.getHp())
+                   alvo.setHp(player.getMaxHp());
+                System.out.println("Usou " + getNome() + ". Recuperou " + (valorEfeito - 5) + " de Vida (HP).");
                 break;
             case POCAO_MANA:
                 alvo.setManaAtual(alvo.getManaAtual() + valorEfeito);
-                System.out.println("Usou " + getNome() + ". Restaurou " + valorEfeito + " de Mana (MP).");
+                if (alvo.getManaMax() < alvo.getManaAtual())
+                    alvo.setManaAtual(alvo.getManaMax());
+                System.out.println("Usou " + getNome() + ". Restaurou " + (valorEfeito - 8)+ " de Mana (MP).");
                 break;
-            case MUNICAO:
-                System.out.println(getNome() + " não pode ser usada diretamente. Deve ser carregada numa arma.");
-                return;
             default:
                 System.out.println("Este item não tem efeito imediato.");
                 return;
