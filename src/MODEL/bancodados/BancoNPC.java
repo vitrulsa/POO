@@ -16,10 +16,10 @@ public class BancoNPC extends Banco<NPC>{
         try(ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file))){
             npcs = (HashSet<NPC>) entrada.readObject();
 
-            System.out.println("NPCs carregados:");
-            for (NPC npc : npcs){
-                System.out.println(npc.getNome());
-            }
+//            System.out.println("NPCs carregados:");
+//            for (NPC npc : npcs){
+//                System.out.println(npc.getNome());
+//            }
         } catch (IOException e){
             System.out.println("Falha abrindo arquivo para carregar NPCs.");
         } catch (ClassNotFoundException e){
