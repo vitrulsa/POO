@@ -98,7 +98,7 @@ public class ViewJogo {
                     ControllerAcao.inventario();
                     break;
 
-                case "5": // usar
+                case "5": // usar no geral
                     System.out.println("Você deseja usar um item ou magia? Digite o número da sua escolha.");
                     System.out.println("[1] Item.");
                     System.out.println("[2] Magia.");
@@ -135,7 +135,7 @@ public class ViewJogo {
                     }
                     break;
 
-                case "6":
+                case "6": // equipar arma
                     try{
                         ControllerAcao.equipar();
                     } catch (Exception e) {
@@ -143,11 +143,11 @@ public class ViewJogo {
                     }
                     break;
 
-                case "7":
+                case "7": // ver magias
                     ControllerAcao.magias();
                     break;
 
-                case "8":
+                case "8": // terminar
                     System.out.println("Fechando jogo...");
                     try {
                         Arquivo.salvarJogo();
@@ -157,7 +157,7 @@ public class ViewJogo {
                     }
                     return;
 
-                case "c", "b", "d", "e":
+                case "c", "b", "d", "e": // direcoes das salas
                     try{
 
                         ControllerJogo.setEstadoCombate();
@@ -191,6 +191,7 @@ public class ViewJogo {
         }
     }
 
+    // funcao principal para fazer escolhas entre varios indices (ex.: [1] VER, [2] FALAR, etc)
     public static int lerVariasOpcoes(String comando, Scanner scanner, int i){
         int x;
         System.out.print("> ");

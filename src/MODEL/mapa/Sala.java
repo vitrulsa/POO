@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Sala implements Serializable {
-    //1 sala qual quer. tem ligação com outras, inimigos, itens ou npcs.
+    //1 sala qualquer. tem ligação com outras, inimigos, itens ou npcs.
     private int MAX_INIMIGO = 3;
     private int MAX_NPC = 3;
     private int MAX_ITEM = 3;
@@ -40,7 +40,6 @@ public class Sala implements Serializable {
     Sala salaBaixo;
 
     private String estadoSala; //se é possível chegar na sala ou se precisa de uma chave antes
-    //dá pra tirar se quiserem
     private String nome;
     private String descricao;
 

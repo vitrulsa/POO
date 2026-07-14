@@ -4,6 +4,7 @@ import MODEL.personagens.Magia;
 import MODEL.personagens.Player;
 import java.util.ArrayList;
 
+// mestre arcano
 public class ControllerMestre {
 
     public static ArrayList<Magia> getMagiasDisponiveis() {

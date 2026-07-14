@@ -1,6 +1,6 @@
 package MODEL.personagens;
 
-public interface iInfoBasica { //intrface p ajudar em caso de manipular mts objetos
+public interface iInfoBasica { //intrface p ajudar em caso de manipular mts objetos, especialmente pra listar itens de uma sala
 
     public String getNome();
 
@@ -11,7 +11,5 @@ public interface iInfoBasica { //intrface p ajudar em caso de manipular mts obje
     public void setDescricao(String descricao);
 
     public String getDescricao();
-
-    //se verem mais coisas qeu se repetem, coloquem ai!!!
 
 }

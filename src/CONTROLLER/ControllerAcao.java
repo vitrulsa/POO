@@ -10,6 +10,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
+// responsavel pelas logicas dos comandos principais
 public class ControllerAcao {
 
     public static ArrayList<iInfoBasica> checarCenario(Sala sala){
@@ -54,6 +55,7 @@ public class ControllerAcao {
         }
     }
 
+    // funcao chamada pelo ViewJogo para printar opcoes de ataque
     public static void atacar() throws Exception{
         try{
             ViewAcao.atacar(ControllerJogo.getPlayer().getSalaAtual().getInimigoNaSala());
@@ -90,6 +92,7 @@ public class ControllerAcao {
         player.setManaAtual(player.getManaAtual() - 1);
     }
 
+    // funcao chamada pelo ViewJogo para printar opcoes de magia
     public static void usarMagia() throws Exception{
         try{
             ViewAcao.usarMagia(ControllerJogo.getPlayer().getMagias());
@@ -107,6 +110,7 @@ public class ControllerAcao {
             consumivel.usar(ControllerJogo.getPlayer());
         }
     }
+    // funcao chamada pelo ViewJogo para printar opcoes de itens
     public static void usarItem() throws Exception{
         try{
             ViewAcao.usarItem(ControllerJogo.getPlayer().getInventario());
@@ -131,6 +135,7 @@ public class ControllerAcao {
         return npc.getDescricao();
     }
 
+    // funcao chamada pelo ViewJogo para ver opcoes de fala na sala
     public static Boolean falar() throws Exception{
 
         if(ControllerJogo.getEstadoCombate() == true){
@@ -168,6 +173,7 @@ public class ControllerAcao {
         player.setArmaEquipada(arma);
     }
 
+    // funcao chamada pelo ViewJogo para ver opcoes de armas do inventario para equipar
     public static void equipar() throws Exception{
         try{
             ViewAcao.equipar(ControllerJogo.getPlayer().getInventario());
@@ -176,6 +182,7 @@ public class ControllerAcao {
         }
     }
 
+    // logica do turno dos inimigos
     public static boolean turnoInimigos(){
         Player player = ControllerJogo.getPlayer();
         ArrayList<Inimigo> inimigos = player.getSalaAtual().getInimigoNaSala();

@@ -29,6 +29,7 @@ public class BancoInimigo extends Banco<Inimigo>{
     }
 
     @Override
+    // cria o arquivo do banco de dado
     public void criarBanco(){
         try(ObjectOutputStream saida = new ObjectOutputStream(new FileOutputStream(file))){
             saida.writeObject(inimigos);

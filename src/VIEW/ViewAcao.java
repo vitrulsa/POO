@@ -40,7 +40,7 @@ public class ViewAcao {
                     int i = s.nextInt();
 
                     if (i > 0 && i <= quantidade){
-                        ControllerAcao.usarItem(inventario.get(i));
+                        ControllerAcao.usarItem(inventario.get(i)); // ControllerJogo cuida da logica do item
                         break;
                     } else{
                         System.out.println("Insira um número de 1 à "+ quantidade);
@@ -58,9 +58,9 @@ public class ViewAcao {
 
     public static void atacar(ArrayList<Inimigo> inimigoNaSala) throws Exception {
         try{
-            int i = escolherAlvo(inimigoNaSala);
+            int i = escolherAlvo(inimigoNaSala); // escolhe o alvo
             if (i > 0)
-                ControllerAcao.atacar(ControllerJogo.getPlayer(), inimigoNaSala.get(i - 1), null);
+                ControllerAcao.atacar(ControllerJogo.getPlayer(), inimigoNaSala.get(i - 1), null); // ControllerAcao vai cuidar do resto
         } catch (Exception e){
             System.out.println("Erro no ViewAcao");
             throw e;
@@ -131,7 +131,7 @@ public class ViewAcao {
                     int entrada = s.nextInt();
 
                     if (entrada > 0 && entrada <= i){
-                        ControllerAcao.usarMagia(magias.get(entrada - 1));
+                        ControllerAcao.usarMagia(magias.get(entrada - 1)); // cntrolleracao cuida da logica de magia
                         break;
                     }else
                         System.out.println("Insira um número de 1 à "+ i);
@@ -148,6 +148,7 @@ public class ViewAcao {
         }
     }
 
+    // permite a escolha do ataque de um golpe normal ou de uma magia listando os inimigos na sala atual
     public static int escolherAlvo(ArrayList<Inimigo> inimigoNaSala) throws Exception{
         int quantidade = 0;
         for (Inimigo inimigo : inimigoNaSala) {
@@ -181,6 +182,7 @@ public class ViewAcao {
         }
     }
 
+    // lista os itens, inimigos e NPCS na sala atual, alem das salas ao lado
     public static void verCenario(Sala salaAtual) throws Exception {
         System.out.println(salaAtual.getDescricao());
 
@@ -249,11 +251,12 @@ public class ViewAcao {
         } else{
             System.out.println("---Magias---");
             for (Magia magia : magias){
-                System.out.println(magia.getNome() + ":" + magia.getDescricao());
+                System.out.println(magia.getNome() + ": " + magia.getDescricao());
             }
         }
     }
 
+    // equipar uma arma do inventario
     public static void equipar(ArrayList<Item> inventario) throws Exception{
 
         ArrayList<Arma> armas = new ArrayList<>();
@@ -294,6 +297,7 @@ public class ViewAcao {
 
     }
 
+    // imprime o dano durante o combate
     public static void dano(Personagem atacante, Personagem alvo, int dano){
         if (dano > 0){
             System.out.println(">>> " + atacante.getNome() + " acerta " + alvo.getNome() + " e causa " + dano + " de dano! <<<");

@@ -55,7 +55,7 @@ public class Player extends Personagem{
 
    
 
-    public boolean possuiChave(){
+    public boolean possuiChave(){ // para abrir a porta
         for(Item item : inventario){
             if(item instanceof Consumivel consumivel){
                 if(consumivel.getNome().equals("Chave"))
@@ -65,7 +65,7 @@ public class Player extends Personagem{
         return false;
     }
 
-    public boolean possuiChocolate(){
+    public boolean possuiChocolate(){ // final secreto
         for(Item item : inventario){
             if(item instanceof Consumivel consumivel){
                 if(consumivel.getNome().equals("Chocolate"))

@@ -7,6 +7,7 @@ import MODEL.personagens.Player;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// classe do mestre arcano
 public class ViewMestre {
 
     public static void abrirMenu() {

@@ -52,6 +52,8 @@ public class MapaAtual {
         Sala salaCozinha = ControllerInicializar.getBancoSalas().getSala("Cozinha");
 
         Sala salaCloset = ControllerInicializar.getBancoSalas().getSala("Closet");
+
+        // faz as ligacoes da sala como se fosse um grafo
         LigacoesMapa.ligarSalasDir(salaBosqueInicial, salaCentroFloresta);
         LigacoesMapa.ligarSalasBaixo(salaCentroFloresta, salaJardimDosSlimes);
         LigacoesMapa.ligarSalasDir(salaCentroFloresta, salaArvoreDosEsquilos);

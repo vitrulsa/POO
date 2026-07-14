@@ -5,7 +5,7 @@ public class NPC extends Personagem {
 
     public NPC(String nome, String raca, int hp, int defesa, int forca, int dest, int manaMax, Magia[] magias, String descricao) {
         super(nome, raca, hp, defesa, forca, dest, manaMax, magias);
-        this.descricao = descricao;
+        this.descricao = descricao; // descricao do NPC tambem eh o dialogo dele
     }
 
     @Override
