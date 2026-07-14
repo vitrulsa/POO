@@ -54,11 +54,6 @@ public class CombateAtual {
 
             alvo.setHp(alvo.getHp() - dano);
             ViewAcao.dano(atacante, alvo, dano); // imprime o dano
-
-            if (alvo.getHp() <= 0) {
-                if (alvo instanceof Inimigo inimigo)
-                    ControllerJogo.getPlayer().getSalaAtual().getInimigoNaSala().remove(inimigo); // matou um inimigo
-            }
         } else {
             ViewAcao.dano(atacante, alvo, 0);
         }

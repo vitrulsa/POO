@@ -1,6 +1,7 @@
 package CONTROLLER;
 
 import MODEL.mapa.CombateAtual;
+import MODEL.mapa.MapaAtual;
 import MODEL.mapa.Sala;
 import MODEL.personagens.*;
 import VIEW.ViewAcao;
@@ -108,6 +109,7 @@ public class ControllerAcao {
     public static void usarItem(Item item){
         if (item instanceof Consumivel consumivel){
             consumivel.usar(ControllerJogo.getPlayer());
+            MapaAtual.getPlayer().getInventario().remove(consumivel);
         }
     }
     // funcao chamada pelo ViewJogo para printar opcoes de itens

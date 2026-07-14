@@ -40,7 +40,7 @@ public class ViewAcao {
                     int i = s.nextInt();
 
                     if (i > 0 && i <= quantidade){
-                        ControllerAcao.usarItem(inventario.get(i)); // ControllerJogo cuida da logica do item
+                        ControllerAcao.usarItem(inventario.get(i - 1)); // ControllerJogo cuida da logica do item
                         break;
                     } else{
                         System.out.println("Insira um número de 1 à "+ quantidade);
